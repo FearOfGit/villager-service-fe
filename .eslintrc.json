@@ -4,6 +4,7 @@
     "es2021": true
   },
   "extends": [
+    "eslint:recommended",  
     "plugin:react/recommended",
     "airbnb",
     "plugin:react/jsx-runtime",
@@ -16,6 +17,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-unused-vars": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx"] }
