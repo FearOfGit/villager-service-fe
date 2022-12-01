@@ -5,7 +5,7 @@ import palette from '../../lib/palette';
 const buttonStyle = css`
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   padding: 0.25rem 1rem;
   color: ${palette.gray[7]};

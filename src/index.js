@@ -16,11 +16,13 @@ import Root from './routes/root';
 import theme from './styles/theme/theme';
 
 import SignIn from './pages/SignInPage';
+import SignUp from './pages/SignUpPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
   <Route path="/" element={<Root />}>
     <Route path="signIn" element={<SignIn />} />
+    <Route path="signUp" element={<SignUp />} />
   </Route>
   )
 );
