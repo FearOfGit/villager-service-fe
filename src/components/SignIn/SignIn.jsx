@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import { ReactComponent as KakaoLogo} from '../../images/kakaologin.svg'
 
-import {Wrapper, Desc, SignInForm, ErrorMsg, Input, Button, ButtonKakao, TextBox, FindSection, SignupSection, AdditionalMsg, SignupNavigation, } from './SignIn.styles';
+import {Wrapper, Desc, SignInForm, ErrorMsg, Input, Button, ButtonKakao, TextBox, } from './SignIn.styles';
 
 function SignIn() {
 
@@ -36,6 +36,8 @@ function SignIn() {
     <Wrapper>
       <ToastContainer/>
         <Desc>
+          오셨군요!
+          <br />
           동네 #람들에 어서오세요!
           <br />
           오늘도 즐거운 하루! 🥰
@@ -66,16 +68,8 @@ function SignIn() {
             onBlur={handleBlur}
           />
           <Button type="submit">로그인하기</Button>
+          <ButtonKakao type="button"><KakaoLogo/><TextBox>카카오로 시작하기</TextBox></ButtonKakao>
         </SignInForm>
-        <ButtonKakao type="button"><KakaoLogo/><TextBox>카카오로 시작하기</TextBox></ButtonKakao>
-        <FindSection>
-          <AdditionalMsg>이메일 찾기</AdditionalMsg>
-          <AdditionalMsg>비밀번호 찾기</AdditionalMsg>
-        </FindSection>
-        <SignupSection>
-          <AdditionalMsg>아직도 동네#람들 회원이 아니신가요?</AdditionalMsg>
-          <SignupNavigation>회원가입</SignupNavigation>
-        </SignupSection>
     </Wrapper>  
   );
 }
