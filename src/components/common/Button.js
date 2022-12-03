@@ -7,14 +7,21 @@ const buttonStyle = css`
   border-radius: 4px;
   font-size: 0.9rem;
   font-weight: 700;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0.5rem;
+  background: none;
   color: ${palette.gray[7]};
   outline: none;
   cursor: pointer;
-  background: #fff;
   &:hover {
     color: ${palette.gray[9]};
   }
+  ${(props) =>
+    props.small &&
+    css`
+      font-size: 5px;
+      background: ${palette.gray[3]};
+      border-radius: 4px;
+    `}
 `;
 
 const StyledButton = styled.button`
@@ -22,7 +29,8 @@ const StyledButton = styled.button`
 `;
 
 const StyleLink = styled(Link)`
-  ${buttonStyle}
+  text-decoration: none;
+  ${buttonStyle};
 `;
 
 function Button(props) {
