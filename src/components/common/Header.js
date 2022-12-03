@@ -1,10 +1,15 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useState } from 'react';
 import { VscBell } from 'react-icons/vsc';
 import styled from 'styled-components';
 import Button from './Button';
 import Responsive from './Responsive';
+import TownSetup from '../modal/TownSetup/TownSetup';
 
 const HeaderBlock = styled.div`
   position: fixed;
+  left: 0;
   width: 100%;
   background: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
@@ -39,12 +44,18 @@ const Spacer = styled.div`
 `;
 
 function Header() {
+  const [isShow, setIsShow] = useState(false);
+
   return (
     <>
+      <TownSetup show={isShow} onClose={() => setIsShow(false)} />
       <HeaderBlock>
         <Inner>
           <div className="logo">
-            <span className="orange">연남동</span>#람들
+            <span className="orange" onClick={() => setIsShow(true)}>
+              연남동
+            </span>
+            #람들
           </div>
           <div className="other">
             <Button>로그인</Button>

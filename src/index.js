@@ -4,7 +4,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Routes,
   Route,
 } from 'react-router-dom';
 import './index.css';
@@ -17,14 +16,17 @@ import theme from './styles/theme/theme';
 
 import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
+import Profile from './pages/ProfilePage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-  <Route path="/" element={<Root />}>
-    <Route path="signIn" element={<SignIn />} />
-    <Route path="signUp" element={<SignUp />} />
-  </Route>
-  )
+    <Route path="/" element={<Root />}>
+      <Route path="signIn" element={<SignIn />} />
+      <Route path="signUp" element={<SignUp />} />
+      <Route path="profile" element={<Profile my />} />
+      <Route path="profile/:id" element={<Profile />} />
+    </Route>,
+  ),
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,7 +34,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
