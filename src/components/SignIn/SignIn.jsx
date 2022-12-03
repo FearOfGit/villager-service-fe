@@ -1,12 +1,29 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import { ReactComponent as KakaoLogo} from '../../images/kakaologin.svg'
 
-import {Wrapper, Desc, SignInForm, ErrorMsg, Input, Button, ButtonKakao, TextBox, FindSection, SignupSection, AdditionalMsg, SignupNavigation, } from './SignIn.styles';
+import {
+  Wrapper, 
+  Desc, 
+  SignInForm, 
+  ErrorMsg, 
+  Input, 
+  Button, 
+  ButtonKakao, 
+  TextBox, 
+  FindSection, 
+  SignupSection, 
+  AdditionalMsg, 
+  SignupNavigation, 
+} from './SignIn.styles';
+
 
 function SignIn() {
+
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,8 +46,8 @@ function SignIn() {
     onSubmit,
   });
 
-  const emailCheck = (errors.email) == null ? '✔️' : errors.email;
-  const passwordCheck = (errors.password) == null ? '✔️' : errors.password;
+  const emailCheck = (errors.email) == null ? '🙂' : errors.email;
+  const passwordCheck = (errors.password) == null ? '🙂' : errors.password;
 
   return (
     <Wrapper>
