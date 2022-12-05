@@ -22,45 +22,56 @@ export const TownSetupModal = styled.div`
     `}
 `;
 
-export const Inner = styled(Responsive)``;
+export const Inner = styled(Responsive)`
+  overflow: hidden;
+`;
 
 export const Header = styled.div`
   height: 4rem;
   border-bottom: 1px solid ${palette.gray[1]};
   display: flex;
   align-items: center;
-  .inner {
+  .header__inner {
     position: relative;
     display: flex;
     justify-content: center;
   }
-  .btn {
+  .header__title {
+    font-size: 1.2rem;
+  }
+  .btn--close {
     position: absolute;
     left: 3%;
   }
 `;
 
-export const TownList = styled.ul`
-  /* margin-top: 1rem; */
-  .inner {
-    padding: 0;
-  }
-  li {
-    height: 50px;
+export const MyTownList = styled.ul`
+  .townItem {
+    padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid ${palette.gray[2]};
-    padding: 0 1rem;
-    .title {
-      flex: 10;
-      margin-left: 0.5rem;
+    input {
+      visibility: hidden;
     }
-    .remove {
-      color: red;
-      flex: 1;
+    .ico-check {
+      color: ${palette.green[5]};
     }
-    .plus {
+    .townItem__title {
+      flex: 2;
+      padding-left: 1.2rem;
+    }
+    .btn--edit,
+    .btn--remove {
+      font-size: 0.7rem;
+    }
+    .btn--edit {
+      color: ${palette.gray[5]};
+    }
+    .btn--remove {
+      color: ${palette.red[4]};
+    }
+    .bnt--add {
       width: 100%;
       height: 100%;
     }
