@@ -17,6 +17,7 @@ import theme from './styles/theme/theme';
 import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
 import Profile from './pages/ProfilePage';
+import Map from './pages/MapPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="signUp" element={<SignUp />} />
       <Route path="profile" element={<Profile my />} />
       <Route path="profile/:id" element={<Profile />} />
+      <Route path="map" element={<Map />} />
     </Route>,
   ),
 );

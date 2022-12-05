@@ -19,9 +19,14 @@ const Inner = styled(Responsive)`
   justify-content: space-between;
 `;
 
+const Spacer = styled.div`
+  height: 4rem;
+`;
+
 function Navigator() {
   return (
     <>
+      <Spacer />
       <NavigatorBlock>
         <Inner>
           <Button>모임</Button>
