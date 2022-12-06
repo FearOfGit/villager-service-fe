@@ -18,6 +18,7 @@ import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
 import Profile from './pages/ProfilePage';
 import Map from './pages/MapPage';
+import Register from './pages/RegisterPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="profile" element={<Profile my />} />
       <Route path="profile/:id" element={<Profile />} />
       <Route path="map" element={<Map />} />
+      <Route path="register" element={<Register />} />
     </Route>,
   ),
 );
