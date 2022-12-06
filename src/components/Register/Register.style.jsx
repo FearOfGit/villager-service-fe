@@ -13,8 +13,6 @@ export const RegisterTemplate = styled.div`
     margin: 1rem 0;
     padding: 0.5rem 1rem;
     background: #4ab7b6;
-    position: relative;
-    left: 83%;
   }
 `;
 
