@@ -22,45 +22,84 @@ export const TownSetupModal = styled.div`
     `}
 `;
 
-export const Inner = styled(Responsive)``;
+export const Inner = styled(Responsive)`
+  overflow: hidden;
+`;
 
 export const Header = styled.div`
   height: 4rem;
   border-bottom: 1px solid ${palette.gray[1]};
   display: flex;
   align-items: center;
-  .inner {
+  .header__inner {
     position: relative;
     display: flex;
     justify-content: center;
   }
-  .btn {
+  .header__title {
+    font-size: 1.2rem;
+  }
+  .btn--close {
     position: absolute;
     left: 3%;
   }
 `;
 
-export const TownList = styled.ul`
-  /* margin-top: 1rem; */
-  .inner {
-    padding: 0;
-  }
-  li {
-    height: 50px;
+export const TownItemBlock = styled.li`
+  .item {
+    padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid ${palette.gray[2]};
-    padding: 0 1rem;
-    .title {
-      flex: 10;
-      margin-left: 0.5rem;
+    .name {
+      flex: 2;
+      padding-left: 1.2rem;
+      label {
+        cursor: pointer;
+      }
+      .hidden {
+        visibility: hidden;
+      }
     }
-    .remove {
-      color: red;
-      flex: 1;
+  }
+  .ico-check {
+    color: ${palette.green[5]};
+  }
+`;
+
+export const ButtonGroup = styled.div`
+  .btn--edit,
+  .btn--remove {
+    font-size: 0.7rem;
+  }
+  .btn--edit {
+    color: ${palette.gray[5]};
+  }
+  .btn--remove {
+    color: ${palette.red[4]};
+  }
+`;
+
+export const EditorBlock = styled.div`
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  .input {
+    width: 100%;
+    display: flex;
+    input {
+      flex: 2;
     }
-    .plus {
+  }
+  .btn--edit {
+    margin-left: 0.25rem;
+    background: ${palette.gray[3]};
+  }
+`;
+
+export const MyTownList = styled.ul`
+  .add {
+    height: 50px;
+    Button {
       width: 100%;
       height: 100%;
     }

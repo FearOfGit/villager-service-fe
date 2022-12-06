@@ -6,6 +6,7 @@ const ResponsiveBlock = styled.div`
   width: 1024px;
   min-width: 300px;
   margin: 0 auto;
+  overflow: auto;
 
   @media (max-width: 1024px) {
     width: 768px;

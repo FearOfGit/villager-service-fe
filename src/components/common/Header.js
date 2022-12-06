@@ -9,6 +9,7 @@ import TownSetup from '../modal/TownSetup/TownSetup';
 
 const HeaderBlock = styled.div`
   position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   background: #fff;
@@ -28,6 +29,10 @@ const Inner = styled(Responsive)`
   }
   .orange {
     color: #fdaa5d;
+    cursor: pointer;
+    &:hover {
+      color: #fdaa5f;
+    }
   }
   .other {
     display: flex;
