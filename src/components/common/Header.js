@@ -29,6 +29,10 @@ const Inner = styled(Responsive)`
   }
   .orange {
     color: #fdaa5d;
+    cursor: pointer;
+    &:hover {
+      color: #fdaa5f;
+    }
   }
   .other {
     display: flex;

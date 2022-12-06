@@ -45,33 +45,61 @@ export const Header = styled.div`
   }
 `;
 
-export const MyTownList = styled.ul`
-  .townItem {
+export const TownItemBlock = styled.li`
+  .item {
     padding: 1rem;
     display: flex;
     align-items: center;
     border-bottom: 1px solid ${palette.gray[2]};
-    input {
-      visibility: hidden;
-    }
-    .ico-check {
-      color: ${palette.green[5]};
-    }
-    .townItem__title {
+    .name {
       flex: 2;
       padding-left: 1.2rem;
+      label {
+        cursor: pointer;
+      }
+      .hidden {
+        visibility: hidden;
+      }
     }
-    .btn--edit,
-    .btn--remove {
-      font-size: 0.7rem;
+  }
+  .ico-check {
+    color: ${palette.green[5]};
+  }
+`;
+
+export const ButtonGroup = styled.div`
+  .btn--edit,
+  .btn--remove {
+    font-size: 0.7rem;
+  }
+  .btn--edit {
+    color: ${palette.gray[5]};
+  }
+  .btn--remove {
+    color: ${palette.red[4]};
+  }
+`;
+
+export const EditorBlock = styled.div`
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  .input {
+    width: 100%;
+    display: flex;
+    input {
+      flex: 2;
     }
-    .btn--edit {
-      color: ${palette.gray[5]};
-    }
-    .btn--remove {
-      color: ${palette.red[4]};
-    }
-    .bnt--add {
+  }
+  .btn--edit {
+    margin-left: 0.25rem;
+    background: ${palette.gray[3]};
+  }
+`;
+
+export const MyTownList = styled.ul`
+  .add {
+    height: 50px;
+    Button {
       width: 100%;
       height: 100%;
     }

@@ -1,78 +1,117 @@
 import { useState } from 'react';
 import { MdCheck } from 'react-icons/md';
-import { TownSetupModal, Inner, Header, MyTownList } from './TownSetup.style';
+import {
+  TownSetupModal,
+  Inner,
+  Header,
+  MyTownList,
+  TownItemBlock,
+  ButtonGroup,
+  EditorBlock,
+} from './TownSetup.style';
 import Button from '../../common/Button';
 
-const townList = [
+const tempTownList = [
   {
     id: '1',
     name: '연남동',
-    alias: 'HOME',
+    nickname: 'HOME',
   },
   {
     id: '2',
     name: '산본동',
-    alias: 'OTHER',
+    nickname: 'OTHER',
   },
 ];
 
-function TownItem({ town, selectedId, handleChange, removeTown }) {
-  const [isEditAlias, setIsEditAlias] = useState(false);
-  const [inputValue, setInputValue] = useState(town.alias);
+function Editor({ id, editValue, setEditValue, setEditing, onEdit }) {
+  const handleEdit = () => {
+    onEdit(id, editValue);
+    setEditing(null);
+  };
+  return (
+    <EditorBlock>
+      <div className="input">
+        <input
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+        />
+        <Button className="btn--edit" onClick={handleEdit}>
+          수정
+        </Button>
+      </div>
+      <div className="map">지도</div>
+      <div className="created-date">날짜</div>
+    </EditorBlock>
+  );
+}
+
+function TownItem({
+  town,
+  currentTownId,
+  setCurrentTownId,
+  removeTown,
+  isEditing,
+  setEditing,
+  updateTownNickname,
+}) {
+  const [editValue, setEditValue] = useState(town.nickname);
 
   return (
-    <li>
-      <div className="townItem">
-        {town.id === selectedId && <MdCheck className="ico-check" />}
-        <div className="townItem__title">
-          <label htmlFor={town.id}>{`${town.alias}(${town.name})`}</label>
+    <TownItemBlock>
+      <div className="item">
+        {town.id === currentTownId && <MdCheck className="ico-check" />}
+        <div className="name">
+          <label htmlFor={town.id}>{`${town.nickname}(${town.name})`}</label>
           <input
+            className="hidden"
             type="radio"
             id={town.id}
             name="town"
-            checked={selectedId === town.id}
-            onChange={() => handleChange(town.id)}
+            checked={currentTownId === town.id}
+            onChange={() => setCurrentTownId(town.id)}
           />
         </div>
-        <div className="btn-group">
+        <ButtonGroup>
           <Button
             className="btn--edit"
-            onClick={() => setIsEditAlias(!isEditAlias)}
+            onClick={() => setEditing(isEditing ? null : town.id)}
           >
-            {!isEditAlias ? '별칭수정' : '취소'}
+            {!isEditing ? '별칭수정' : '취소'}
           </Button>
           <Button className="btn--remove" onClick={() => removeTown(town.id)}>
             삭제
           </Button>
-        </div>
+        </ButtonGroup>
       </div>
-      {isEditAlias && (
-        <>
-          <div>
-            <input
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <Button>수정</Button>
-          </div>
-        </>
+      {isEditing && (
+        <Editor
+          id={town.id}
+          editValue={editValue}
+          setEditValue={setEditValue}
+          onEdit={updateTownNickname}
+          setEditing={setEditing}
+        />
       )}
-    </li>
+    </TownItemBlock>
   );
 }
 
 function TownSetup({ show, onClose }) {
-  const [towns, setTown] = useState(townList);
-  const [selectedId, setSelectedId] = useState('1');
-  const [isEdit, setIsEdit] = useState(false);
+  const [myTownList, setMyTownList] = useState(tempTownList);
+  const [currentTownId, setCurrentTownId] = useState('1');
+  const [editingId, setEditingId] = useState(null);
 
-  const removeTown = (id) => {
-    const newTowns = towns.filter((town) => town.id !== id);
-    setTown(newTowns);
+  const updateTownNickname = (id, nickname) => {
+    const newTowns = myTownList.map((town) =>
+      town.id === id ? { ...town, nickname } : town,
+    );
+    setMyTownList(newTowns);
   };
 
-  const handleChange = (id) => {
-    setSelectedId(id);
+  const removeTown = (id) => {
+    const newTowns = myTownList.filter((town) => town.id !== id);
+    setMyTownList(newTowns);
   };
 
   return (
@@ -87,15 +126,21 @@ function TownSetup({ show, onClose }) {
       </Header>
       <MyTownList>
         <Inner>
-          {towns.map((town) => (
+          {myTownList.map((town) => (
             <TownItem
               key={town.id}
               town={town}
-              selectedId={selectedId}
-              handleChange={handleChange}
+              currentTownId={currentTownId}
+              setCurrentTownId={setCurrentTownId}
               removeTown={removeTown}
+              isEditing={editingId === town.id}
+              setEditing={setEditingId}
+              updateTownNickname={updateTownNickname}
             />
           ))}
+          <div className="add">
+            <Button>+</Button>
+          </div>
         </Inner>
       </MyTownList>
     </TownSetupModal>
