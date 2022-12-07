@@ -22,7 +22,11 @@ function Register() {
 
   useEffect(() => {
     if (pivotEl.current) {
-      pivotEl.current.scrollIntoView(true);
+      pivotEl.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
     }
   }, [step]);
 
