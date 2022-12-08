@@ -19,10 +19,12 @@ import SignUp from './pages/SignUpPage';
 import Profile from './pages/ProfilePage';
 import Map from './pages/MapPage';
 import Register from './pages/RegisterPage';
+import Main from './pages/MainPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
+      <Route index element={<Main />} />
       <Route path="signIn" element={<SignIn />} />
       <Route path="signUp" element={<SignUp />} />
       <Route path="profile" element={<Profile my />} />

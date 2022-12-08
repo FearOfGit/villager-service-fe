@@ -27,7 +27,6 @@ function Register() {
   const onChange = (e) => {
     setRegisterInfo({ ...registerInfo, [e.target.name]: e.target.value });
   };
-  console.log(registerInfo.gname);
 
   useEffect(() => {
     if (pivotEl.current) {
