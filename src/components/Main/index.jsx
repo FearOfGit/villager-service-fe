@@ -11,9 +11,9 @@ function Main() {
         <MyImage />
       </div>
       <div className="map">지도</div>
-      <Preview title="인기 모임들" />
+      <Preview title="내 동네 인기 모임" />
       <Preview title="내 동네 모임들" />
-      <Preview title="즐겨찾기 모임들" />
+      <Preview title="즐겨찾기 모임" />
     </MainTemplate>
   );
 }
