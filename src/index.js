@@ -20,6 +20,7 @@ import Profile from './pages/ProfilePage';
 import Map from './pages/MapPage';
 import Register from './pages/RegisterPage';
 import Main from './pages/MainPage';
+import GatheringList from './pages/GatheringListPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="profile/:id" element={<Profile />} />
       <Route path="map" element={<Map />} />
       <Route path="register" element={<Register />} />
+      <Route path="gatheringList" element={<GatheringList />} />
     </Route>,
   ),
 );
