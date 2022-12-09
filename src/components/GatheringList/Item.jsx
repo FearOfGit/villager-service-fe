@@ -22,6 +22,7 @@ function Item() {
           <div className="like">좋아요</div>
         </div>
       </div>
+      <div className="btn">모임 신청하기</div>
     </ItemBlock>
   );
 }

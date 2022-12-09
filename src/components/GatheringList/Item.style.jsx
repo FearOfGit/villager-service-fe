@@ -5,9 +5,9 @@ export const ItemBlock = styled.li`
   display: block;
   width: 100%;
   border-radius: 10px;
-  /* background-color: aqua; */
   padding: 1rem;
-  padding-right: 2.5rem;
+  padding-right: 3.5rem;
+  position: relative;
   .title {
     font-size: 1.3rem;
     font-weight: 700;
@@ -63,6 +63,24 @@ export const ItemBlock = styled.li`
         margin-top: 0.5rem;
       }
     }
+  }
+
+  .btn {
+    background-color: #ea7173;
+    position: absolute;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    right: -103px;
+    top: 100px;
+    width: 239px;
+    height: 35px;
+    transform: rotate(-90deg);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   & + li {
