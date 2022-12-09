@@ -10,6 +10,7 @@ const NavigatorBlock = styled.div`
   width: 100%;
   background: #fff;
   border-top: 1px solid ${palette.gray[4]};
+  z-index: 10;
 `;
 
 const Inner = styled(Responsive)`
