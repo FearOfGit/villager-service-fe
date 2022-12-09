@@ -22,6 +22,14 @@ const buttonStyle = css`
       background: ${palette.gray[3]};
       border-radius: 4px;
     `}
+  ${(props) =>
+    props.register &&
+    css`
+      background-color: #4ab7b6;
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 15px;
+    `}
 `;
 
 const StyledButton = styled.button`
