@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       <Route index element={<Main />} />
       <Route path="signIn" element={<SignIn />} />
       <Route path="signUp" element={<SignUp />} />
-      <Route path="profile" element={<Profile my />} />
+      <Route path="profile" element={<Profile />} />
       <Route path="profile/:id" element={<Profile />} />
       <Route path="map" element={<Map />} />
       <Route path="register" element={<GathringRegister />} />
