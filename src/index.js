@@ -18,7 +18,7 @@ import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
 import Profile from './pages/ProfilePage';
 import Map from './pages/MapPage';
-import Register from './pages/RegisterPage';
+import GathringRegister from './pages/GatheringRegisterPage';
 import Main from './pages/MainPage';
 import GatheringList from './pages/GatheringListPage';
 
@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       <Route path="profile" element={<Profile my />} />
       <Route path="profile/:id" element={<Profile />} />
       <Route path="map" element={<Map />} />
-      <Route path="register" element={<Register />} />
+      <Route path="register" element={<GathringRegister />} />
       <Route path="gatheringList" element={<GatheringList />} />
     </Route>,
   ),
