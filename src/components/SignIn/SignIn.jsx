@@ -1,8 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
+import { signInAPI } from '../../api/Users';
+import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
 import { ReactComponent as KakaoLogo} from '../../images/kakaologin.svg'
 
 import {
@@ -20,10 +23,16 @@ import {
   SignupNavigation, 
 } from './SignIn.styles';
 
-
 function SignIn() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const setToken = (data) => {
+    setRefreshToken(data.refreshToken);
+    setAccessToken(data.accessToken);
+    setAuthentication(true);
+  }
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -34,7 +43,22 @@ function SignIn() {
   });
 
   const onSubmit = async (values) => {
-    
+    const body = { ...values };
+    await signInAPI(body)
+      .then((response) => {
+        console.log(response.data);
+        setToken(response.data);
+
+        toast.success(<h3>성공적으로 로그인했습니다! 😊</h3>);
+
+        setTimeout(()=> {
+          navigate('/');
+        }, 1500);
+      })
+      .catch((e) => {
+        console.log(e);
+        toast.error(e.response.data.errorMessage);
+      });
   };
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
