@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
+import { signUpAPI } from '../../api/Users';
 
 import { 
   Wrapper,
@@ -13,6 +15,7 @@ import {
 } from './SignUp.styles';
 
 function SignUp() {
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -37,7 +40,32 @@ function SignUp() {
       .required('🤔 자기소개를 적어주세요!')
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async () => {
+    console.log('되냐');
+    const body = {
+      "nickname": "김지훈1111",
+      "email": "eagle625@naver.com",
+      "password": "1234abc!!!!!!",
+      "gender": "MAN",
+      "year": 2022,
+      "month": 12,
+      "day": 5
+    };
+    try {
+      signUpAPI(body).then(() => {
+        toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>, {
+          position: 'top-center',
+          autoClose: 1000,
+        });
+      });
+      setTimeout(() => {
+        navigate('/signIn');
+      }, 1500);
+    } catch (e) {
+      toast.error(e.response.data.message, {
+        position: 'top-center',
+      });
+    }
   };
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
