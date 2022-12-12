@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -10,57 +10,63 @@ import {
   SignUpForm,
   ErrorMsg,
   Input,
+  GenderContainer,
+  GenderButton,
   Button,
   IntroductionInput,
 } from './SignUp.styles';
 
 function SignUp() {
   const navigate = useNavigate();
-
+  const [ gender, setGender ] = useState("");
+  
+  const setMan = () => {
+    setGender("MAN");
+  };
+  
+  const setWoman = () => {
+    setGender("WOMAN");
+  };
+  
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email('🤔 올바른 이메일 형식이 아닙니다!')
       .required('🤔 이메일을 입력하세요!'),
-    nickname: Yup.string()
+      nickname: Yup.string()
       .min(2, '🤔 닉네임은 최소 2글자 이상입니다!')
       .max(10, '🤔 닉네임은 최대 10글자입니다!')
       .required('🤔 닉네임을 입력하세요!'),
-    password: Yup.string()
+      password: Yup.string()
       .min(8, '🤔 비밀번호는 최소 8자리 이상입니다!')
       .max(16, '🤔 비밀번호는 최대 16자리입니다!')
       .required('🤔 비밀번호를 입력하세요!')
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\]{};':"\\|,.<>?])[^\s]*$/,
-      '🤔 영어, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!',
-      ),
-    passwordConfirm: Yup.string()
-      .oneOf([Yup.ref('password'), null], '🤔 비밀번호가 일치하지 않습니다!')
-      .required('🤔 비밀번호 확인을 입력하세요!'),
-    introduction: Yup.string()
+        '🤔 영어, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다!',
+        ),
+        passwordConfirm: Yup.string()
+        .oneOf([Yup.ref('password'), null], '🤔 비밀번호가 일치하지 않습니다!')
+        .required('🤔 비밀번호 확인을 입력하세요!'),
+        birthday: Yup.string()
+        .required('🤔 생일을 선택해주세요!'),
+        gender: Yup.string()
+        .required('🤔 성별을 선택해주세요!'),
+        introduction: Yup.string()
       .required('🤔 자기소개를 적어주세요!')
-  });
-
-  const onSubmit = async () => {
-    console.log('되냐');
-    const body = {
-      "nickname": "김지훈1111",
-      "email": "eagle625@naver.com",
-      "password": "1234abc!!!!!!",
-      "gender": "MAN",
-      "year": 2022,
-      "month": 12,
-      "day": 5
-    };
-    try {
-      signUpAPI(body).then(() => {
+    });
+    
+  const onSubmit = async (value) => {
+    const body = { ...value };
+    await signUpAPI(body)
+      .then(() => {
         toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
-      });
-      setTimeout(() => {
-        navigate('/signIn');
-      }, 1500);
-    } catch (e) {
+        setTimeout(() => {
+          navigate('/signIn');
+        }, 1500);
+      })
+      .catch((e) => {
       toast.error(e.response.data.message);
-    }
+      });
   };
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -69,16 +75,24 @@ function SignUp() {
       nickname: '',
       password: '',
       passwordConfirm: '',
+      gender: '',
+      birthday: '',
       introduction: '',
     },
     validationSchema,
+    setMan,
+    setWoman,
     onSubmit,
   });
   
+  values.gender = gender;
+
   const emailCheck = (errors.email) == null ? '🙂' : errors.email;
   const nicknameCheck = (errors.nickname) == null ? '🙂' : errors.nickname;
   const passwordCheck = (errors.password) == null ? '🙂' : errors.password;
   const passwordConfirmCheck = (errors.passwordConfirm) == null ? '🙂' : errors.passwordConfirm;
+  const birthdayCheck = (errors.birthday) == null ? '🙂' : errors.birthday;
+  const genderCheck = (errors.gender) == null ? '🙂' : errors.gender;
   const introductionCheck = (errors.introduction) == null ? '🙂' : errors.introduction;
 
   return (
@@ -127,6 +141,30 @@ function SignUp() {
             placeholder="비밀번호 확인"
             onBlur={handleBlur}
           />
+          <ErrorMsg>{birthdayCheck}</ErrorMsg>
+          <Input
+            value={values.birthday}
+            onChange={handleChange}
+            id="birthday"
+            type="date"
+            placeholder="생년월일"
+            onBlur={handleBlur}
+          />
+          <ErrorMsg>{genderCheck}</ErrorMsg>
+          <GenderContainer>
+            <GenderButton
+              value={values.gender}
+              type="button"
+              onClick={setMan}
+              id="MAN"
+            >남</GenderButton>
+            <GenderButton
+              value={values.gender}
+              type="button"
+              onClick={setWoman}
+              id="WOMAN"
+            >여</GenderButton>
+          </GenderContainer>
           <ErrorMsg>{introductionCheck}</ErrorMsg>
           <IntroductionInput
             value={values.introduction}
