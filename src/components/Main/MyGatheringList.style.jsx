@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MyGatheringListBlock = styled.div`
   background: #ebeff3;
-  flex: 1;
+  flex: 1.5;
   max-width: 400px;
   padding: 1rem;
   border-radius: 8px;
