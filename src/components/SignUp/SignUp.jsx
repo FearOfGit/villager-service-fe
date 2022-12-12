@@ -53,18 +53,13 @@ function SignUp() {
     };
     try {
       signUpAPI(body).then(() => {
-        toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>, {
-          position: 'top-center',
-          autoClose: 1000,
-        });
+        toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
       });
       setTimeout(() => {
         navigate('/signIn');
       }, 1500);
     } catch (e) {
-      toast.error(e.response.data.message, {
-        position: 'top-center',
-      });
+      toast.error(e.response.data.message);
     }
   };
 
