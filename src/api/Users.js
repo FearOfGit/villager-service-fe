@@ -25,3 +25,11 @@ export async function signInAPI (userForm){
   return API.post(`${BASE_API}/login`, userForm);
 }
 
+/**
+ * 마이 페이지 API
+ * @param { string } accessToken
+ * @return {} email, nickname, cash, birth, message
+ */
+export async function myPageAPI (){
+  return API.get(`${BASE_API}/my-page`);
+}
