@@ -47,25 +47,28 @@ function SignUp() {
         passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], '🤔 비밀번호가 일치하지 않습니다!')
         .required('🤔 비밀번호 확인을 입력하세요!'),
-        birthday: Yup.string()
+        birth: Yup.string()
         .required('🤔 생일을 선택해주세요!'),
         gender: Yup.string()
         .required('🤔 성별을 선택해주세요!'),
-        introduction: Yup.string()
+        introduce: Yup.string()
       .required('🤔 자기소개를 적어주세요!')
     });
     
-  const onSubmit = async (value) => {
-    const body = { ...value };
+  const onSubmit = async (values) => {
+    const body = { ...values };
+    console.log(body);
     await signUpAPI(body)
       .then(() => {
+        console.log('제발 되어라!');
         toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
         setTimeout(() => {
           navigate('/signIn');
         }, 1500);
       })
       .catch((e) => {
-      toast.error(e.response.data.errorMessage);
+        console.log('제발 되라니깡');
+        toast.error(e.response.data.errorMessage);
       });
   };
 
@@ -76,8 +79,8 @@ function SignUp() {
       password: '',
       passwordConfirm: '',
       gender: '',
-      birthday: '',
-      introduction: '',
+      birth: '',
+      introduce: '',
     },
     validationSchema,
     setMan,
@@ -91,9 +94,9 @@ function SignUp() {
   const nicknameCheck = (errors.nickname) == null ? '🙂' : errors.nickname;
   const passwordCheck = (errors.password) == null ? '🙂' : errors.password;
   const passwordConfirmCheck = (errors.passwordConfirm) == null ? '🙂' : errors.passwordConfirm;
-  const birthdayCheck = (errors.birthday) == null ? '🙂' : errors.birthday;
+  const birthCheck = (errors.birth) == null ? '🙂' : errors.birth;
   const genderCheck = (errors.gender) == null ? '🙂' : errors.gender;
-  const introductionCheck = (errors.introduction) == null ? '🙂' : errors.introduction;
+  const introduceCheck = (errors.introduce) == null ? '🙂' : errors.introduce;
 
   return (
     <>
@@ -141,11 +144,11 @@ function SignUp() {
             placeholder="비밀번호 확인"
             onBlur={handleBlur}
           />
-          <ErrorMsg>{birthdayCheck}</ErrorMsg>
+          <ErrorMsg>{birthCheck}</ErrorMsg>
           <Input
-            value={values.birthday}
+            value={values.birth}
             onChange={handleChange}
-            id="birthday"
+            id="birth"
             type="date"
             placeholder="생년월일"
             onBlur={handleBlur}
@@ -165,11 +168,11 @@ function SignUp() {
               id="WOMAN"
             >여</GenderButton>
           </GenderContainer>
-          <ErrorMsg>{introductionCheck}</ErrorMsg>
+          <ErrorMsg>{introduceCheck}</ErrorMsg>
           <IntroductionInput
-            value={values.introduction}
+            value={values.introduce}
             onChange={handleChange}
-            id="introduction"
+            id="introduce"
             type="textarea"
             placeholder="자기소개"
             onBlur={handleBlur}
