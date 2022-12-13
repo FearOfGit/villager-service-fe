@@ -26,21 +26,23 @@ function TagBox() {
 
   return (
     <TagBoxBlock>
-      <form onSubmit={handleSubmit}>
+      <div className="input">
         <input
-          className="input"
           disabled={tagList.length === 3}
           value={inputValue}
           onChange={handleChange}
         />
-        <div className="tag">
-          {tagList.map((tag) => (
-            <span key={tag} onClick={() => handleRemove(tag)}>
-              #{tag}
-            </span>
-          ))}
-        </div>
-      </form>
+        <button type="button" onClick={handleSubmit}>
+          추가
+        </button>
+      </div>
+      <div className="tag">
+        {tagList.map((tag) => (
+          <span key={tag} onClick={() => handleRemove(tag)}>
+            #{tag}
+          </span>
+        ))}
+      </div>
     </TagBoxBlock>
   );
 }

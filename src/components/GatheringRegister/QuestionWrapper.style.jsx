@@ -2,17 +2,26 @@ import styled, { css } from 'styled-components';
 import palette from '../../lib/palette';
 
 export const QuestionWrapperBlock = styled.div`
-  margin-bottom: 4rem;
-  transform: translateX(-100%);
-  transition: transform 1s;
-  visibility: hidden;
-  position: absolute;
+  transition: transform 0.5s;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0 1rem;
   ${(props) =>
-    props.show &&
+    props.prev &&
     css`
-      transform: translateX(0%);
-      visibility: visible;
-      position: relative;
+      visibility: hidden;
+      transform: translateX(-200%);
+      width: 0px;
+      height: 0px;
+    `}
+  ${(props) =>
+    props.next &&
+    css`
+      visibility: hidden;
+      transform: translateX(200%);
+      width: 0px;
+      height: 0px;
     `}
   .title {
     font-size: 1.3rem;

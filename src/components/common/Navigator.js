@@ -30,11 +30,11 @@ function Navigator() {
       <Spacer />
       <NavigatorBlock>
         <Inner>
-          <Button>모임</Button>
+          <Button to="/">모임</Button>
           <Button>게시판</Button>
           <Button>채팅</Button>
           <Button>랭킹</Button>
-          <Button>마이페이지</Button>
+          <Button to="/profile">마이페이지</Button>
         </Inner>
       </NavigatorBlock>
     </>

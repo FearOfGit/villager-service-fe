@@ -1,8 +1,8 @@
 import { QuestionWrapperBlock } from './QuestionWrapper.style';
 
-function QuestionWrapper({ title, children, show }) {
+function QuestionWrapper({ title, children, prev, show, next }) {
   return (
-    <QuestionWrapperBlock show={show}>
+    <QuestionWrapperBlock prev={prev} show={show} next={next}>
       <div className="title">
         <span className="em">{title}</span>
         {` 을(를) 입력하세요`}
