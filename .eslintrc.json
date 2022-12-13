@@ -18,6 +18,12 @@
   "plugins": ["react"],
   "rules": {
     "no-unused-vars": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ],
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx"] }
