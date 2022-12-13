@@ -31,7 +31,7 @@ export const TagListWrapper = styled.div`
   margin-left: 1rem;
 
   span {
-    background-color: #4ab7b6;
+    background-color: #fdaa5d;
     color: #fff;
     border-radius: 10px;
     padding: 0.4rem;
