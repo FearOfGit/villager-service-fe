@@ -65,7 +65,7 @@ function SignUp() {
         }, 1500);
       })
       .catch((e) => {
-      toast.error(e.response.data.message);
+      toast.error(e.response.data.errorMessage);
       });
   };
 
