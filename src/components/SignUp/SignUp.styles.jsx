@@ -28,6 +28,24 @@ const Input = styled.input`
   border-radius: 12px;
 `;
 
+const GenderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+const GenderButton = styled.button`
+  width: 48%;
+  margin: 0 auto;
+  height: 3rem;
+  padding: 0 1rem;
+  outline: 0;
+  border: 1px solid grey;
+  background-color: ${(props) => (props.id === props.value ? props.theme.color.orange : '#ffffff')};
+  border-radius: 12px;
+  
+`;
+
 const IntroductionInput = styled.textarea`
   width: 100%;
   height: 9rem;
@@ -50,4 +68,4 @@ const Button = styled.button`
   border-radius: 12px;
 `;
 
-export { Wrapper, SignUpForm, ErrorMsg, Input, Button, IntroductionInput, };
+export { Wrapper, SignUpForm, ErrorMsg, Input, GenderContainer, GenderButton, Button, IntroductionInput, };
