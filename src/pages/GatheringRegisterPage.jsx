@@ -1,7 +1,7 @@
-import Register from '../components/Register';
+import GatheringRegister from '../components/GatheringRegister';
 
 function GatheringRegisterPage() {
-  return <Register />;
+  return <GatheringRegister />;
 }
 
 export default GatheringRegisterPage;
