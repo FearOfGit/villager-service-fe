@@ -5,7 +5,7 @@ import { VscBell } from 'react-icons/vsc';
 import styled from 'styled-components';
 import Button from './Button';
 import Responsive from './Responsive';
-import TownSetup from '../modal/TownSetup/TownSetup';
+import TownSetup from '../modal/TownSetup';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -50,15 +50,18 @@ const Spacer = styled.div`
 `;
 
 function Header() {
-  const [isShow, setIsShow] = useState(false);
+  const [isTownSetupModal, setTownSetupModal] = useState(false);
 
   return (
     <>
-      <TownSetup show={isShow} onClose={() => setIsShow(false)} />
+      <TownSetup
+        show={isTownSetupModal}
+        onClose={() => setTownSetupModal(false)}
+      />
       <HeaderBlock>
         <Inner>
           <div className="logo">
-            <span className="orange" onClick={() => setIsShow(true)}>
+            <span className="orange" onClick={() => setTownSetupModal(true)}>
               연남동
             </span>
             #람들

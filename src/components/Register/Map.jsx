@@ -4,7 +4,7 @@
 
 import { useEffect } from 'react';
 
-function getLocation({ value, setPlace, latitude, longitude }) {
+function getLocation({ setPlace, latitude, longitude }) {
   const container = document.getElementById('map');
   const { kakao } = window;
 
@@ -31,7 +31,6 @@ function getLocation({ value, setPlace, latitude, longitude }) {
   manager.addListener('drawend', (data) => {
     const lat = data.coords.toLatLng().getLat(); // 위도
     const lng = data.coords.toLatLng().getLng(); // 경도
-    // console.log(lat, lng);
 
     geocoder.coord2Address(lng, lat, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
@@ -47,13 +46,13 @@ function getLocation({ value, setPlace, latitude, longitude }) {
   manager.select(kakao.maps.drawing.OverlayType.MARKER);
 }
 
-function Map({ value, setPlace }) {
+function Map({ setPlace }) {
   useEffect(() => {
     const { navigator } = window;
 
     navigator.geolocation.getCurrentPosition((pos) => {
       const { latitude, longitude } = pos.coords;
-      getLocation({ value, setPlace, latitude, longitude });
+      getLocation({ setPlace, latitude, longitude });
     });
   }, []);
 
