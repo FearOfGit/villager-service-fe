@@ -1,22 +1,7 @@
 import React from 'react';
 import { CommonInput, ErrorText, SubTitleText } from './index.style';
 
-function DateInput({
-  startErrMsg,
-  endErrMsg,
-  startFieldProps,
-  endFieldProps,
-  startValue,
-  endValue,
-  setFieldValue,
-}) {
-  const start = new Date(startValue);
-  const end = new Date(endValue);
-
-  if (start > end) {
-    setFieldValue('end_date', startValue, true);
-  }
-
+function DateInput({ startErrMsg, endErrMsg, startFieldProps, endFieldProps }) {
   return (
     <>
       <SubTitleText>시작일</SubTitleText>

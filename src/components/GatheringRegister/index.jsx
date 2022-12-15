@@ -16,11 +16,24 @@ let isMap = false;
 function GatheringRegister() {
   const [step, setStep] = useState(0);
   const [tagList, setTagList] = useState([]);
-  const { getFieldProps, errors, values, setFieldValue, isSubmitting } =
-    useFormik({
-      initialValues: constantForForm.INITIAL_VALUES,
-      validationSchema: constantForForm.VALIDATION_SCHEMA,
-    });
+  const {
+    getFieldProps,
+    errors,
+    values,
+    setFieldValue,
+    handleSubmit,
+    isSubmitting,
+  } = useFormik({
+    initialValues: constantForForm.INITIAL_VALUES,
+    validationSchema: constantForForm.VALIDATION_SCHEMA,
+    onSubmit: (result) => {
+      console.log(JSON.stringify({ ...result, tag: tagList }, null, 2));
+    },
+  });
+
+  const setEndDate = (date) => {
+    setFieldValue('end_date', date, true);
+  };
 
   const onPrev = () => {
     if (step === 0) return;
@@ -28,7 +41,10 @@ function GatheringRegister() {
   };
 
   const onNext = () => {
-    if (step === 5) return;
+    if (step === 5) {
+      handleSubmit();
+      return;
+    }
     setStep(step + 1);
   };
 
@@ -48,7 +64,7 @@ function GatheringRegister() {
 
   return (
     <GatheringRegisterTemplate>
-      <div className="container">
+      <form className="container">
         <div className="inner">
           <Question prev={step > 0} next={step < 0} title="모임명">
             <NameInput
@@ -78,7 +94,7 @@ function GatheringRegister() {
               endFieldProps={getFieldProps('end_date')}
               startValue={values.start_date}
               endValue={values.end_date}
-              setFieldValue={setFieldValue}
+              setEndDate={setEndDate}
             />
           </Question>
           <Question prev={step > 4} next={step < 4} title="기타">
@@ -102,17 +118,19 @@ function GatheringRegister() {
             />
           </Question>
         </div>
-      </div>
-      <div className="btn-group">
-        <MoveButton
-          onPrev={onPrev}
-          onNext={onNext}
-          step={step}
-          values={values}
-          errors={errors}
-          len={tagList.length}
-        />
-      </div>
+        <div className="btn-group">
+          {true && (
+            <MoveButton
+              onPrev={onPrev}
+              onNext={onNext}
+              step={step}
+              values={values}
+              errors={errors}
+              len={tagList.length}
+            />
+          )}
+        </div>
+      </form>
     </GatheringRegisterTemplate>
   );
 }

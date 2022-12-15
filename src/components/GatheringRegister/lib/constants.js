@@ -31,7 +31,7 @@ export const constantForForm = Object.freeze({
       .min(today, '과거의 날짜는 입력할 수 없습니다.')
       .required('모임 시작일을 지정해주세요.'),
     end_date: Yup.date()
-      .min(today, '과거의 날짜는 입력할 수 없습니다.')
+      .min(Yup.ref('start_date'), '과거의 날짜는 입력할 수 없습니다.')
       .required('모임 종료일을 지정해주세요.'),
     capacity: Yup.number()
       .integer('정수를 입력해주세요.')
@@ -47,9 +47,6 @@ export const constantForForm = Object.freeze({
       .integer('정수를 입력해주세요.')
       .min(0, '0 이상의 값을 입력해주세요.')
       .required('참가비를 입력해주세요.'),
-    tag: Yup.string()
-      .min(2, '최소 2글자 이상입니다.')
-      .max(10, '최대 10글자 입니다.')
-      .required('최대 3개까지 입력할 수 있습니다.'),
+    tag: Yup.string(),
   }),
 });
