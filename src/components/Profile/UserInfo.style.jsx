@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import palette from '../../lib/palette';
 
 export const UserInfoBlock = styled.div`
   position: relative;
@@ -7,7 +6,6 @@ export const UserInfoBlock = styled.div`
   background-color: #4ab7b6;
   padding: 1rem;
   border-radius: 7px;
-  border: 1px solid black;
   .basic {
     display: flex;
   }
@@ -33,9 +31,9 @@ export const UserInfoBlock = styled.div`
     font-weight: 700;
     padding: 0.5rem;
     position: absolute;
-    right: 5px;
-    top: 5px;
-    border-radius: 20px;
+    right: 8px;
+    top: 8px;
+    border-radius: 5px;
     border: none;
   }
 `;
@@ -45,5 +43,5 @@ export const CounterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
-  padding: 1rem;
+  padding: 1rem 0.2rem;
 `;

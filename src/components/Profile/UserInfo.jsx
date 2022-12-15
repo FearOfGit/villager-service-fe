@@ -26,6 +26,7 @@ function UserInfo() {
         {contents.map((content) => (
           <ContentCounter
             className="content-counter"
+            key={content}
             title={content}
             count={0}
           />
