@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { Wrapper, ImageSection, InfoList, EditButton, } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
 import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
+import ChangeIntroduce from './ChangeIntroduce';
 
 function ProfileDetail() {
 
@@ -72,6 +73,7 @@ function ProfileDetail() {
                 <span>2000년 02월 02일</span>
               </li>
             </InfoList>
+            <ChangeIntroduce introduce={data.introduce}/>
           </div>
         )}
       </Wrapper>
