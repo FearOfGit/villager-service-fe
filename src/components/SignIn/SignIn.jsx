@@ -30,9 +30,9 @@ function SignIn() {
   const dispatch = useDispatch();
 
   const setToken = (data) => {
-    axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+    // axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     setRefreshToken(data.refreshToken);
-    // setAccessToken(data.accessToken);
+    setAccessToken(data.accessToken);
     setAuthentication(true);
   }
 
