@@ -1,12 +1,44 @@
 // 나눔스퀘어
 
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
 export const GatheringName = styled.h2`
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 0.7rem;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  position: relative;
+`;
+
+export const LikeButton = styled.button`
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-40%);
+  border: none;
+  padding: 0;
+  font-size: 1.6rem;
+  font-weight: normal;
+  color: ${palette.red[9]};
+`;
+
+export const JoinButton = styled.button`
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
 `;
 
 export const GatheringTagWrapper = styled.div`
@@ -50,7 +82,7 @@ export const MemberInfoWrapper = styled.div`
   margin-top: 0.5rem;
   max-height: 150px;
   overflow: auto;
-  padding: 0.5rem 0.8rem;
+  /* padding: 0.5rem 0.8rem; */
   background-color: #fff;
   border: 1px solid #ccc;
 
@@ -63,8 +95,7 @@ export const MemberInfoWrapper = styled.div`
     font-size: 1.1rem;
     font-weight: 700;
     border-bottom: 1px solid black;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    padding: 1rem 0.5rem;
   }
 
   .leader {
