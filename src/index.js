@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -24,6 +25,7 @@ import GathringRegister from './pages/GatheringRegisterPage';
 import Main from './pages/MainPage';
 import GatheringList from './pages/GatheringListPage';
 import GatheringDetail from './pages/GatheringDetailPage';
+import ProfileDetail from './pages/ProfileDetailPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="signIn" element={<SignIn />} />
       <Route path="signUp" element={<SignUp />} />
       <Route path="profile" element={<Profile />} />
+      <Route path="profileDetail" element={<ProfileDetail />} />
       <Route path="profile/:id" element={<Profile />} />
       <Route path="map" element={<Map />} />
       <Route path="register" element={<GathringRegister />} />
@@ -42,6 +45,8 @@ const router = createBrowserRouter(
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.withCredentials = true;
+
 root.render(
   <React.StrictMode>
     <CookiesProvider>
