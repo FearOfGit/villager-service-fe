@@ -73,7 +73,7 @@ function ProfileDetail() {
                 <span>2000년 02월 02일</span>
               </li>
             </InfoList>
-            <ChangeIntroduce introduce={data.introduce}/>
+            <ChangeIntroduce nickname={data.nickName} introduce={data.introduce}/>
           </div>
         )}
       </Wrapper>

@@ -16,7 +16,7 @@ function ChangePassword ({ modal }) {
   };
 
   const validateNew = async (newPassword) => {
-    const body = { password: newPassword };
+    const body = JSON.stringify({ password: newPassword });
     await newPasswordAPI(body)
       .then((res)=>{
         console.log(body);

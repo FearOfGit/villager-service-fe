@@ -39,7 +39,15 @@ export async function myPageAPI (){
  * @param { password: string } passwordForm
  * @return {} message
  */
-export async function newPasswordAPI (){
-  return API.patch(`${BASE_API}/members/password`);
+export async function newPasswordAPI (passwordForm){
+  return API.patch(`${BASE_API}/members/password`, passwordForm);
 }
 
+/**
+ * 자기소개 변경 API
+ * @param { nickname: string, introduce: string  } 
+ * @return {} message
+ */
+export async function newIntroduceAPI (contentsForm){
+  return API.patch(`${BASE_API}/members/info`, contentsForm);
+}
