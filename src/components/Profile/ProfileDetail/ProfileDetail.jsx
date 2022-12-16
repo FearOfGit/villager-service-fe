@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Wrapper, ImageSection, InfoList, EditButton, } from './ProfileDetail.styles';
+import {
+  Wrapper,
+  ImageSection,
+  InfoList,
+  EditButton,
+} from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
 
 function ProfileDetail() {
-
-  function getUserInfo () {
+  function getUserInfo() {
     return myPageAPI().then((res) => res.data);
   }
 
   const { data } = useQuery('getInfo', getUserInfo);
 
-  const [ image, setImage ] = useState("https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg");
+  const [image, setImage] = useState(
+    'https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg',
+  );
   const handleImage = (e) => {
     const fileReader = new FileReader();
 
-    if(e.target.files[0]){
-      fileReader.readAsDataURL(e.target.files[0])
+    if (e.target.files[0]) {
+      fileReader.readAsDataURL(e.target.files[0]);
     }
 
     fileReader.onload = () => {
-      setImage(fileReader.result)
-    }
-    
+      setImage(fileReader.result);
+    };
   };
 
-  return(
+  return (
     <>
       <Wrapper>
         {data && (
@@ -35,8 +40,8 @@ function ProfileDetail() {
                 <img src={image} alt="프사" />
                 <div>프로필 이미지 수정</div>
               </label>
-              <input 
-                type="file" 
+              <input
+                type="file"
                 id="ex_file"
                 accept="image/jpg, image/png, image/jpeg"
                 onChange={handleImage}
@@ -68,7 +73,7 @@ function ProfileDetail() {
         )}
       </Wrapper>
     </>
-  ); 
+  );
 }
 
 export default ProfileDetail;

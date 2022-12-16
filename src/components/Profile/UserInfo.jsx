@@ -7,8 +7,8 @@ import { CounterWrapper, UserInfoBlock } from './UserInfo.style';
 function UserInfo() {
   const navigate = useNavigate();
   const contents = ['모임', '게시글', '팔로워', '팔로잉'];
-  
-  function getUserInfo () {
+
+  function getUserInfo() {
     return myPageAPI().then((res) => res.data);
   }
 
@@ -45,7 +45,11 @@ function UserInfo() {
                 />
               ))}
             </CounterWrapper>
-            <button className="btn--user" type="button" onClick={()=>navigate('/profiledetail')}>
+            <button
+              className="btn--user"
+              type="button"
+              onClick={() => navigate('/profiledetail')}
+            >
               회원정보 수정
             </button>
           </UserInfoBlock>
