@@ -84,7 +84,7 @@ function ChangePassword ({ modal }) {
             닫기
           </CancelBtn>
         </ButtonSection>
-      </Modal>
+      </Modal>  
     </Wrapper>
     </>
   )

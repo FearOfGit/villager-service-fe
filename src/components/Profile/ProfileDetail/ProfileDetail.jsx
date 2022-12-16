@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Wrapper, ImageSection, InfoList, EditButton, } from './ProfileDetail.styles';
+import { Wrapper, ImageSection, InfoList, EditButton, SignOut, SignOutWrapper, } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
 import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
 import ChangeIntroduce from './ChangeIntroduce';
@@ -74,6 +74,11 @@ function ProfileDetail() {
               </li>
             </InfoList>
             <ChangeIntroduce nickname={data.nickName} introduce={data.introduce}/>
+            <SignOutWrapper>
+              <SignOut>
+                회원 탈퇴
+              </SignOut>
+            </SignOutWrapper>
           </div>
         )}
       </Wrapper>

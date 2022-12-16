@@ -51,3 +51,11 @@ export async function newPasswordAPI (passwordForm){
 export async function newIntroduceAPI (contentsForm){
   return API.patch(`${BASE_API}/members/info`, contentsForm);
 }
+
+/**
+ * 회원 탈퇴 API
+ * @return {} message
+ */
+export async function signOutAPI (){
+  return API.delete(`${BASE_API}/members`);
+}
