@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Wrapper, ImageSection, InfoList, EditButton, } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
+import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
 
 function ProfileDetail() {
+
+  const [isChange, setIsChange] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsChange(true);
+  };
 
   function getUserInfo () {
     return myPageAPI().then((res) => res.data);
@@ -53,7 +61,7 @@ function ProfileDetail() {
               </li>
               <li>
                 <span>비밀번호</span>
-                <EditButton>비밀번호 수정</EditButton>
+                <EditButton type="button" onClick={handleClick}>비밀번호 수정</EditButton>
               </li>
               <li>
                 <span>성별</span>
@@ -67,6 +75,8 @@ function ProfileDetail() {
           </div>
         )}
       </Wrapper>
+
+      {isChange && <PasswordChangeModal modal={setIsChange} />}
     </>
   ); 
 }
