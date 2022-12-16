@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -29,8 +30,9 @@ function SignIn() {
   const dispatch = useDispatch();
 
   const setToken = (data) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     setRefreshToken(data.refreshToken);
-    setAccessToken(data.accessToken);
+    // setAccessToken(data.accessToken);
     setAuthentication(true);
   }
 
@@ -115,7 +117,7 @@ function SignIn() {
         </FindSection>
         <SignupSection>
           <AdditionalMsg>아직도 동네#람들 회원이 아니신가요?</AdditionalMsg>
-          <SignupNavigation>회원가입</SignupNavigation>
+          <SignupNavigation onClick={()=>navigate('/signup')}>회원가입</SignupNavigation>
         </SignupSection>
     </Wrapper>  
   );

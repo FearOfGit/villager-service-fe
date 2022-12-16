@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import ContentCounter from './ContentCounter';
 import { CounterWrapper, UserInfoBlock } from './UserInfo.style';
 
 const contents = ['모임', '게시글', '팔로워', '팔로잉'];
 
 function UserInfo() {
+  const navigate = useNavigate();
+
   return (
     <UserInfoBlock>
       <div className="basic">
@@ -32,7 +35,7 @@ function UserInfo() {
           />
         ))}
       </CounterWrapper>
-      <button className="btn--user" type="button">
+      <button className="btn--user" type="button" onClick={()=>navigate('/profiledetail')}>
         회원정보 수정
       </button>
     </UserInfoBlock>
