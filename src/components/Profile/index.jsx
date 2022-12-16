@@ -12,7 +12,7 @@ function Profile() {
         </UserContent>
         <UserContent title="매너 점수">
           <div className="manner-score-bar">
-            <div className="manner-score-value">35</div>
+            <div className="manner-score-value">50</div>
           </div>
         </UserContent>
       </div>

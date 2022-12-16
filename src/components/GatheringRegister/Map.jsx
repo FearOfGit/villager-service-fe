@@ -8,7 +8,7 @@ function init({ currentLat, currentLng, setFieldValue }) {
   const options = {
     center: new kakao.maps.LatLng(currentLat, currentLng),
     draggable: true,
-    level: 4,
+    level: 3,
   };
   const map = new kakao.maps.Map(container, options);
 

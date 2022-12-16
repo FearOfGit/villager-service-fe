@@ -17,7 +17,7 @@ export const ProfileTemplate = styled.div`
   .manner-score-value {
     border-radius: 20px;
     height: 30px;
-    width: 35%;
+    width: 50%;
     background-color: #4ab7b6;
     color: #fff;
     padding-right: 0.5rem;

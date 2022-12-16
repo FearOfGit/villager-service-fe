@@ -1,51 +1,22 @@
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
 export const GatheringDetailTemplate = styled.div`
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  /* background-color: blue; */
-
-  .name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  .end::before {
+    content: ' ~ ';
   }
-
-  .flex {
-    display: flex;
-    justify-content: center;
-  }
-
-  .leader {
-    flex: 1;
-    background-color: red;
-    h3 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.5rem 0;
-    }
-  }
-
-  .description {
-    flex: 2;
-    background-color: blue;
-    margin-left: 0.5rem;
-    h3 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.5rem 0;
-    }
-  }
-
-  .comment {
-    margin-top: 2rem;
-    background-color: blue;
+  .info {
+    margin-top: 0.5rem;
+    border-radius: 10px;
     padding: 1rem;
+    background: ${palette.gray[3]};
+  }
+  .inner {
+    width: 100%;
+    max-width: 600px;
   }
 `;
