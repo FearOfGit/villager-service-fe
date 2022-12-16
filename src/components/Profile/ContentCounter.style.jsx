@@ -4,7 +4,6 @@ export const ContentCounterBlock = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   flex: 1 1;
 

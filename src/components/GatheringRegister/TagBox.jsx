@@ -1,31 +1,24 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import { InputWrapper, TagBoxWrapper, TagListWrapper } from './TagBox.style';
+import { ErrorText } from './index.style';
+import { TagButton, TagInput, TagListWrapper } from './TagBox.style';
 
-function TagBox({
-  disabled,
-  name,
-  type,
-  fieldProps,
-  tagList,
-  onAdd,
-  onRemove,
-}) {
+function TagBox({ tagList, fieldProps, isActive, errMsg, onAdd, onRemove }) {
   return (
-    <TagBoxWrapper>
-      <InputWrapper>
-        <input
+    <>
+      <ErrorText tag="true">{errMsg ? `🤔 ${errMsg}` : '🙂'}</ErrorText>
+      <div className="flex">
+        <TagInput
           disabled={tagList.length >= 3}
-          id={name}
-          type={type}
+          type="text"
           autoComplete="off"
           {...fieldProps}
         />
-        <button onClick={onAdd} disabled={disabled} type="button">
+        <TagButton type="button" onClick={onAdd} disabled={isActive}>
           추가
-        </button>
-      </InputWrapper>
+        </TagButton>
+      </div>
       <TagListWrapper>
         {tagList.map((tag) => (
           <span key={tag} onClick={() => onRemove(tag)}>
@@ -33,7 +26,7 @@ function TagBox({
           </span>
         ))}
       </TagListWrapper>
-    </TagBoxWrapper>
+    </>
   );
 }
 
