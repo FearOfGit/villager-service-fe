@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { VscBell } from 'react-icons/vsc';
 import styled from 'styled-components';
 import Button from './Button';
@@ -51,6 +52,7 @@ const Spacer = styled.div`
 
 function Header() {
   const [isTownSetupModal, setTownSetupModal] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -67,7 +69,7 @@ function Header() {
             #람들
           </div>
           <div className="other">
-            <Button>로그인</Button>
+            <Button onClick={() => navigate('/signin')}>로그인</Button>
             <div className="bell">
               <VscBell />
             </div>

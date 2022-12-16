@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -47,14 +48,18 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 axios.defaults.withCredentials = true;
 
+const client = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </Provider>
+      <QueryClientProvider client={client}>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </Provider>
+      </QueryClientProvider>
     </CookiesProvider>
   </React.StrictMode>,
 );
