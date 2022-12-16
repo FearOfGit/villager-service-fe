@@ -6,9 +6,6 @@ export const GatheringDetailTemplate = styled.div`
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
-  .end::before {
-    content: ' ~ ';
-  }
   .info {
     margin-top: 0.5rem;
     border-radius: 10px;

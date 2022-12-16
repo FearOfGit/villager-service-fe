@@ -47,19 +47,33 @@ function GatheringInfo() {
           </Content>
         </Wrapper>
         <MemberInfoWrapper>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
-          <div>멤버</div>
+          <div className="leader">
+            리더 <span className="manner">100</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">90</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">90</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
+          <div className="member">
+            멤버 <span className="manner">80</span>
+          </div>
         </MemberInfoWrapper>
       </div>
     </>
