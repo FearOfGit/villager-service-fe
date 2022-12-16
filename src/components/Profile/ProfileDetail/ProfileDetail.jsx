@@ -7,6 +7,8 @@ import {
   EditButton,
 } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
+import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
+import ChangeIntroduce from './ChangeIntroduce';
 
 function ProfileDetail() {
   function getUserInfo() {
@@ -58,7 +60,9 @@ function ProfileDetail() {
               </li>
               <li>
                 <span>비밀번호</span>
-                <EditButton>비밀번호 수정</EditButton>
+                <EditButton type="button" onClick={handleClick}>
+                  비밀번호 수정
+                </EditButton>
               </li>
               <li>
                 <span>성별</span>
@@ -69,9 +73,12 @@ function ProfileDetail() {
                 <span>2000년 02월 02일</span>
               </li>
             </InfoList>
+            <ChangeIntroduce introduce={data.introduce} />
           </div>
         )}
       </Wrapper>
+
+      {isChange && <PasswordChangeModal modal={setIsChange} />}
     </>
   );
 }

@@ -33,3 +33,13 @@ export async function signInAPI (userForm){
 export async function myPageAPI (){
   return API.get(`${BASE_API}/members`);
 }
+
+/**
+ * 비밀번호 변경 API
+ * @param { password: string } passwordForm
+ * @return {} message
+ */
+export async function newPasswordAPI (){
+  return API.patch(`${BASE_API}/members/password`);
+}
+
