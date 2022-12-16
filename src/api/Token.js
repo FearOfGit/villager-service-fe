@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { setAccessToken, getAccessToken } from '../app/Auth';
-import { setRefreshToken } from '../app/Cookie';
+import { setAccessToken, getAccessToken, setRefreshToken } from '../app/index';
 
 export const API = axios.create({});
 

@@ -3,7 +3,7 @@ import { API } from './Token';
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
 
-const BASE_API = 'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1/auth';
+const BASE_API = 'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1';
 
 /**
  * 회원가입 API
@@ -12,7 +12,7 @@ const BASE_API = 'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com
  */
 
 export async function signUpAPI (userForm){
-  return API.post(`${BASE_API}/signup`, userForm);
+  return API.post(`${BASE_API}/auth/signup`, userForm);
 }
 
 /**
@@ -22,14 +22,14 @@ export async function signUpAPI (userForm){
  */
 
 export async function signInAPI (userForm){
-  return API.post(`${BASE_API}/login`, userForm);
+  return API.post(`${BASE_API}/auth/login`, userForm);
 }
 
 /**
- * 마이 페이지 API
+ * 내 정보 목록 API
  * @param { string } accessToken
  * @return {} email, nickname, cash, birth, message
  */
 export async function myPageAPI (){
-  return API.get(`${BASE_API}/my-page`);
+  return API.get(`${BASE_API}/members`);
 }
