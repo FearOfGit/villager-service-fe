@@ -1,19 +1,33 @@
 import React from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import {
+  ButtonWrapper,
   Content,
   GatheringName,
   GatheringTagWrapper,
+  JoinButton,
+  LikeButton,
   MemberInfoWrapper,
   SubTitle,
   Wrapper,
 } from './GatheringInfo.style';
 import Map from './Map';
 
+// AiFillHeart
+// AiOutlineHeart
 // 모임 이름, 인원수, 모임 점수, 상세 설명, 장소, 시작일, 종료일, 참가비, 태그
 function GatheringInfo() {
   return (
     <>
-      <GatheringName>모임명</GatheringName>
+      <div className="flex">
+        <GatheringName>모임명</GatheringName>
+        <ButtonWrapper>
+          <LikeButton>
+            <AiOutlineHeart />
+          </LikeButton>
+          <JoinButton>신청하기</JoinButton>
+        </ButtonWrapper>
+      </div>
       <GatheringTagWrapper>
         <span className="tag">#태그</span>
         <span className="tag">#태그</span>
