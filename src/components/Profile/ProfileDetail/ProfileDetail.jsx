@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Wrapper, ImageSection, InfoList, EditButton, } from './ProfileDetail.styles';
+import { Wrapper, ImageSection, InfoList, EditButton, SignOut, SignOutWrapper, } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
 import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
+import SignOutModal from '../../modal/User/SignOutModal';
 import ChangeIntroduce from './ChangeIntroduce';
 
 function ProfileDetail() {
 
   const [isChange, setIsChange] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsChange(true);
+    if (e.target.value === "changePW") {
+      setIsChange(true);
+    }
+    else if (e.target.value === "signOut") {
+      setIsDelete(true);
+    };
   };
 
   function getUserInfo () {
@@ -62,7 +69,7 @@ function ProfileDetail() {
               </li>
               <li>
                 <span>비밀번호</span>
-                <EditButton type="button" onClick={handleClick}>비밀번호 수정</EditButton>
+                <EditButton value="changePW" type="button" onClick={handleClick}>비밀번호 수정</EditButton>
               </li>
               <li>
                 <span>성별</span>
@@ -74,11 +81,17 @@ function ProfileDetail() {
               </li>
             </InfoList>
             <ChangeIntroduce nickname={data.nickName} introduce={data.introduce}/>
+            <SignOutWrapper>
+              <SignOut value="signOut" type="button" onClick={handleClick}>
+                회원 탈퇴
+              </SignOut>
+            </SignOutWrapper>
           </div>
         )}
       </Wrapper>
 
       {isChange && <PasswordChangeModal modal={setIsChange} />}
+      {isDelete && <SignOutModal modal={setIsDelete} />}
     </>
   ); 
 }
