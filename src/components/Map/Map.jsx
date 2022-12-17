@@ -1,11 +1,14 @@
 /* global kakao */
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLat, changeLong } from '../../store/Location';
 import { Wrapper, MapContainer, } from "./Map.styles";
 
 const { kakao } = window;
 
 function Map() {
+  const dispatch = useDispatch();
   useEffect(() => {
     // 지도
     const container = document.getElementById("map");
@@ -31,6 +34,8 @@ function Map() {
         /* eslint-enable */
         marker.setMap(map);
         map.setCenter(new window.kakao.maps.LatLng(lat, lon));
+        dispatch(changeLat(lat));
+        dispatch(changeLong(lon));
         console.log('현재 위치:', lat, lon);
       });
     } 
@@ -42,10 +47,12 @@ function Map() {
       /* eslint-enable */
       marker.setMap(map);
       map.setCenter(new window.kakao.maps.LatLng(lat, lon));
+      dispatch(changeLat(lat));
+      dispatch(changeLong(lon));
       console.log('기본 위치:', lat, lon)
     };
   }, []);
-  
+
   return (
     <>
       <Wrapper>
