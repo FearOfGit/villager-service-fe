@@ -20,7 +20,7 @@ export async function insertTownAPI (townValues){
  * @returns {} totalCount, towns{townId, name, code, latitude, longitude}
  */
 export async function searchTownAPI (locValues){
-  return API.get(`${BASE_API}/towns/location`, locValues);
+  return API.post(`${BASE_API}/towns/location`, locValues);
 }
 
 /**
