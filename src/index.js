@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import { ThemeProvider } from 'styled-components';
 import reportWebVitals from './reportWebVitals';
-import { store } from './app/store';
+import { store } from './store/store';
 import Root from './routes/root';
 import theme from './styles/theme/theme';
 import 'react-toastify/dist/ReactToastify.css';

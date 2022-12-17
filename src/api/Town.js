@@ -6,19 +6,28 @@ import { API } from './Token';
 const BASE_API = 'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1';
 
 /**
- * 회원 동네 설정/추가 API
+ * 동네 설정/추가 API
  * @param {{townId: number, townName: string, latitude: number, longitude: number}} townValues
  * @returns {}
  */
 export async function insertTownAPI (townValues){
-  return API.post(`${BASE_API}/mumbers/towns`, townValues);
+  return API.post(`${BASE_API}/members/towns`, townValues);
 }
 
 /**
- * 회원 동네 목록 조회 API
+ * 동네 위치로 조회 API
+ * @param {{latitude: number, longitude: number}} locValues
+ * @returns {} totalCount, towns{townId, name, code, latitude, longitude}
+ */
+export async function searchTownAPI (locValues){
+  return API.get(`${BASE_API}/towns/location`, locValues);
+}
+
+/**
+ * 설정한 동네 목록 조회 API
  * @param {string} accessToken
  * @returns {} memberTownId, townName, cityName, createdAt, modifiedAt, main
  */
-export async function getTownAPI (townValues){
-  return API.get(`${BASE_API}/mumbers/towns`, townValues);
+export async function getTownAPI (){
+  return API.get(`${BASE_API}/members/towns`);
 }
