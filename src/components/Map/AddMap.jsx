@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLat, changeLong } from '../../store/Location';
 import { Wrapper, SubmitWrapper, ContentSection, Button, ButtonSection } from "./AddMap.styles";
+import { searchTownAPI } from "../../api/Town";
 
 function AddMap () {
   const dispatch = useDispatch();
   const location = useSelector(state => state.location);
-  console.log("변화된 위치", location.value);
   
+  function getTownList () {
+    const body = {
+      latitude: location.value.latitude,
+      longitude: location.value.longitude
+    };
+    return searchTownAPI(body).then((res) => res.data);
+  }
+
+  const { data } = useQuery('getTown', getTownList);
+
+  console.log("변화된 위치", location.value.latitude, location.value.longitude);
+  console.log("불러온 데이터", data);
   return (
     <>
     <Wrapper>
@@ -23,7 +36,7 @@ function AddMap () {
           <Button>
             동네 설정하기
           </Button>
-          <Button>
+          <Button type="button" onClick={()=>getTownList()}>
             동네 조회하기
           </Button>
         </ButtonSection>
