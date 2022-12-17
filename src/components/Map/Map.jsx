@@ -1,7 +1,7 @@
 /* global kakao */
 import React, { useEffect } from "react";
 import cn from "classnames";
-import { MapContainer } from "./Map.styles";
+import { Wrapper, MapContainer, } from "./Map.styles";
 
 const { kakao } = window;
 
@@ -20,11 +20,15 @@ function Map() {
   }, []);
 
   return (
-    <div className={cn("Map")}>
-      <MapContainer id="map">
-        안녕
-      </MapContainer>
-    </div>
+    <>
+      <Wrapper>
+        <div className={cn("Map")}>
+          <MapContainer id="map">
+            안녕
+          </MapContainer>
+        </div>
+      </Wrapper>
+    </>
   );
 }
 

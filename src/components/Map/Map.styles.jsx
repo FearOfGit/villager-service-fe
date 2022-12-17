@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
-const MapContainer = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 20rem;
+  margin-top: 2rem;
 `;
 
-export { MapContainer, };
+const MapContainer = styled.div`
+  width: 100%;
+  height: 15rem;
+`;
+
+export { Wrapper, MapContainer, };
