@@ -10,13 +10,29 @@ function Map() {
     const container = document.getElementById("map");
 
     const options = {
-      center: new window.kakao.maps.LatLng(35.85133, 127.734086),
-      level: 13,
+      center: new window.kakao.maps.LatLng(37.52197524055062, 127.16017523675508),
+      level: 8,
     };
 
+    // 지도
     const map = new window.kakao.maps.Map(container, options);
 
+    // 지도 로딩 시
     console.log("loading kakaomap");
+
+    // 마커
+    /* eslint-disable */
+    let markerPosition = new window.kakao.maps.LatLng(37.52197524055062, 127.16017523675508);
+
+    // 마커 생성
+    let marker = new window.kakao.maps.Marker({
+      position: markerPosition,
+    });
+    /* eslint-enable */
+
+    // 마커 지도에 표시
+    marker.setMap(map);
+
   }, []);
 
   return (
@@ -24,7 +40,7 @@ function Map() {
       <Wrapper>
         <div className={cn("Map")}>
           <MapContainer id="map">
-            안녕
+            내 동네 설정
           </MapContainer>
         </div>
       </Wrapper>
