@@ -1,8 +1,7 @@
 /* eslint-disable no-shadow */
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, QueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { followAPI, unfollowAPI } from '../../api/follow';
 import ContentCounter from './ContentCounter';
 import {
@@ -50,24 +49,21 @@ function getBtnText(isMe, isFriend) {
   return '친구 끊기';
 }
 
-function UserInfo({ data, userId }) {
+function UserInfo({ data, isMe, isFriend, searchId, handleFollow }) {
   const navigate = useNavigate();
-  const id = useSelector((state) => state.user.value.userId);
-  const isMe = String(userId) === String(id);
-  const isFriend = data.followState;
   const btnText = getBtnText(isMe, isFriend);
 
-  const followMutation = useMutation('follow', () => follow(userId), {
+  const followMutation = useMutation('follow', () => follow(searchId), {
     onSuccess: (result) => {
-      console.log('follow', result);
-      window.location.reload();
+      console.log('follow 실행', result);
+      handleFollow();
     },
   });
 
-  const unfollowMutation = useMutation('unfollow', () => unfollow(userId), {
+  const unfollowMutation = useMutation('unfollow', () => unfollow(searchId), {
     onSuccess: (result) => {
-      console.log('unfollow', result);
-      window.location.reload();
+      console.log('unfollow 실행', result);
+      handleFollow();
     },
   });
 
