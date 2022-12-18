@@ -12,7 +12,10 @@ function getUserInfo(id) {
 
 function Profile() {
   const { id: userId } = useParams();
-  const { data } = useQuery(['getInfo', userId], () => getUserInfo(userId));
+  const { data } = useQuery(['getInfo', userId], () => getUserInfo(userId), {
+    suspense: true,
+  });
+
   console.log(data);
 
   return (

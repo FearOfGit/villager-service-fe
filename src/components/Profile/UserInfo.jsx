@@ -1,5 +1,9 @@
+/* eslint-disable no-shadow */
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, QueryClient } from 'react-query';
+import { followAPI, unfollowAPI } from '../../api/follow';
 import ContentCounter from './ContentCounter';
 import {
   ContentCounterWrapper,
@@ -9,27 +13,75 @@ import {
   EditButton,
 } from './UserInfo.style';
 
+const contents = [
+  {
+    title: '모임',
+    key: 'partyRegisterCount',
+  },
+  {
+    title: '게시글',
+    key: 'postRegisterCount',
+  },
+  {
+    title: '팔로워',
+    key: 'follower',
+  },
+  {
+    title: '팔로잉',
+    key: 'follow',
+  },
+];
+
+function follow(id) {
+  return followAPI(id).then((res) => res.data);
+}
+
+function unfollow(id) {
+  return unfollowAPI(id).then((res) => res.data);
+}
+
+function getBtnText(isMe, isFriend) {
+  if (isMe) {
+    return '회원정보 수정';
+  }
+  if (!isFriend) {
+    return '친구 맺기';
+  }
+  return '친구 끊기';
+}
+
 function UserInfo({ data, userId }) {
-  const id = useSelector((state) => state.user.value.userId);
   const navigate = useNavigate();
-  const contents = [
-    {
-      title: '모임',
-      key: 'partyRegisterCount',
+  const id = useSelector((state) => state.user.value.userId);
+  const isMe = String(userId) === String(id);
+  const isFriend = data.followState;
+  const btnText = getBtnText(isMe, isFriend);
+
+  const followMutation = useMutation('follow', () => follow(userId), {
+    onSuccess: (result) => {
+      console.log('follow', result);
+      window.location.reload();
     },
-    {
-      title: '게시글',
-      key: 'postRegisterCount',
+  });
+
+  const unfollowMutation = useMutation('unfollow', () => unfollow(userId), {
+    onSuccess: (result) => {
+      console.log('unfollow', result);
+      window.location.reload();
     },
-    {
-      title: '팔로워',
-      key: 'follower',
-    },
-    {
-      title: '팔로잉',
-      key: 'follow',
-    },
-  ];
+  });
+
+  const handleClick = (isMe, isFriend) => {
+    if (isMe) {
+      navigate('/profiledetail');
+      return;
+    }
+    if (!isFriend) {
+      followMutation.mutate();
+      return;
+    }
+    unfollowMutation.mutate();
+  };
 
   return (
     <>
@@ -59,12 +111,8 @@ function UserInfo({ data, userId }) {
               />
             ))}
           </ContentCounterWrapper>
-          <EditButton
-            type="button"
-            disabled={data.followState}
-            onClick={() => navigate('/profiledetail')}
-          >
-            {String(userId) === String(id) ? '회원정보 수정' : '팔로우'}
+          <EditButton type="button" onClick={() => handleClick(isMe, isFriend)}>
+            {btnText}
           </EditButton>
         </UserInfoWrapper>
       )}
