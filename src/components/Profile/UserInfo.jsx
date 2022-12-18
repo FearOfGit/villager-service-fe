@@ -2,11 +2,34 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { myPageAPI } from '../../api/Users';
 import ContentCounter from './ContentCounter';
-import { CounterWrapper, UserInfoBlock } from './UserInfo.style';
+import {
+  ContentCounterWrapper,
+  UserInfoWrapper,
+  UserImage,
+  PersonalInfo,
+  EditButton,
+} from './UserInfo.style';
 
 function UserInfo() {
   const navigate = useNavigate();
-  const contents = ['모임', '게시글', '팔로워', '팔로잉'];
+  const contents = [
+    {
+      title: '모임',
+      key: 'partyRegisterCount',
+    },
+    {
+      title: '게시글',
+      key: 'postRegisterCount',
+    },
+    {
+      title: '팔로워',
+      key: 'follower',
+    },
+    {
+      title: '팔로잉',
+      key: 'follow',
+    },
+  ];
 
   function getUserInfo() {
     return myPageAPI().then((res) => res.data);
@@ -17,43 +40,35 @@ function UserInfo() {
   return (
     <>
       {data && (
-        <div>
-          <UserInfoBlock>
-            <div className="basic">
-              <img
-                className="user-img"
-                src="https://via.placeholder.com/90"
-                alt="사용자 이미지"
-              />
-              <div className="user-personal-info">
-                <span className="user-nickname">{data.nickName}</span>
-                <span className="user-email">{data.email}</span>
-                <div className="user-favorites">
-                  <span>{data.tags}</span>
-                  <span>{data.tags}</span>
-                  <span>{data.tags}</span>
-                </div>
+        <UserInfoWrapper>
+          <div className="flex">
+            <UserImage
+              src="https://via.placeholder.com/90"
+              alt="사용자 이미지"
+            />
+            <PersonalInfo>
+              <span className="nickname">{data.nickName}</span>
+              <span className="email">{data.email}</span>
+              <div className="tags">
+                {data.tags.map((tag) => (
+                  <span>{tag}</span>
+                ))}
               </div>
-            </div>
-            <CounterWrapper>
-              {contents.map((content) => (
-                <ContentCounter
-                  className="content-counter"
-                  key={content}
-                  title={content}
-                  count={0}
-                />
-              ))}
-            </CounterWrapper>
-            <button
-              className="btn--user"
-              type="button"
-              onClick={() => navigate('/profiledetail')}
-            >
-              회원정보 수정
-            </button>
-          </UserInfoBlock>
-        </div>
+            </PersonalInfo>
+          </div>
+          <ContentCounterWrapper>
+            {contents.map((content) => (
+              <ContentCounter
+                key={content.key}
+                title={content.title}
+                count={data[content.key]}
+              />
+            ))}
+          </ContentCounterWrapper>
+          <EditButton type="button" onClick={() => navigate('/profiledetail')}>
+            회원정보 수정
+          </EditButton>
+        </UserInfoWrapper>
       )}
     </>
   );
