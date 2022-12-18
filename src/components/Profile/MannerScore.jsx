@@ -1,16 +1,8 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { myPageAPI } from '../../api/Users';
 import { ScoreBar, ScoreValue } from './MannerScore.style';
 import UserContent from './UserContent';
 
-function getUserInfo() {
-  return myPageAPI().then((res) => res.data);
-}
-
-function MannerScore() {
-  const { data } = useQuery('getInfo', getUserInfo);
-
+function MannerScore({ data }) {
   return (
     data && (
       <UserContent title="매너 점수">

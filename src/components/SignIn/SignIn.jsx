@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
+import { setUserId } from '../../store/User';
 import { signInAPI } from '../../api/Users';
 import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
 import { ReactComponent as KakaoLogo } from '../../images/kakaologin.svg';
@@ -48,6 +49,7 @@ function SignIn() {
       .then((response) => {
         console.log(response.data);
         setToken(response.data);
+        dispatch(setUserId(response.data.loginMemberId));
         toast.success(<h3>성공적으로 로그인했습니다! 😊</h3>);
 
         setTimeout(() => {

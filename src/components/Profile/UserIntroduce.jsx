@@ -1,15 +1,7 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { myPageAPI } from '../../api/Users';
 import UserContent from './UserContent';
 
-function getUserInfo() {
-  return myPageAPI().then((res) => res.data);
-}
-
-function UserIntroduce() {
-  const { data } = useQuery('getInfo', getUserInfo);
-
+function UserIntroduce({ data }) {
   return (
     data && (
       <UserContent title="소개">

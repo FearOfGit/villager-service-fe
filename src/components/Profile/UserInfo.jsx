@@ -1,6 +1,5 @@
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { myPageAPI } from '../../api/Users';
 import ContentCounter from './ContentCounter';
 import {
   ContentCounterWrapper,
@@ -10,7 +9,8 @@ import {
   EditButton,
 } from './UserInfo.style';
 
-function UserInfo() {
+function UserInfo({ data, userId }) {
+  const id = useSelector((state) => state.user.value.userId);
   const navigate = useNavigate();
   const contents = [
     {
@@ -31,12 +31,6 @@ function UserInfo() {
     },
   ];
 
-  function getUserInfo() {
-    return myPageAPI().then((res) => res.data);
-  }
-
-  const { data } = useQuery('getInfo', getUserInfo);
-  console.log(data);
   return (
     <>
       {data && (
@@ -65,8 +59,12 @@ function UserInfo() {
               />
             ))}
           </ContentCounterWrapper>
-          <EditButton type="button" onClick={() => navigate('/profiledetail')}>
-            회원정보 수정
+          <EditButton
+            type="button"
+            disabled={data.followState}
+            onClick={() => navigate('/profiledetail')}
+          >
+            {String(userId) === String(id) ? '회원정보 수정' : '팔로우'}
           </EditButton>
         </UserInfoWrapper>
       )}
