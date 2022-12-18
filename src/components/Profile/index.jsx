@@ -1,20 +1,29 @@
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { myPageAPI } from '../../api/Users';
 import { ProfileTemplate } from './index.style';
-import UserContent from './UserContent';
+import MannerScore from './MannerScore';
 import UserInfo from './UserInfo';
+import UserIntroduce from './UserIntroduce';
+
+function getUserInfo(id) {
+  return myPageAPI(id).then((res) => res.data);
+}
 
 function Profile() {
+  const { id: userId } = useParams();
+  const { data } = useQuery(['getInfo', userId], () => getUserInfo(userId), {
+    suspense: true,
+  });
+
+  console.log(data);
+
   return (
     <ProfileTemplate>
       <div className="inner">
-        <UserInfo />
-        <UserContent title="소개">
-          <div>소개</div>
-        </UserContent>
-        <UserContent title="매너 점수">
-          <div className="manner-score-bar">
-            <div className="manner-score-value">50</div>
-          </div>
-        </UserContent>
+        <UserInfo data={data} userId={userId} />
+        <UserIntroduce data={data} />
+        <MannerScore data={data} />
       </div>
     </ProfileTemplate>
   );

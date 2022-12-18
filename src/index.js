@@ -11,6 +11,8 @@ import {
 import './index.css';
 import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import { ThemeProvider } from 'styled-components';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/store';
@@ -49,15 +51,18 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 axios.defaults.withCredentials = true;
 
 const client = new QueryClient();
+const persistor = persistStore(store);
 
 root.render(
   <React.StrictMode>
     <CookiesProvider>
       <QueryClientProvider client={client}>
         <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <RouterProvider router={router} />
-          </ThemeProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <ThemeProvider theme={theme}>
+              <RouterProvider router={router} />
+            </ThemeProvider>
+          </PersistGate>
         </Provider>
       </QueryClientProvider>
     </CookiesProvider>
