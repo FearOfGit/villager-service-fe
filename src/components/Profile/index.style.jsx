@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import palette from '../../lib/palette';
 
 export const ProfileTemplate = styled.div`
   margin-top: 2rem;

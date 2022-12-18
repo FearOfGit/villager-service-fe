@@ -11,6 +11,13 @@ import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
 import ChangeIntroduce from './ChangeIntroduce';
 
 function ProfileDetail() {
+  const [isChange, setIsChange] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsChange(true);
+  };
+
   function getUserInfo() {
     return myPageAPI().then((res) => res.data);
   }

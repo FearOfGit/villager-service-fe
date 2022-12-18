@@ -13,7 +13,7 @@ function UserInfo() {
   }
 
   const { data } = useQuery('getInfo', getUserInfo);
-
+  console.log(data);
   return (
     <>
       {data && (
