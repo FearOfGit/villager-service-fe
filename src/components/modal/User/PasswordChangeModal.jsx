@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {toast, ToastContainer} from 'react-toastify'
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { newPasswordAPI } from '../../../api/Users';
@@ -9,14 +9,13 @@ import { newPasswordAPI } from '../../../api/Users';
 import { Wrapper, Modal, Title, ModalInput, ButtonSection, SubmitBtn, CancelBtn, } from '../Modal.styles';
 
 function ChangePassword ({ modal }) {
-  const [message, setMessage] = useState('');
-
-  const Cancel = () => {
+  
+  const cancel = () => {
     modal(false);
   };
 
   const validateNew = async (newPassword) => {
-    const body = { password: newPassword };
+    const body = JSON.stringify({ password: newPassword });
     await newPasswordAPI(body)
       .then((res)=>{
         console.log(body);
@@ -25,7 +24,7 @@ function ChangePassword ({ modal }) {
           modal(false);}, 1000);
       })
       .catch((error)=>{
-        setMessage(error.response.data.message);
+        toast.error(error.response.data.message);
       });
   };
 
@@ -80,11 +79,11 @@ function ChangePassword ({ modal }) {
           <SubmitBtn type="submit">
             수정하기
           </SubmitBtn>
-          <CancelBtn type="button" onClick={Cancel}>
+          <CancelBtn type="button" onClick={cancel}>
             닫기
           </CancelBtn>
         </ButtonSection>
-      </Modal>
+      </Modal>  
     </Wrapper>
     </>
   )

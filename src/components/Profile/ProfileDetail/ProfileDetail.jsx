@@ -5,17 +5,25 @@ import {
   ImageSection,
   InfoList,
   EditButton,
+  SignOut,
+  SignOutWrapper,
 } from './ProfileDetail.styles';
 import { myPageAPI } from '../../../api/Users';
 import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
+import SignOutModal from '../../modal/User/SignOutModal';
 import ChangeIntroduce from './ChangeIntroduce';
 
 function ProfileDetail() {
   const [isChange, setIsChange] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsChange(true);
+    if (e.target.value === 'changePW') {
+      setIsChange(true);
+    } else if (e.target.value === 'signOut') {
+      setIsDelete(true);
+    }
   };
 
   function getUserInfo() {
@@ -67,7 +75,11 @@ function ProfileDetail() {
               </li>
               <li>
                 <span>비밀번호</span>
-                <EditButton type="button" onClick={handleClick}>
+                <EditButton
+                  value="changePW"
+                  type="button"
+                  onClick={handleClick}
+                >
                   비밀번호 수정
                 </EditButton>
               </li>
@@ -80,12 +92,21 @@ function ProfileDetail() {
                 <span>2000년 02월 02일</span>
               </li>
             </InfoList>
-            <ChangeIntroduce introduce={data.introduce} />
+            <ChangeIntroduce
+              nickname={data.nickName}
+              introduce={data.introduce}
+            />
+            <SignOutWrapper>
+              <SignOut value="signOut" type="button" onClick={handleClick}>
+                회원 탈퇴
+              </SignOut>
+            </SignOutWrapper>
           </div>
         )}
       </Wrapper>
 
       {isChange && <PasswordChangeModal modal={setIsChange} />}
+      {isDelete && <SignOutModal modal={setIsDelete} />}
     </>
   );
 }

@@ -71,4 +71,23 @@ const EditButton = styled.button`
   border-radius: 12px;
 `;
 
-export {Wrapper, ImageSection, InfoList, EditButton, };
+const SignOutWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SignOut = styled.button`
+  margin: 0 auto;
+  margin-top: 0.75rem;
+  width: 50%;
+  border-radius: 12px;
+  border: 0px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: orange;
+  background-color: white;
+`;
+
+export {Wrapper, ImageSection, InfoList, EditButton, SignOutWrapper, SignOut, };

@@ -45,6 +45,22 @@ const ModalInput = styled.input`
   background-color: ${(props) => props.theme.color.light_200};
 `;
 
+const ContentSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  padding: 1rem;
+  font-weight: 400;
+  text-align: center;
+`;
+
 const ButtonSection = styled.div`
   width: 100%;
   display: flex;
@@ -64,4 +80,4 @@ const CancelBtn = styled.button`
   border-radius: 2rem;
 `;
 
-export { Wrapper, Modal, Title, ModalInput, ButtonSection, SubmitBtn, CancelBtn, };
+export { Wrapper, Modal, Title, ModalInput, ContentSection, Content, ButtonSection, SubmitBtn, CancelBtn, };

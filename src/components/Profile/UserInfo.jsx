@@ -29,9 +29,9 @@ function UserInfo() {
                 <span className="user-nickname">{data.nickName}</span>
                 <span className="user-email">{data.email}</span>
                 <div className="user-favorites">
-                  <span>{data.tags[0]}</span>
-                  <span>{data.tags[1]}</span>
-                  <span>{data.tags[2]}</span>
+                  <span>{data.tags}</span>
+                  <span>{data.tags}</span>
+                  <span>{data.tags}</span>
                 </div>
               </div>
             </div>
