@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import {
   ButtonWrapper,
@@ -12,52 +13,80 @@ import {
   Wrapper,
 } from './GatheringInfo.style';
 import Map from './Map';
+import { gatheringLookUpAPI } from '../../api/gathering';
 
 // AiFillHeart
 // AiOutlineHeart
 // 모임 이름, 인원수, 모임 점수, 상세 설명, 장소, 시작일, 종료일, 참가비, 태그
-function GatheringInfo() {
+function GatheringInfo({ searchId }) {
+  const [location, setLocation] = useState({});
+  const { data } = useQuery(
+    ['getInfo', searchId],
+    () => gatheringLookUpAPI(searchId),
+    {
+      suspense: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  );
+  console.log(data);
+
+  useEffect(() => {
+    const { kakao } = window;
+    const geocoder = new kakao.maps.services.Geocoder();
+    const callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        setLocation({
+          lat: result[0].address.y,
+          lng: result[0].address.x,
+        });
+      }
+    };
+    geocoder.addressSearch(data.data.location, callback);
+  }, [data]);
   return (
     <>
       <div className="flex">
-        <GatheringName>모임명</GatheringName>
+        <GatheringName>{data.data.partyName}</GatheringName>
         <ButtonWrapper>
           <LikeButton>
-            <AiOutlineHeart />
+            {data.data.partyLike ? <AiFillHeart /> : <AiOutlineHeart />}
           </LikeButton>
           <JoinButton>신청하기</JoinButton>
         </ButtonWrapper>
       </div>
       <GatheringTagWrapper>
-        <span className="tag">#태그</span>
-        <span className="tag">#태그</span>
-        <span className="tag">#태그</span>
+        {data.data.tagNameList.map((el) => (
+          <span key={el} className="tag">
+            #{el}
+          </span>
+        ))}
       </GatheringTagWrapper>
-      <Map lat={33.450701} lng={126.570667} />
+      <Map lat={location.lat} lng={location.lng} />
       <div className="info">
         <Wrapper>
           <SubTitle>모임 기간</SubTitle>
           <Content>
-            <span>2022-12-15</span>
-            <span className="end">2022-12-20</span>
+            <span>{data.data.startDt}</span>
+            <span className="end">{data.data.endDt}</span>
           </Content>
         </Wrapper>
         <Wrapper>
           <SubTitle>매너 점수</SubTitle>
-          <Content>50 이상</Content>
+          <Content>{data.data.score} 이상</Content>
         </Wrapper>
         <Wrapper>
           <SubTitle>참가비</SubTitle>
-          <Content>10000원</Content>
+          <Content>{data.data.amount}원</Content>
         </Wrapper>
         <Wrapper>
           <SubTitle>상세 설명</SubTitle>
-          <Content>설명...</Content>
+          <Content>{data.data.content}</Content>
         </Wrapper>
         <Wrapper>
           <SubTitle>인원수</SubTitle>
           <Content>
-            <div>10 / 20</div>
+            <div>1 / {data.data.numberPeople}</div>
           </Content>
         </Wrapper>
         <MemberInfoWrapper>
