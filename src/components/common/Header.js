@@ -4,9 +4,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VscBell } from 'react-icons/vsc';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOutAPI } from '../../api/Users';
 import Button from './Button';
 import Responsive from './Responsive';
 import TownSetup from '../modal/TownSetup';
+import { setUserId } from '../../store/User';
+import { removeRefreshToken } from '../../app/Cookie';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -51,28 +55,51 @@ const Spacer = styled.div`
 `;
 
 function Header() {
+  const myId = useSelector((state) => state.user.value.userId);
   const [isTownSetupModal, setTownSetupModal] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    logOutAPI().then((res) => {
+      localStorage.removeItem('expiresAt');
+      localStorage.removeItem('access_token');
+      dispatch(setUserId(null));
+      removeRefreshToken();
+      console.log(res);
+      navigate('/signin');
+    });
+  };
 
   return (
     <>
       <TownSetup
-        show={isTownSetupModal}
+        show={isTownSetupModal && myId}
         onClose={() => setTownSetupModal(false)}
       />
       <HeaderBlock>
         <Inner>
           <div className="logo">
-            <span className="orange" onClick={() => setTownSetupModal(true)}>
-              연남동
-            </span>
+            {myId ? (
+              <span className="orange" onClick={() => setTownSetupModal(true)}>
+                연남동
+              </span>
+            ) : (
+              <span className="orange">동네</span>
+            )}
             #람들
           </div>
           <div className="other">
-            <Button onClick={() => navigate('/signin')}>로그인</Button>
-            <div className="bell">
-              <VscBell />
-            </div>
+            {!myId ? (
+              <Button onClick={() => navigate('/signin')}>로그인</Button>
+            ) : (
+              <>
+                <Button onClick={handleLogOut}>로그아웃</Button>
+                <div className="bell">
+                  <VscBell />
+                </div>
+              </>
+            )}
           </div>
         </Inner>
       </HeaderBlock>
