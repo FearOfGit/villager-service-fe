@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -49,6 +50,10 @@ function SignIn() {
       .then((response) => {
         console.log(response.data);
         setToken(response.data);
+        localStorage.setItem(
+          'expiresAt',
+          moment().add(8, 'minutes').format('yyyy-MM-DD HH:mm:ss'),
+        ); // moment
         dispatch(setUserId(response.data.loginMemberId));
         toast.success(<h3>성공적으로 로그인했습니다! 😊</h3>);
 

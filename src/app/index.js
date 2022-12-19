@@ -1,4 +1,4 @@
-import { setRefreshToken, } from './Cookie';
+import { setRefreshToken, getRefreshToken } from './Cookie';
 import { setAccessToken, setAuthentication, getAccessToken } from './Auth';
 
 export {
@@ -6,4 +6,5 @@ export {
   setAccessToken,
   setAuthentication,
   getAccessToken,
+  getRefreshToken,
 };

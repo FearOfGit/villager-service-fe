@@ -12,3 +12,5 @@ export const setRefreshToken = (refreshToken) => {
     expires: new Date(expireDate),
   });
 };
+
+export const getRefreshToken = () => cookies.get('refresh_token');
