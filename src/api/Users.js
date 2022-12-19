@@ -25,6 +25,15 @@ export async function signInAPI(userForm) {
 }
 
 /**
+ * 로그아웃 API
+ * @param {{email: string, password: string}} userForm
+ * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message
+ */
+export async function logOutAPI() {
+  return API.get(`${BASE_API}/auth/logout`);
+}
+
+/**
  * 내 정보 목록 조회 API
  * @param { string } accessToken
  * @return {} email, nickname, cash, birth, message

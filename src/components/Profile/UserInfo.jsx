@@ -49,21 +49,28 @@ function getBtnText(isMe, isFriend) {
   return '친구 끊기';
 }
 
-function UserInfo({ data, isMe, isFriend, searchId, handleFollow }) {
+function UserInfo({
+  data,
+  isMe,
+  isFriend,
+  searchId,
+  followerCount,
+  handleFollow,
+}) {
   const navigate = useNavigate();
   const btnText = getBtnText(isMe, isFriend);
 
   const followMutation = useMutation('follow', () => follow(searchId), {
     onSuccess: (result) => {
       console.log('follow 실행', result);
-      handleFollow();
+      handleFollow(1);
     },
   });
 
   const unfollowMutation = useMutation('unfollow', () => unfollow(searchId), {
     onSuccess: (result) => {
       console.log('unfollow 실행', result);
-      handleFollow();
+      handleFollow(-1);
     },
   });
 
@@ -89,8 +96,11 @@ function UserInfo({ data, isMe, isFriend, searchId, handleFollow }) {
               alt="사용자 이미지"
             />
             <PersonalInfo>
-              <span className="nickname">{data.nickName}</span>
-              <span className="email">{data.email}</span>
+              <span className="nickname">
+                {data.nickName} <span className="email">({data.email})</span>{' '}
+              </span>
+              <span>{data.birth}</span>
+              <span>{data.gender}</span>
               <div className="tags">
                 {data.tags.map((tag) => (
                   <span>{tag}</span>
@@ -103,7 +113,9 @@ function UserInfo({ data, isMe, isFriend, searchId, handleFollow }) {
               <ContentCounter
                 key={content.key}
                 title={content.title}
-                count={data[content.key]}
+                count={
+                  content.key === 'follower' ? followerCount : data[content.key]
+                }
               />
             ))}
           </ContentCounterWrapper>

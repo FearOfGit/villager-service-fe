@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -24,26 +24,27 @@ function Profile() {
       retry: false,
     },
   );
-  const [isFriend, setIsFriend] = useState(data.followState);
-  const isMe = String(myId === searchId);
-  const handleFollow = () => {
+  const [isFriend, setIsFriend] = useState(false);
+  const [followerCount, setFollowerCount] = useState(data.follower);
+  const isMe = String(myId) === String(searchId);
+  const handleFollow = (value) => {
     setIsFriend(!isFriend);
+    setFollowerCount(followerCount + value);
   };
-
-  console.log(data);
+  useEffect(() => {
+    setIsFriend(data.followState);
+    setFollowerCount(data.follower);
+  }, [searchId]);
 
   return (
     <ProfileTemplate>
       <div className="inner">
         <UserInfo
-          birth={data.birth}
-          email={data.email}
-          gender={data.gender}
-          nickname={data.nickname}
+          data={data}
           isFriend={isFriend}
           isMe={isMe}
+          followerCount={followerCount}
           handleFollow={handleFollow}
-          data={data}
           searchId={searchId}
         />
         <UserIntroduce data={data} />

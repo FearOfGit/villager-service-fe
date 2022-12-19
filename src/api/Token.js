@@ -18,9 +18,6 @@ API.interceptors.request.use(async (res) => {
   const refreshToken = getRefreshToken();
   const expireAt = localStorage.getItem('expiresAt');
 
-  console.log(accessToken);
-  console.log(refreshToken);
-
   if (refreshToken && moment(expireAt).diff(moment()) < 0) {
     const { data } = await axios.post(
       `${BASE_API}/auth/refresh`,

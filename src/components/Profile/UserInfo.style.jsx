@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
 export const UserInfoWrapper = styled.div`
   position: relative;
   width: 100%;
-  background-color: #4ab7b6;
-  padding: 1rem;
+  background-color: ${palette.gray[3]};
+  padding: 2rem 1rem;
   border-radius: 7px;
 `;
 
@@ -16,14 +17,18 @@ export const PersonalInfo = styled.div`
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  color: #fff;
+  justify-content: space-around;
+
   .nickname {
     font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .email {
+    font-size: 0.9rem;
+    font-weight: 400;
   }
   .tags {
     font-size: 0.5rem;
-    margin-top: 1rem;
   }
 `;
 
@@ -44,4 +49,6 @@ export const EditButton = styled.button`
   top: 8px;
   border-radius: 5px;
   border: none;
+  background-color: #4ab7b6;
+  color: #fff;
 `;

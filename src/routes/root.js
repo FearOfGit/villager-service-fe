@@ -5,15 +5,14 @@ import Navigator from '../components/common/Navigator';
 import Responsive from '../components/common/Responsive';
 
 function Root() {
-  const userId = useSelector((state) => state.user.value.userId);
-  console.log(userId);
+  const myId = useSelector((state) => state.user.value.userId);
   return (
     <>
       <Header />
       <Responsive className="content">
         <Outlet />
       </Responsive>
-      <Navigator />
+      {myId && <Navigator />}
     </>
   );
 }
