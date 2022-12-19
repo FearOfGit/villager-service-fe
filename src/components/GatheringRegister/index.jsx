@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { gatheringRegisterAPI } from '../../api/gathering';
 import { constantForForm } from './lib/constants';
 import { GatheringRegisterTemplate } from './index.style';
 import Question from './Question';
@@ -14,6 +16,7 @@ import MoveButton from './MoveButton';
 let isMap = false;
 
 function GatheringRegister() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [tagList, setTagList] = useState([]);
   const {
@@ -26,8 +29,24 @@ function GatheringRegister() {
   } = useFormik({
     initialValues: constantForForm.INITIAL_VALUES,
     validationSchema: constantForForm.VALIDATION_SCHEMA,
-    onSubmit: (result) => {
-      console.log(JSON.stringify({ ...result, tag: tagList }, null, 2));
+    onSubmit: async (result) => {
+      const body = {
+        partyName: result.name,
+        score: result.mannerScore,
+        startDt: result.start_date,
+        endDt: result.end_date,
+        amount: result.fee,
+        numberPeople: result.capacity,
+        location: result.place_text,
+        latitude: Number(result.latitude),
+        longitude: Number(result.longitude),
+        content: result.description,
+        tagList: [...tagList],
+      };
+      const response = await gatheringRegisterAPI(body);
+      console.log(response);
+      navigate('/');
+      // console.log(JSON.stringify({ ...result, tag: tagList }, null, 2));
     },
   });
 
@@ -50,13 +69,13 @@ function GatheringRegister() {
 
   const addTag = (newTag) => {
     if (!tagList.includes(newTag)) {
-      setTagList([...tagList, newTag]);
+      setTagList([...tagList, { tagName: newTag }]);
     }
     setFieldValue('tag', '', true);
   };
 
   const removeTag = (target) => {
-    const newTagList = tagList.filter((tag) => tag !== target);
+    const newTagList = tagList.filter((tag) => tag.tagName !== target);
     setTagList(newTagList);
   };
 
