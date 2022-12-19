@@ -25,6 +25,15 @@ export async function signInAPI(userForm) {
 }
 
 /**
+ * 구글 로그인 API
+ * @param {{email: string, password: string}} userForm
+ * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message
+ */
+export async function signInOAuthGoogleAPI() {
+  return API.post(`${BASE_API}/oauth2/authorization/google`);
+}
+
+/**
  * 로그아웃 API
  * @param {{email: string, password: string}} userForm
  * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message

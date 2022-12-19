@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import { setUserId } from '../../store/User';
-import { signInAPI } from '../../api/Users';
+import { signInAPI, signInOAuthGoogleAPI } from '../../api/Users';
 import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
 import { ReactComponent as KakaoLogo } from '../../images/kakaologin.svg';
 
@@ -67,6 +67,12 @@ function SignIn() {
       });
   };
 
+  const onClick = async () => {
+    await signInOAuthGoogleAPI().then((response) => {
+      console.log(response);
+    });
+  };
+
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: '',
@@ -116,7 +122,7 @@ function SignIn() {
       </SignInForm>
       <ButtonKakao type="button">
         <KakaoLogo />
-        <TextBox>카카오로 시작하기</TextBox>
+        <TextBox onClick={onClick}>카카오로 시작하기</TextBox>
       </ButtonKakao>
       <FindSection>
         <AdditionalMsg>이메일 찾기</AdditionalMsg>
