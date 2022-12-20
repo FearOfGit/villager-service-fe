@@ -15,9 +15,6 @@ import {
 import Map from './Map';
 import { gatheringLookUpAPI } from '../../api/gathering';
 
-// AiFillHeart
-// AiOutlineHeart
-// 모임 이름, 인원수, 모임 점수, 상세 설명, 장소, 시작일, 종료일, 참가비, 태그
 function GatheringInfo({ searchId }) {
   const [location, setLocation] = useState({});
   const { data } = useQuery(
@@ -29,12 +26,11 @@ function GatheringInfo({ searchId }) {
       retry: false,
     },
   );
-  console.log(data);
 
   useEffect(() => {
     const { kakao } = window;
     const geocoder = new kakao.maps.services.Geocoder();
-    const callback = function (result, status) {
+    const callback = (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         setLocation({
           lat: result[0].address.y,
