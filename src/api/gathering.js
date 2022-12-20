@@ -32,3 +32,12 @@ export async function gatheringLookUpAPI(id) {
 export async function AllgatheringLookUpAPI(lat, lnt) {
   return API.get(`${BASE_API}/parties/${lat}/${lnt}`);
 }
+
+/**
+ * 모임 좋아요 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function gatheringLikeAPI(id) {
+  return API.post(`${BASE_API}/parties/${id}/like`);
+}
