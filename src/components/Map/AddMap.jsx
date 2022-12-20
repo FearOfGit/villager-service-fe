@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { Wrapper, SubmitWrapper, ContentSection, Button, ButtonSection } from "./AddMap.styles";
 import { insertTownAPI, searchTownAPI } from "../../api/Town";
+import SelectTown from './SelectTown';
 
 function AddMap () {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function AddMap () {
             &nbsp;
             입니다.
           </ContentSection>
+          <SelectTown/>
           <ButtonSection>
             <Button type="button" onClick={()=>addTown()}>
               동네 설정하기

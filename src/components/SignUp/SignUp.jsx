@@ -57,19 +57,20 @@ function SignUp() {
     
   const onSubmit = async (values) => {
     const body = { ...values };
-    console.log(body);
     try {   
       signUpAPI(body)
       .then((response) => {
-        console.log(response.data);
-        console.log('제발 되어라!');
-        toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
-        setTimeout(() => {
-          navigate('/signIn');
-        }, 1500);
+        if (response.data) {
+          toast.error(response.data.errorMessage);
+        }
+        else {
+          toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
+          setTimeout(() => {
+            navigate('/signIn');
+          }, 1500);
+        }
       });
     } catch(e) {
-      console.log('제발 되라니깡');
       toast.error(e.response.data.errorMessage);
     }
   };
