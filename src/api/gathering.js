@@ -23,3 +23,12 @@ export async function gatheringRegisterAPI(body) {
 export async function gatheringLookUpAPI(id) {
   return API.get(`${BASE_API}/parties/${id}`);
 }
+
+/**
+ * 모임 전체 조회 API
+ * @param {LAT: string, LNT: string}
+ * @returns {} message
+ */
+export async function AllgatheringLookUpAPI(lat, lnt) {
+  return API.get(`${BASE_API}/parties/${lat}/${lnt}`);
+}
