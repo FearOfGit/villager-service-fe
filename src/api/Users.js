@@ -52,6 +52,15 @@ export async function myPageAPI(id) {
 }
 
 /**
+ * 내 정보 상세 목록 조회 API
+ * @param { string } accessToken
+ * @return {} email, nickname, cash, birth, message
+ */
+export async function myPageDetailAPI() {
+  return API.get(`${BASE_API}/members/`);
+}
+
+/**
  * 비밀번호 변경 API
  * @param { password: string } passwordForm
  * @return {} message

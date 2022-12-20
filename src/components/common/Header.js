@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VscBell } from 'react-icons/vsc';
+import { VscBell, VscCompass } from 'react-icons/vsc';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOutAPI } from '../../api/Users';
@@ -47,6 +47,12 @@ const Inner = styled(Responsive)`
   .bell {
     display: flex;
     align-items: center;
+  }
+  .map {
+    display: flex;
+    align-items: center;
+    margin-left: 0.25rem;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -95,6 +101,9 @@ function Header() {
             ) : (
               <>
                 <Button onClick={handleLogOut}>로그아웃</Button>
+                <div className="map">
+                  <VscCompass onClick={() => navigate('/map')}/>
+                </div>
                 <div className="bell">
                   <VscBell />
                 </div>
