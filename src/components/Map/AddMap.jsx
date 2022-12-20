@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import { changeLat, changeLong } from '../../store/Location';
 import { Wrapper, SubmitWrapper, ContentSection, Button, ButtonSection } from "./AddMap.styles";
 import { insertTownAPI, searchTownAPI } from "../../api/Town";
 
@@ -10,8 +8,13 @@ function AddMap () {
   const dispatch = useDispatch();
   const location = useSelector(state => state.location);
 
+  const [ town, setTown ] = useState();
+  const [village, setVillage] = useState('아무개동');
+
   async function addTown () {
     const body = {
+      townId: 1,
+      townName: village,
       latitude: location.value.latitude,
       longitude: location.value.longitude
     };
@@ -25,9 +28,6 @@ function AddMap () {
         toast.error(e.response.data.errorMessage);
       });
   }
-
-  const [ town, setTown ] = useState();
-  const [village, setVillage] = useState('아무개동');
 
   useEffect(() => {
     const body = {
