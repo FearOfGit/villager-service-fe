@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import MyGatheringList from './MyGatheringList';
-import { MainTemplate } from './Main.style';
+import { MainTemplate, RegisterButton } from './index.style';
 import MyImage from './MyImage';
 import Preview from './Preview';
 import Map from '../Map/Map';
+import GatheringList from './GatheringList';
 
 function Main() {
   const myId = useSelector((state) => state.user.value.userId);
@@ -13,7 +14,6 @@ function Main() {
 
   useEffect(() => {
     if (!myId) {
-      console.log('move');
       navigate('/signin');
     }
   }, [myId]);
@@ -24,13 +24,14 @@ function Main() {
         <MyGatheringList />
         <MyImage />
       </div>
-      <button type="button" onClick={() => navigate('/register')}>
-        모임 등록
-      </button>
+      <RegisterButton type="button" onClick={() => navigate('/register')}>
+        등록
+      </RegisterButton>
       <Map />
-      <Preview title="내 동네 인기 모임" />
-      <Preview title="내 동네 모임들" />
-      <Preview title="즐겨찾기 모임" />
+      <Suspense fallback={<div>로딩중...</div>}>
+        <GatheringList />
+      </Suspense>
+      {/* <Preview title="내 동네 인기 모임" /> */}
     </MainTemplate>
   );
 }
