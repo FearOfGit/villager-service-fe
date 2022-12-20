@@ -1,47 +1,54 @@
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
-export const UserInfoBlock = styled.div`
+export const UserInfoWrapper = styled.div`
   position: relative;
   width: 100%;
-  background-color: #4ab7b6;
-  padding: 1rem;
+  background-color: ${palette.gray[3]};
+  padding: 2rem 1rem;
   border-radius: 7px;
-  .basic {
-    display: flex;
-  }
-  .user-img {
-    border-radius: 50%;
-  }
-  .user-personal-info {
-    margin-left: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #fff;
-    .user-nickname {
-      font-size: 1.1rem;
-    }
-    .user-favorites {
-      font-size: 0.5rem;
-      margin-top: 1rem;
-    }
-  }
-  .btn--user {
-    font-size: 0.5rem;
+`;
+
+export const UserImage = styled.img`
+  border-radius: 50%;
+`;
+
+export const PersonalInfo = styled.div`
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .nickname {
+    font-size: 1.1rem;
     font-weight: 700;
-    padding: 0.5rem;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    border-radius: 5px;
-    border: none;
+  }
+  .email {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .tags {
+    font-size: 0.5rem;
   }
 `;
 
-export const CounterWrapper = styled.div`
+export const ContentCounterWrapper = styled.div`
   margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
   padding: 1rem 0.2rem;
+`;
+
+export const EditButton = styled.button`
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4ab7b6;
+  color: #fff;
 `;

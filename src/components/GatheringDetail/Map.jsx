@@ -18,7 +18,7 @@ function Map({ lat, lng }) {
       position: new kakao.maps.LatLng(lat, lng),
     });
     clusterer.addMarker(marker);
-  }, []);
+  }, [lat, lng]);
   return (
     <div
       id="map"
