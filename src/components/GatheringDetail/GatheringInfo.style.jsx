@@ -26,16 +26,18 @@ export const LikeButton = styled.button`
   transform: translateY(-40%);
   border: none;
   padding: 0;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: normal;
   color: ${palette.red[9]};
 `;
 
 export const JoinButton = styled.button`
-  background: transparent;
+  background: #4ab7b6;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
   border: none;
-  padding: 0;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: normal;
   position: absolute;
   right: 0;

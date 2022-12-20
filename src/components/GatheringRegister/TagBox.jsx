@@ -21,8 +21,8 @@ function TagBox({ tagList, fieldProps, isActive, errMsg, onAdd, onRemove }) {
       </div>
       <TagListWrapper>
         {tagList.map((tag) => (
-          <span key={tag} onClick={() => onRemove(tag)}>
-            #{tag}
+          <span key={tag.tagName} onClick={() => onRemove(tag.tagName)}>
+            #{tag.tagName}
           </span>
         ))}
       </TagListWrapper>
