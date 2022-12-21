@@ -1,6 +1,7 @@
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VscBell, VscCompass } from 'react-icons/vsc';
 import styled from 'styled-components';
@@ -61,15 +62,17 @@ const Spacer = styled.div`
 `;
 
 function Header() {
-  const myId = useSelector((state) => state.user.value.userId);
-  const [isTownSetupModal, setTownSetupModal] = useState(false);
+  console.log('Header');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const myId = useSelector((state) => state.user.value.userId);
+  const [isTownSetupModal, setTownSetupModal] = useState(false);
 
   const handleLogOut = () => {
     logOutAPI().then((res) => {
       localStorage.removeItem('expiresAt');
       localStorage.removeItem('access_token');
+      localStorage.removeItem('persist:root');
       dispatch(setUserId(null));
       removeRefreshToken();
       console.log(res);
@@ -102,7 +105,7 @@ function Header() {
               <>
                 <Button onClick={handleLogOut}>로그아웃</Button>
                 <div className="map">
-                  <VscCompass onClick={() => navigate('/map')}/>
+                  <VscCompass onClick={() => navigate('/map')} />
                 </div>
                 <div className="bell">
                   <VscBell />

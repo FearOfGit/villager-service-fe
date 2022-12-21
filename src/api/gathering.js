@@ -32,3 +32,42 @@ export async function gatheringLookUpAPI(id) {
 export async function AllgatheringLookUpAPI(lat, lnt) {
   return API.get(`${BASE_API}/parties/${lat}/${lnt}`);
 }
+
+/**
+ * 모임 신청 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function gatheringApplyAPI(id) {
+  return API.post(`${BASE_API}/parties/${id}/apply`);
+}
+
+/**
+ * 모임 좋아요 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function gatheringLikeAPI(id) {
+  return API.post(`${BASE_API}/parties/${id}/like`);
+}
+
+/**
+ * 모임 삭제 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function gatheringDeleteAPI(id) {
+  return API.delete(`${BASE_API}/parties/${id}`);
+}
+
+/**
+ * 모임 신청 조회 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function ApplicationListAPI(id) {
+  return API.get(`${BASE_API}/parties/${id}/apply`, {
+    page: '1',
+    size: '5',
+  });
+}
