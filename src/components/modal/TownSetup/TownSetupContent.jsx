@@ -15,12 +15,13 @@ function TownSetupContent({
     <ContentWrapper>
       <h3>동네 선택</h3>
       <div className="flex">
-        {myTownList.map((town) => (
+        {myTownList.map((town, idx) => (
           <TownSelector
-            key={town.id}
+            key={town.memberTownId}
+            index={idx}
             town={town}
-            select={currentTownId === town.id}
-            edit={editId === town.id}
+            select={currentTownId === idx}
+            edit={editId === idx}
             setEditId={setEditId}
             changeNickname={changeNickname}
             removeTown={removeTown}

@@ -62,7 +62,6 @@ const Spacer = styled.div`
 `;
 
 function Header() {
-  console.log('Header');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myId = useSelector((state) => state.user.value.userId);
@@ -82,10 +81,12 @@ function Header() {
 
   return (
     <>
-      <TownSetup
-        show={isTownSetupModal && myId}
-        onClose={() => setTownSetupModal(false)}
-      />
+      {myId && (
+        <TownSetup
+          show={isTownSetupModal && myId}
+          onClose={() => setTownSetupModal(false)}
+        />
+      )}
       <HeaderBlock>
         <Inner>
           <div className="logo">

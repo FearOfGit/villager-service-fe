@@ -38,7 +38,6 @@ export async function getTownAPI() {
  * @param {memberTownId, string} accessToken
  * @returns {}
  */
-export async function deleteTownAPI (townValues){
+export async function deleteTownAPI(townValues) {
   return API.delete(`${BASE_API}/members/towns/${townValues}`, townValues);
 }
-
