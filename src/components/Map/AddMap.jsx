@@ -5,20 +5,28 @@ import { Wrapper, SubmitWrapper, ContentSection, Button, ButtonSection } from ".
 import { deleteTownAPI, insertTownAPI, searchTownAPI } from "../../api/Town";
 import SelectTown from './SelectTown';
 
-function AddMap () {
+
+function AddMap (props) {
   const dispatch = useDispatch();
   const location = useSelector(state => state.location);
 
   const [ town, setTown ] = useState();
   const [village, setVillage] = useState('아무개동');
   const [isSelected, setIsSelected] = useState('없음');
+
+  const temp = props;
+
+  const handleClick = () => {
+    temp.click(true);
+    temp.list(town);
+  };
   
   const selectTown = (value) => {
     if (value) {
       setIsSelected(value);
       console.log(isSelected);
     };
-  }
+  };
 
   async function addTown () {
     const body = JSON.stringify({
@@ -50,8 +58,6 @@ function AddMap () {
       });
   }
 
-
-
   useEffect(() => {
     const body = {
       latitude: location.value.latitude,
@@ -66,31 +72,34 @@ function AddMap () {
   
   return (
     <>
-    <ToastContainer/>
-    {town && (
-      <Wrapper>
-        <SubmitWrapper>
-          <ContentSection>
-            현 위치에 기반한 회원님의 동네는
-            <br/>
-            {village}
-            &nbsp;
-            입니다.
-          </ContentSection>
-          <SelectTown
-            select = {selectTown}
-          />
-          <ButtonSection>
-            <Button type="button" onClick={()=>addTown()}>
-              동네 설정하기
+      <ToastContainer/>
+      {town && (
+        <Wrapper>
+          <SubmitWrapper>
+            <ContentSection>
+              현 위치에 기반한 회원님의 동네는
+              <br/>
+              {village}
+              &nbsp;
+              입니다.
+            </ContentSection>
+            <SelectTown
+              select = {selectTown}
+            />
+            <ButtonSection>
+              <Button type="button" onClick={()=>addTown()}>
+                동네 설정하기
+              </Button>
+              <Button type="button" onClick={()=>deleteTown()}>
+                동네 삭제하기
+              </Button>
+            </ButtonSection>
+            <Button type="button" onClick={()=>handleClick()}>
+              동네 목록 조회하기
             </Button>
-            <Button type="button" onClick={()=>deleteTown()}>
-              동네 삭제하기
-            </Button>
-          </ButtonSection>
-        </SubmitWrapper>
-      </Wrapper>
-    )}
+          </SubmitWrapper>
+        </Wrapper>
+      )}
     </>
   );
 }
