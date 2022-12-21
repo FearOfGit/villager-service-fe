@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Main from '../components/Main';
 
@@ -6,8 +8,11 @@ function MessageBox() {
 }
 
 function MainPage() {
-  const towns = useSelector((state) => state);
-  console.log(towns);
+  const navigate = useNavigate();
+  const myId = useSelector((state) => state.user.value.userId);
+  if (!myId) {
+    navigate('/signin');
+  }
   return <Main />;
 }
 

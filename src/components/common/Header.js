@@ -64,19 +64,11 @@ function Header() {
   const myId = useSelector((state) => state.user.value.userId);
   const [isTownSetupModal, setTownSetupModal] = useState(false);
 
-  useEffect(() => {
-    async function getTown() {
-      const res = await getTownAPI();
-      console.log(res);
-    }
-    if (!myId) return;
-    getTown();
-  }, [myId, isTownSetupModal]);
-
   const handleLogOut = () => {
     logOutAPI().then((res) => {
       localStorage.removeItem('expiresAt');
       localStorage.removeItem('access_token');
+      localStorage.removeItem('persist:root');
       dispatch(setUserId(null));
       removeRefreshToken();
       console.log(res);
