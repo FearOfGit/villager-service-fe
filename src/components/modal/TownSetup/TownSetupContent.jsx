@@ -28,7 +28,6 @@ function TownSetupContent({
             selectTown={selectTown}
           />
         ))}
-        {myTownList.length < 2 && <div className="add">+</div>}
       </div>
     </ContentWrapper>
   );
