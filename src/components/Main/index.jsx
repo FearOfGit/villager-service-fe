@@ -13,22 +13,20 @@ function Main() {
   const navigate = useNavigate();
 
   return (
-    name && (
-      <MainTemplate>
-        <div className="user-info">
-          <MyGatheringList />
-          <MyImage />
-        </div>
-        <RegisterButton type="button" onClick={() => navigate('/register')}>
-          등록
-        </RegisterButton>
-        {/* <Map /> */}
-        <Suspense fallback={<div>로딩중...</div>}>
-          <GatheringList />
-        </Suspense>
-        {/* <Preview title="내 동네 인기 모임" /> */}
-      </MainTemplate>
-    )
+    <MainTemplate>
+      <div className="user-info">
+        <MyGatheringList />
+        <MyImage />
+      </div>
+      <RegisterButton type="button" onClick={() => navigate('/register')}>
+        등록
+      </RegisterButton>
+      {/* <Map /> */}
+      <Suspense fallback={<div>로딩중...</div>}>
+        <GatheringList />
+      </Suspense>
+      {/* <Preview title="내 동네 인기 모임" /> */}
+    </MainTemplate>
   );
 }
 
