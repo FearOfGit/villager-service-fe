@@ -9,14 +9,7 @@ import Map from '../Map/Map';
 import GatheringList from './GatheringList';
 
 function Main() {
-  const myId = useSelector((state) => state.user.value.userId);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!myId) {
-      navigate('/signin');
-    }
-  }, [myId]);
 
   return (
     <MainTemplate>
