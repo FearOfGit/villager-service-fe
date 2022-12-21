@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { getTownAPI } from '../../../api/Town';
@@ -22,14 +22,22 @@ const mytown = [
 function TownSetup({ show, onClose }) {
   const myId = useSelector((state) => state.user.value.userId);
   const [myTownList, setMyTownList] = useState(mytown);
-  const [currentTownId, setCurrentTownId] = useState(1);
-  const { data } = useQuery(['getTown', myId], () => getTownAPI(myId), {
-    suspense: true,
-    refetchOnWindowFocus: true,
-    retry: false,
-  });
+  const [currentTownId, setCurrentTownId] = useState(0);
+  const { data, refetch } = useQuery(
+    ['getTown', myId],
+    () => getTownAPI(myId),
+    {
+      suspense: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  );
 
-  // console.log(data);
+  useEffect(() => {
+    console.log('변경!');
+  }, [currentTownId]);
+
+  console.log(data);
 
   const changeNickname = (townId, nickname) => {
     const updatedMyTownList = myTownList.map((town) =>
@@ -51,7 +59,7 @@ function TownSetup({ show, onClose }) {
     <TownSetupWrapper show={show}>
       <TownSetupHeader onClose={onClose} />
       <TownSetupContent
-        myTownList={myTownList}
+        myTownList={data.data.towns}
         currentTownId={currentTownId}
         changeNickname={changeNickname}
         removeTown={removeTown}
