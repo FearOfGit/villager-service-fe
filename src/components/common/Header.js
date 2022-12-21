@@ -12,6 +12,7 @@ import Responsive from './Responsive';
 import TownSetup from '../modal/TownSetup';
 import { setUserId } from '../../store/User';
 import { removeRefreshToken } from '../../app/Cookie';
+import { changeLocation } from '../../store/Location';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -74,6 +75,14 @@ function Header() {
       localStorage.removeItem('access_token');
       localStorage.removeItem('persist:root');
       dispatch(setUserId(null));
+      dispatch(
+        changeLocation({
+          lat: null,
+          lng: null,
+          nickname: '동네',
+          address: null,
+        }),
+      );
       removeRefreshToken();
       console.log(res);
       navigate('/signin');
