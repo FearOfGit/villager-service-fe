@@ -31,3 +31,13 @@ export async function searchTownAPI (locValues){
 export async function getTownAPI (){
   return API.get(`${BASE_API}/members/towns`);
 }
+
+/**
+ * 회원 동네 삭제 API
+ * @param {memberTownId, string} accessToken
+ * @returns {}
+ */
+export async function deleteTownAPI (townValues){
+  return API.delete(`${BASE_API}/members/towns/${townValues}`, townValues);
+}
+
