@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getTownAPI } from "../../api/Town";
 import { Wrapper, Button } from "./SelectTown.styles";
 
-function SelectTown () {
+function SelectTown (props) {
   const [ isFirst, setIsFirst ] = useState(true);
   const [ firstTown, setFirstTown ] = useState([]);
   const [ secondTown, setSecondTown ] = useState([]);
+
+  const temp = props;
+
 
   useEffect(()=> {
     getTownAPI().then((res)=>{
@@ -21,10 +24,12 @@ function SelectTown () {
 
   const handleFirst = () => {
     setIsFirst(true);
+    temp.select(firstTown.memberTownId);
   };
 
   const handleSecond = () => {
     setIsFirst(false);
+    temp.select(secondTown.memberTownId);
   };
 
   return (
