@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Suspense, useEffect } from 'react';
 import MyGatheringList from './MyGatheringList';
 import { MainTemplate, RegisterButton } from './index.style';
 import MyImage from './MyImage';
@@ -9,6 +9,7 @@ import Map from '../Map/Map';
 import GatheringList from './GatheringList';
 
 function Main() {
+  const { name } = useSelector((state) => state.location.value);
   const navigate = useNavigate();
 
   return (

@@ -48,7 +48,7 @@ function TownSelector({
           >
             수정
           </button>
-          <button type="button" onClick={() => removeTown(town.id)}>
+          <button type="button" onClick={() => removeTown(town.memberTownId)}>
             삭제
           </button>
         </div>

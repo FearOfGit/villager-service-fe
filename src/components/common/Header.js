@@ -12,6 +12,7 @@ import Responsive from './Responsive';
 import TownSetup from '../modal/TownSetup';
 import { setUserId } from '../../store/User';
 import { removeRefreshToken } from '../../app/Cookie';
+import { changeLocation } from '../../store/Location';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -65,6 +66,7 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myId = useSelector((state) => state.user.value.userId);
+  const { nickname } = useSelector((state) => state.location.value);
   const [isTownSetupModal, setTownSetupModal] = useState(false);
 
   const handleLogOut = () => {
@@ -73,6 +75,14 @@ function Header() {
       localStorage.removeItem('access_token');
       localStorage.removeItem('persist:root');
       dispatch(setUserId(null));
+      dispatch(
+        changeLocation({
+          lat: null,
+          lng: null,
+          nickname: '동네',
+          address: null,
+        }),
+      );
       removeRefreshToken();
       console.log(res);
       navigate('/signin');
@@ -83,7 +93,7 @@ function Header() {
     <>
       {myId && (
         <TownSetup
-          show={isTownSetupModal && myId}
+          show={isTownSetupModal}
           onClose={() => setTownSetupModal(false)}
         />
       )}
@@ -92,7 +102,7 @@ function Header() {
           <div className="logo">
             {myId ? (
               <span className="orange" onClick={() => setTownSetupModal(true)}>
-                연남동
+                {nickname || '동네'}
               </span>
             ) : (
               <span className="orange">동네</span>

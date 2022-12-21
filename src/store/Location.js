@@ -5,6 +5,8 @@ const initialStateValue = {
   longitude: null,
   name: null,
   nickname: '동네',
+  lat: null,
+  lng: null,
 };
 
 export const locationSlice = createSlice({
@@ -21,8 +23,15 @@ export const locationSlice = createSlice({
       state.value.longitude = longitude;
       console.log('현재 위치에 기반한 경도:', longitude, state.value.longitude);
     },
+    changeLocation: (state, action) => {
+      const { address, nickname, lat, lng } = action.payload;
+      state.value.lat = lat;
+      state.value.lng = lng;
+      state.value.nickname = nickname;
+      state.value.name = address;
+    },
   },
 });
 
-export const { changeLat, changeLong } = locationSlice.actions;
+export const { changeLat, changeLong, changeLocation } = locationSlice.actions;
 export default locationSlice.reducer;

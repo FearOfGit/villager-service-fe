@@ -54,9 +54,8 @@ function GatheringInfo({ searchId }) {
     };
     geocoder.addressSearch(data.data.location, callback);
     setLike(data.data.partyLike);
+    console.log(data);
   }, [data]);
-
-  console.log(data);
 
   const handleLike = async () => {
     const response = await gatheringLikeAPI(searchId);
