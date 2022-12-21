@@ -13,12 +13,12 @@ function AddMap () {
   const [village, setVillage] = useState('아무개동');
 
   async function addTown () {
-    const body = {
-      townId: 1,
+    const body = JSON.stringify({
+      townId: town[0].townId,
       townName: village,
       latitude: location.value.latitude,
       longitude: location.value.longitude
-    };
+    });
     await insertTownAPI(body)
       .then((response) => {
         console.log(response.data);
