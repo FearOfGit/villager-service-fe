@@ -20,7 +20,7 @@ function Main() {
       <RegisterButton type="button" onClick={() => navigate('/register')}>
         등록
       </RegisterButton>
-      <Map />
+      {/* <Map /> */}
       <Suspense fallback={<div>로딩중...</div>}>
         <GatheringList />
       </Suspense>

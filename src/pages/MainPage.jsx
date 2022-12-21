@@ -10,10 +10,13 @@ function MessageBox() {
 function MainPage() {
   const navigate = useNavigate();
   const myId = useSelector((state) => state.user.value.userId);
-  if (!myId) {
-    navigate('/signin');
-  }
-  return <Main />;
+  useEffect(() => {
+    if (!myId) {
+      navigate('/signin');
+    }
+  }, []);
+
+  return myId && <Main />;
 }
 
 export default MainPage;

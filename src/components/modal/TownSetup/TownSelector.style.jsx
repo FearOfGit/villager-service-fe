@@ -39,7 +39,7 @@ export const TownSelectorWrapper = styled.div`
     padding: 0 2rem;
     input {
       flex: 1;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem;
     }
     button {
       margin-left: 0.5rem;

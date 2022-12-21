@@ -6,6 +6,7 @@ import { SelectWrapper, TownSelectorWrapper } from './TownSelector.style';
 
 function TownSelector({
   town,
+  index,
   edit,
   select,
   setEditId,
@@ -13,7 +14,8 @@ function TownSelector({
   removeTown,
   selectTown,
 }) {
-  const [inputValue, setInputValue] = useState(town.nickname);
+  const [inputValue, setInputValue] = useState(town.townName);
+  const cityName = town.cityName.split(' ').pop();
 
   const onClickEditBtn = (e) => {
     e.stopPropagation();
@@ -22,13 +24,14 @@ function TownSelector({
       setEditId(null);
       return;
     }
-    setEditId(town.id);
+    setEditId(index);
   };
   return (
+    //
     <TownSelectorWrapper>
-      <SelectWrapper onClick={() => selectTown(town.id)} select={select}>
-        <span className="name">{town.name}</span>
-        <span className="nickname">{town.nickname}</span>
+      <SelectWrapper select={select} onClick={() => selectTown(index)}>
+        <span className="name">{cityName}</span>
+        <span className="nickname">{town.townName}</span>
         <div onClick={onClickEditBtn} className="btn--setting">
           <MdSettings />
         </div>
