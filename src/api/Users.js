@@ -91,6 +91,6 @@ export async function signOutAPI() {
  * @param { query, query, string } page, size, accessToken
  * @return {} pageNumber, follows, nickName, followCount
  */
-export async function rankAPI(listPage, contentSize) {
-  return API.get(`${BASE_API}/follows`, {params: {page: {listPage}, size:{contentSize}}});
+export async function rankAPI(params) {
+  return API.get(`${BASE_API}/follows`, params);
 }

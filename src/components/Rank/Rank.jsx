@@ -6,27 +6,48 @@ import { Wrapper, RankList } from "./Rank.styles";
 
 function Rank () {
 
-  const page = 1;
-  const size = 5;
+  const listPage = 1;
+  const listSize = 5;
 
   function getRankList() {
-    return rankAPI(page, size).then((res)=> res.data);
+    const params = {params: {page: listPage, size: listSize}};
+    return rankAPI(params).then((res)=> res.data);
   }
 
-  const { list } = useQuery('getRankList', getRankList);
+  const { data } = useQuery('getRankList', getRankList);
 
-  console.log(list);
+  const rankList = data.follows;
 
   return (
     <>
       <Wrapper>
         <RankList>
           <li>
-            1등
+            <div>
+              순위
+            </div>
+            <div>
+              닉네임
+            </div>
+            <div>
+              팔로워
+            </div>
           </li>
-          <li>
-            블라블라
-          </li>
+          {rankList.map((user, index) => (
+            <li
+              key={user.index}
+            >
+              <div>
+                {index + 1}
+              </div>
+              <div>
+                {user.nickName}
+              </div>
+              <div>
+                {user.followCount}
+              </div>
+            </li>
+          ))}
         </RankList>
       </Wrapper>
     </>
