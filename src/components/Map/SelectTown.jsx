@@ -4,12 +4,18 @@ import { Wrapper, Button } from "./SelectTown.styles";
 
 function SelectTown () {
   const [ isFirst, setIsFirst ] = useState(true);
-  const [ town, setTown ] = useState();
+  const [ firstTown, setFirstTown ] = useState([]);
+  const [ secondTown, setSecondTown ] = useState([]);
 
   useEffect(()=> {
     getTownAPI().then((res)=>{
       console.log(res.data);
-      setTown(res.data.towns);
+      if (res.data.towns[0]) {
+        setFirstTown(res.data.towns[0]);
+      };
+      if (res.data.towns[1]) {
+        setSecondTown(res.data.towns[1]);
+      };
     })
   }, []);
 
@@ -23,22 +29,24 @@ function SelectTown () {
 
   return (
     <>
-      {town && (
-        <Wrapper>
+      <Wrapper>
+        { firstTown && (
           <Button
             value={isFirst}
-            onClick={()=> handleFirst()}
+            onClick={()=>handleFirst()}
           >
-          {town[0] ? town[0] : "미정"}
+            {firstTown.townName? firstTown.townName: '없음'}
           </Button>
+        )}
+        { secondTown && (
           <Button
             value={isFirst}
-            onClick={()=> handleSecond()}
+            onClick={()=>handleSecond()}
           >
-          {town[1] ? town[1] : "미정"}
+            {secondTown.townName? secondTown.townName: '없음'}
           </Button>
-        </Wrapper>
-      )}
+        )}
+      </Wrapper>
     </>
   );
 }
