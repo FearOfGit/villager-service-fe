@@ -16,7 +16,11 @@ function Rank () {
 
   const { data } = useQuery('getRankList', getRankList);
 
-  const rankList = data.follows;
+  let rankList = [];
+
+  if (data) {
+    rankList = data.follows;
+  };
 
   return (
     <>

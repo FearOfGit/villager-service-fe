@@ -39,8 +39,12 @@ API.interceptors.request.use(async (res) => {
   }
 
   if (accessToken) {
-    res.headers['Content-Type'] = 'application/json;charset=UTF-8';
     res.headers.Authorization = `Bearer ${accessToken}`;
+    if (res.data instanceof FormData) {
+      res.headers['Content-Type'] = 'multipart/form-data';
+    } else {
+      res.headers['Content-Type'] = 'application/json;charset=UTF-8';
+    }
   }
   return res;
 });
