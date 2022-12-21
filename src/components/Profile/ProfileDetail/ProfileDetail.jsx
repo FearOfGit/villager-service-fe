@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 import {
   Wrapper,
   ImageSection,
@@ -8,7 +9,7 @@ import {
   SignOut,
   SignOutWrapper,
 } from './ProfileDetail.styles';
-import { myPageAPI } from '../../../api/Users';
+import { myPageDetailAPI } from '../../../api/Users';
 import PasswordChangeModal from '../../modal/User/PasswordChangeModal';
 import SignOutModal from '../../modal/User/SignOutModal';
 import ChangeIntroduce from './ChangeIntroduce';
@@ -27,7 +28,7 @@ function ProfileDetail() {
   };
 
   function getUserInfo() {
-    return myPageAPI().then((res) => res.data);
+    return myPageDetailAPI().then((res) => res.data);
   }
 
   const { data } = useQuery('getInfo', getUserInfo);

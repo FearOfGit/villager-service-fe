@@ -57,19 +57,22 @@ function SignUp() {
     
   const onSubmit = async (values) => {
     const body = { ...values };
-    console.log(body);
-    await signUpAPI(body)
-      .then(() => {
-        console.log('제발 되어라!');
-        toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
-        setTimeout(() => {
-          navigate('/signIn');
-        }, 1500);
-      })
-      .catch((e) => {
-        console.log('제발 되라니깡');
-        toast.error(e.response.data.errorMessage);
+    try {   
+      signUpAPI(body)
+      .then((response) => {
+        if (response.data) {
+          toast.error(response.data.errorMessage);
+        }
+        else {
+          toast.success(<h1>회원가입이 완료되었습니다. 😊</h1>);
+          setTimeout(() => {
+            navigate('/signIn');
+          }, 1500);
+        }
       });
+    } catch(e) {
+      toast.error(e.response.data.errorMessage);
+    }
   };
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
