@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 import {
   ButtonWrapper,
   Content,
+  DestroyButton,
+  EditButton,
   GatheringName,
   GatheringTagWrapper,
   JoinButton,
@@ -13,15 +17,21 @@ import {
   Wrapper,
 } from './GatheringInfo.style';
 import Map from './Map';
-import { gatheringLookUpAPI } from '../../api/gathering';
+import {
+  gatheringLookUpAPI,
+  gatheringLikeAPI,
+  gatheringDeleteAPI,
+  gatheringApplyAPI,
+} from '../../api/gathering';
+import ApplicationList from './ApplicationList';
 
-// AiFillHeart
-// AiOutlineHeart
-// 모임 이름, 인원수, 모임 점수, 상세 설명, 장소, 시작일, 종료일, 참가비, 태그
 function GatheringInfo({ searchId }) {
+  const navigate = useNavigate();
+  const myId = useSelector((state) => state.user.value.userId);
+  const [like, setLike] = useState(false);
   const [location, setLocation] = useState({});
   const { data } = useQuery(
-    ['getInfo', searchId],
+    ['getGathering', searchId],
     () => gatheringLookUpAPI(searchId),
     {
       suspense: true,
@@ -29,12 +39,12 @@ function GatheringInfo({ searchId }) {
       retry: false,
     },
   );
-  console.log(data);
+  const isMe = String(myId) === String(data.data.memberId);
 
   useEffect(() => {
     const { kakao } = window;
     const geocoder = new kakao.maps.services.Geocoder();
-    const callback = function (result, status) {
+    const callback = (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         setLocation({
           lat: result[0].address.y,
@@ -43,18 +53,31 @@ function GatheringInfo({ searchId }) {
       }
     };
     geocoder.addressSearch(data.data.location, callback);
+    setLike(data.data.partyLike);
   }, [data]);
+
+  console.log(data);
+
+  const handleLike = async () => {
+    const response = await gatheringLikeAPI(searchId);
+    console.log(response);
+    setLike(!like);
+  };
+
+  const handleDelete = async () => {
+    const response = await gatheringDeleteAPI(searchId);
+    console.log(response);
+    navigate('/');
+  };
+
+  const handleApply = async () => {
+    const response = await gatheringApplyAPI(searchId);
+    console.log(response);
+  };
+
   return (
     <>
-      <div className="flex">
-        <GatheringName>{data.data.partyName}</GatheringName>
-        <ButtonWrapper>
-          <LikeButton>
-            {data.data.partyLike ? <AiFillHeart /> : <AiOutlineHeart />}
-          </LikeButton>
-          <JoinButton>신청하기</JoinButton>
-        </ButtonWrapper>
-      </div>
+      <GatheringName>{data.data.partyName}</GatheringName>
       <GatheringTagWrapper>
         {data.data.tagNameList.map((el) => (
           <span key={el} className="tag">
@@ -62,6 +85,15 @@ function GatheringInfo({ searchId }) {
           </span>
         ))}
       </GatheringTagWrapper>
+      <ButtonWrapper>
+        <LikeButton onClick={handleLike}>
+          {like ? <AiFillHeart /> : <AiOutlineHeart />}
+        </LikeButton>
+        {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
+        {isMe && <EditButton>수정하기</EditButton>}
+        {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
+      </ButtonWrapper>
+
       <Map lat={location.lat} lng={location.lng} />
       <div className="info">
         <Wrapper>
@@ -118,9 +150,12 @@ function GatheringInfo({ searchId }) {
             멤버 <span className="manner">80</span>
           </div>
         </MemberInfoWrapper>
+        <ApplicationList searchId={searchId} />
       </div>
     </>
   );
 }
 
 export default GatheringInfo;
+
+// data.data.content, targetMemberId, accept

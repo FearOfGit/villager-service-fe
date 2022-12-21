@@ -32,7 +32,6 @@ function GatheringList() {
       retry: false,
     },
   );
-  console.log(data);
 
   return (
     <ListBlock>

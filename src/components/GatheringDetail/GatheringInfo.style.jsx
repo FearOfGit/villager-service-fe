@@ -12,23 +12,19 @@ export const GatheringName = styled.h2`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 130px;
-  position: relative;
+  margin-bottom: 2rem;
 `;
 
 export const LikeButton = styled.button`
   background: transparent;
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-40%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   padding: 0;
   font-size: 1.7rem;
   font-weight: normal;
-  color: ${palette.red[9]};
+  color: red;
 `;
 
 export const JoinButton = styled.button`
@@ -37,10 +33,31 @@ export const JoinButton = styled.button`
   border-radius: 10px;
   padding: 0.5rem;
   border: none;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: normal;
-  position: absolute;
-  right: 0;
+  margin-left: 0.5rem;
+`;
+
+export const EditButton = styled.button`
+  background: #4ab7b6;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: normal;
+  margin-left: 0.5rem;
+`;
+
+export const DestroyButton = styled.button`
+  background: red;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: normal;
+  margin-left: 0.5rem;
 `;
 
 export const GatheringTagWrapper = styled.div`
@@ -48,6 +65,7 @@ export const GatheringTagWrapper = styled.div`
   display: flex;
   border-bottom: 1px solid black;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
   .tag {
     margin-right: 0.5rem;
     padding: 0.4rem;
@@ -84,7 +102,6 @@ export const MemberInfoWrapper = styled.div`
   margin-top: 0.5rem;
   max-height: 150px;
   overflow: auto;
-  /* padding: 0.5rem 0.8rem; */
   background-color: #fff;
   border: 1px solid #ccc;
 
