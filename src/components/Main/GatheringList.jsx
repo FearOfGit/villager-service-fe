@@ -6,11 +6,15 @@ import GatheringItem from './GatheringItem';
 import { ListBlock } from './GatheringList.style';
 
 function GatheringList() {
-  const { latitude, longitude } = useSelector((state) => state.location.value);
+  const { lat, lng } = useSelector((state) => state.location.value);
 
   const { data, refetch } = useQuery(
     ['getAllGathering'],
-    () => AllgatheringLookUpAPI(latitude, longitude),
+    () =>
+      AllgatheringLookUpAPI(
+        lat || '37.52197524055062',
+        lng || '127.16017523675508',
+      ),
     {
       suspense: true,
       refetchOnWindowFocus: false,
@@ -20,7 +24,7 @@ function GatheringList() {
 
   useEffect(() => {
     refetch();
-  }, [latitude, longitude]);
+  }, [lat, lng]);
 
   return (
     <ListBlock>

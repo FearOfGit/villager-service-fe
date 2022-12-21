@@ -5,6 +5,8 @@ const initialStateValue = {
   longitude: null,
   name: null,
   nickname: '동네',
+  lat: null,
+  lng: null,
 };
 
 export const locationSlice = createSlice({
@@ -23,8 +25,8 @@ export const locationSlice = createSlice({
     },
     changeLocation: (state, action) => {
       const { address, nickname, lat, lng } = action.payload;
-      state.value.latitude = lat;
-      state.value.longitude = lng;
+      state.value.lat = lat;
+      state.value.lng = lng;
       state.value.nickname = nickname;
       state.value.name = address;
     },

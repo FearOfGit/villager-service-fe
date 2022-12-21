@@ -8,7 +8,7 @@ const BASE_API =
 
 /**
  * 모임 등록 API
- * @param {{partName: string, score: number, startDt: string, endDt: string, amount: number, numberPeople: number, location: string, latitude: number, longitude: number, content: string, tagList: [{tagName: string}]}}
+ * @param {{partName: string, score: number, startDt: string, endDt: string, amount: number, numberPeople: number, location: string, : number, longitude: number, content: string, tagList: [{tagName: string}]}}
  * @returns {} message
  */
 export async function gatheringRegisterAPI(body) {
