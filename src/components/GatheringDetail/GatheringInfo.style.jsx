@@ -102,7 +102,6 @@ export const MemberInfoWrapper = styled.div`
   margin-top: 0.5rem;
   max-height: 150px;
   overflow: auto;
-  /* padding: 0.5rem 0.8rem; */
   background-color: #fff;
   border: 1px solid #ccc;
 

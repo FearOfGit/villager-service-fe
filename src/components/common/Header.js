@@ -1,7 +1,9 @@
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { VscBell } from 'react-icons/vsc';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +13,7 @@ import Responsive from './Responsive';
 import TownSetup from '../modal/TownSetup';
 import { setUserId } from '../../store/User';
 import { removeRefreshToken } from '../../app/Cookie';
+import { getTownAPI } from '../../api/Town';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -55,10 +58,20 @@ const Spacer = styled.div`
 `;
 
 function Header() {
-  const myId = useSelector((state) => state.user.value.userId);
-  const [isTownSetupModal, setTownSetupModal] = useState(false);
+  console.log('Header');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const myId = useSelector((state) => state.user.value.userId);
+  const [isTownSetupModal, setTownSetupModal] = useState(false);
+
+  useEffect(() => {
+    async function getTown() {
+      const res = await getTownAPI();
+      console.log(res);
+    }
+    if (!myId) return;
+    getTown();
+  }, [myId, isTownSetupModal]);
 
   const handleLogOut = () => {
     logOutAPI().then((res) => {

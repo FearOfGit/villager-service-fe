@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
@@ -16,9 +17,16 @@ import {
   Wrapper,
 } from './GatheringInfo.style';
 import Map from './Map';
-import { gatheringLookUpAPI, gatheringLikeAPI } from '../../api/gathering';
+import {
+  gatheringLookUpAPI,
+  gatheringLikeAPI,
+  gatheringDeleteAPI,
+  gatheringApplyAPI,
+} from '../../api/gathering';
+import ApplicationList from './ApplicationList';
 
 function GatheringInfo({ searchId }) {
+  const navigate = useNavigate();
   const myId = useSelector((state) => state.user.value.userId);
   const [like, setLike] = useState(false);
   const [location, setLocation] = useState({});
@@ -48,11 +56,25 @@ function GatheringInfo({ searchId }) {
     setLike(data.data.partyLike);
   }, [data]);
 
+  console.log(data);
+
   const handleLike = async () => {
     const response = await gatheringLikeAPI(searchId);
     console.log(response);
     setLike(!like);
   };
+
+  const handleDelete = async () => {
+    const response = await gatheringDeleteAPI(searchId);
+    console.log(response);
+    navigate('/');
+  };
+
+  const handleApply = async () => {
+    const response = await gatheringApplyAPI(searchId);
+    console.log(response);
+  };
+
   return (
     <>
       <GatheringName>{data.data.partyName}</GatheringName>
@@ -67,9 +89,9 @@ function GatheringInfo({ searchId }) {
         <LikeButton onClick={handleLike}>
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
-        {!isMe && <JoinButton>신청하기</JoinButton>}
+        {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
         {isMe && <EditButton>수정하기</EditButton>}
-        {isMe && <DestroyButton>삭제하기</DestroyButton>}
+        {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
       </ButtonWrapper>
 
       <Map lat={location.lat} lng={location.lng} />
@@ -128,9 +150,12 @@ function GatheringInfo({ searchId }) {
             멤버 <span className="manner">80</span>
           </div>
         </MemberInfoWrapper>
+        <ApplicationList searchId={searchId} />
       </div>
     </>
   );
 }
 
 export default GatheringInfo;
+
+// data.data.content, targetMemberId, accept
