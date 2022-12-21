@@ -102,7 +102,7 @@ function Header() {
           <div className="logo">
             {myId ? (
               <span className="orange" onClick={() => setTownSetupModal(true)}>
-                {nickname || '동네'}
+                동네
               </span>
             ) : (
               <span className="orange">동네</span>
