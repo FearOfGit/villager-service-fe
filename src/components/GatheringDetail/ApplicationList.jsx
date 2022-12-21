@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { ApplicationListAPI } from '../../api/gathering';
@@ -17,13 +17,20 @@ function ApplicationList({ searchId }) {
       retry: false,
     },
   );
-  console.log(data);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <ListBlock>
       {data.data.content.map(
         (user) =>
           !user.accept && (
-            <li onClick={() => navigate(`/profile/${user.targetMemberId}`)}>
+            <li
+              key={user.id}
+              onClick={() => navigate(`/profile/${user.targetMemberId}`)}
+            >
               <span>User#{user.targetMemberId}</span>
               <button type="button">승인</button>
             </li>

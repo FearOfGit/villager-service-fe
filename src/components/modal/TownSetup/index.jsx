@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getTownAPI } from '../../../api/Town';
+import { changeLocation } from '../../../store/Location';
 import { ContentWrapper, TownSetupWrapper } from './index.style';
 import TownSetupContent from './TownSetupContent';
 import TownSetupHeader from './TownSetupHeader';
@@ -20,6 +21,7 @@ const mytown = [
 ];
 
 function TownSetup({ show, onClose }) {
+  const dispatch = useDispatch();
   const myId = useSelector((state) => state.user.value.userId);
   const [myTownList, setMyTownList] = useState(mytown);
   const [currentTownId, setCurrentTownId] = useState(0);
@@ -30,14 +32,29 @@ function TownSetup({ show, onClose }) {
       suspense: true,
       refetchOnWindowFocus: false,
       retry: false,
+      cacheTime: Infinity,
+      staleTime: Infinity,
     },
   );
 
   useEffect(() => {
-    console.log('변경!');
-  }, [currentTownId]);
+    console.log(data);
+  }, [data]);
 
-  console.log(data);
+  useEffect(() => {
+    const { towns } = data.data;
+    const { latitude, longitude, townName, cityName } = towns[currentTownId];
+
+    if (!towns.length) return;
+    dispatch(
+      changeLocation({
+        lat: latitude,
+        lng: longitude,
+        nickname: townName,
+        address: cityName,
+      }),
+    );
+  }, [currentTownId]);
 
   const changeNickname = (townId, nickname) => {
     const updatedMyTownList = myTownList.map((town) =>

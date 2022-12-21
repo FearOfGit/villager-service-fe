@@ -65,6 +65,7 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myId = useSelector((state) => state.user.value.userId);
+  const { nickname } = useSelector((state) => state.location.value);
   const [isTownSetupModal, setTownSetupModal] = useState(false);
 
   const handleLogOut = () => {
@@ -83,7 +84,7 @@ function Header() {
     <>
       {myId && (
         <TownSetup
-          show={isTownSetupModal && myId}
+          show={isTownSetupModal}
           onClose={() => setTownSetupModal(false)}
         />
       )}
@@ -92,7 +93,7 @@ function Header() {
           <div className="logo">
             {myId ? (
               <span className="orange" onClick={() => setTownSetupModal(true)}>
-                연남동
+                {nickname || '동네'}
               </span>
             ) : (
               <span className="orange">동네</span>
