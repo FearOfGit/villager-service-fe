@@ -85,3 +85,12 @@ export async function newIntroduceAPI(contentsForm) {
 export async function signOutAPI() {
   return API.delete(`${BASE_API}/members`);
 }
+
+/**
+ * 팔로우 랭킹 조회 API
+ * @param { query, query, string } page, size, accessToken
+ * @return {} pageNumber, follows, nickName, followCount
+ */
+export async function rankAPI(listPage, contentSize) {
+  return API.get(`${BASE_API}/follows`, {params: {page: {listPage}, size:{contentSize}}});
+}
