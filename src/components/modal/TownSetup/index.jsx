@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
+import { getTownAPI } from '../../../api/Town';
 import { ContentWrapper, TownSetupWrapper } from './index.style';
 import TownSetupContent from './TownSetupContent';
 import TownSetupHeader from './TownSetupHeader';
@@ -17,8 +20,16 @@ const mytown = [
 ];
 
 function TownSetup({ show, onClose }) {
+  const myId = useSelector((state) => state.user.value.userId);
   const [myTownList, setMyTownList] = useState(mytown);
   const [currentTownId, setCurrentTownId] = useState(1);
+  const { data } = useQuery(['getTown', myId], () => getTownAPI(myId), {
+    suspense: true,
+    refetchOnWindowFocus: true,
+    retry: false,
+  });
+
+  // console.log(data);
 
   const changeNickname = (townId, nickname) => {
     const updatedMyTownList = myTownList.map((town) =>
