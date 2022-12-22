@@ -29,7 +29,17 @@ function TownSetup({ show, onClose }) {
 
   useEffect(() => {
     const { towns } = data.data;
-    if (!towns.length) return;
+    if (!towns.length) {
+      dispatch(
+        changeLocation({
+          lat: null,
+          lng: null,
+          nickname: '동네',
+          address: null,
+        }),
+      );
+      return;
+    }
     const { latitude, longitude, townName, cityName } = towns[currentTownId];
 
     dispatch(
@@ -40,12 +50,13 @@ function TownSetup({ show, onClose }) {
         address: cityName,
       }),
     );
-  }, [currentTownId]);
+  }, [currentTownId, data]);
 
   const changeNickname = (townId, nickname) => {};
 
   const removeTown = async (id) => {
     await deleteTownAPI(id);
+    setCurrentTownId(0);
     refetch();
   };
 
