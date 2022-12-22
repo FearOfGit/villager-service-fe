@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 import GatheringInfo from './GatheringInfo';
 import { GatheringDetailTemplate } from './index.style';
@@ -14,7 +13,6 @@ function GatheringDetail() {
           <GatheringInfo searchId={searchId} />
         </Suspense>
         <CommentList />
-        <CommentInput />
       </div>
     </GatheringDetailTemplate>
   );

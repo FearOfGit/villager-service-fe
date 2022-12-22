@@ -66,11 +66,11 @@ function GatheringInfo({ searchId }) {
   const handleDelete = async () => {
     const response = await gatheringDeleteAPI(searchId);
     console.log(response);
-    navigate('/');
+    // navigate('/');
   };
 
   const handleApply = async () => {
-    const response = await gatheringApplyAPI(searchId);
+    const response = await gatheringApplyAPI(String(searchId));
     console.log(response);
   };
 
@@ -149,7 +149,7 @@ function GatheringInfo({ searchId }) {
             멤버 <span className="manner">80</span>
           </div>
         </MemberInfoWrapper>
-        <ApplicationList searchId={searchId} />
+        {isMe && <ApplicationList searchId={searchId} />}
       </div>
     </>
   );

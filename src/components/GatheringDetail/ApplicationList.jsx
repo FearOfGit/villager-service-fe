@@ -36,6 +36,18 @@ function ApplicationList({ searchId }) {
             </li>
           ),
       )}
+      <li>
+        <span>User#example</span>
+        <button type="button">승인</button>
+      </li>
+      <li>
+        <span>User#example</span>
+        <button type="button">승인</button>
+      </li>
+      <li>
+        <span>User#example</span>
+        <button type="button">승인</button>
+      </li>
     </ListBlock>
   );
 }
