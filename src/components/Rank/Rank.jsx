@@ -16,6 +16,8 @@ function Rank () {
 
   const { data } = useQuery('getRankList', getRankList);
 
+  console.log(data);
+
   let rankList = [];
 
   if (data) {
