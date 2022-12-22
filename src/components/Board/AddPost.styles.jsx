@@ -6,4 +6,8 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export { Wrapper, };
+const Button = styled.button`
+  width: 100%;
+`;
+
+export { Wrapper, Button, };
