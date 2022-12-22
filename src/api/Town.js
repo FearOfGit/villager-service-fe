@@ -30,7 +30,17 @@ export async function searchTownAPI(locValues) {
  * @returns {} memberTownId, townName, cityName, createdAt, modifiedAt, main
  */
 export async function getTownAPI() {
+  console.log('getTown');
   return API.get(`${BASE_API}/members/towns`);
+}
+
+/**
+ * 회원 동네 별칭 수정 API
+ * @param {memberTownId, string} accessToken
+ * @returns {}
+ */
+export async function editTownNameAPI(id, body) {
+  return API.patch(`${BASE_API}/members/towns/${id}`, body);
 }
 
 /**

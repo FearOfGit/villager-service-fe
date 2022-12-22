@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTownAPI, getTownAPI } from '../../../api/Town';
+import { deleteTownAPI, editTownNameAPI, getTownAPI } from '../../../api/Town';
 import { changeLocation } from '../../../store/Location';
 import { TownSetupWrapper } from './index.style';
 import TownSetupContent from './TownSetupContent';
@@ -29,7 +29,17 @@ function TownSetup({ show, onClose }) {
 
   useEffect(() => {
     const { towns } = data.data;
-    if (!towns.length) return;
+    if (!towns.length) {
+      dispatch(
+        changeLocation({
+          lat: null,
+          lng: null,
+          nickname: '동네',
+          address: null,
+        }),
+      );
+      return;
+    }
     const { latitude, longitude, townName, cityName } = towns[currentTownId];
 
     dispatch(
@@ -40,12 +50,20 @@ function TownSetup({ show, onClose }) {
         address: cityName,
       }),
     );
-  }, [currentTownId]);
+  }, [currentTownId, data]);
 
-  const changeNickname = (townId, nickname) => {};
+  const changeNickname = async (townId, nickname) => {
+    const response = await editTownNameAPI(townId, {
+      townName: nickname,
+      main: false,
+    });
+    console.log(response);
+    refetch();
+  };
 
   const removeTown = async (id) => {
     await deleteTownAPI(id);
+    setCurrentTownId(0);
     refetch();
   };
 

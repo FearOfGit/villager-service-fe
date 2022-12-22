@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import { Wrapper, SubmitWrapper, ContentSection, Button, ButtonSection } from "./AddMap.styles";
-import { deleteTownAPI, insertTownAPI, searchTownAPI } from "../../api/Town";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import {
+  Wrapper,
+  SubmitWrapper,
+  ContentSection,
+  Button,
+  ButtonSection,
+} from './AddMap.styles';
+import { deleteTownAPI, insertTownAPI, searchTownAPI } from '../../api/Town';
 import SelectTown from './SelectTown';
 
-
-function AddMap (props) {
+function AddMap(props) {
   const dispatch = useDispatch();
-  const location = useSelector(state => state.location);
+  const { latitude, longitude } = useSelector((state) => state.location.value);
 
-  const [ town, setTown ] = useState();
+  const [town, setTown] = useState();
   const [village, setVillage] = useState('아무개동');
   const [isSelected, setIsSelected] = useState('없음');
 
@@ -20,25 +25,26 @@ function AddMap (props) {
     temp.click(true);
     temp.list(town);
   };
-  
+
   const selectTown = (value) => {
     if (value) {
       setIsSelected(value);
       console.log(isSelected);
-    };
+    }
   };
 
-  async function addTown () {
+  async function addTown() {
     const body = JSON.stringify({
       townId: town[0].townId,
       townName: village,
-      latitude: location.value.latitude,
-      longitude: location.value.longitude
+      latitude,
+      longitude,
     });
     await insertTownAPI(body)
       .then((response) => {
         console.log(response.data);
-        toast.success(<h3>내 동네를 성공적으로 추가했습니다! 😊</h3>)
+        toast.success(<h3>내 동네를 성공적으로 추가했습니다! 😊</h3>);
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -46,11 +52,11 @@ function AddMap (props) {
       });
   }
 
-  async function deleteTown () {
+  async function deleteTown() {
     await deleteTownAPI(isSelected)
       .then((response) => {
         console.log(response.data);
-        toast.success(<h3>내 동네를 성공적으로 삭제했습니다! 😊</h3>)
+        toast.success(<h3>내 동네를 성공적으로 삭제했습니다! 😊</h3>);
       })
       .catch((e) => {
         console.log(e);
@@ -59,42 +65,44 @@ function AddMap (props) {
   }
 
   useEffect(() => {
+    console.log(latitude, longitude);
     const body = {
-      latitude: location.value.latitude,
-      longitude: location.value.longitude
+      latitude,
+      longitude,
     };
     searchTownAPI(body).then((res) => {
-      // console.log(body, res.data);
       setTown(res.data.towns);
-      setVillage(town[0].name.split(' ')[2]);
     });
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    if (!town) return;
+    console.log(town);
+    setVillage(town[0].name.split(' ')[2]);
   }, [town]);
-  
+
   return (
     <>
-      <ToastContainer/>
+      <ToastContainer />
       {town && (
         <Wrapper>
           <SubmitWrapper>
             <ContentSection>
               현 위치에 기반한 회원님의 동네는
-              <br/>
+              <br />
               {village}
-              &nbsp;
-              입니다.
+              &nbsp; 입니다.
             </ContentSection>
-            <SelectTown
-              select = {selectTown}
-            />
+            <SelectTown select={selectTown} />
             <ButtonSection>
-              <Button type="button" onClick={()=>addTown()}>
+              <Button type="button" onClick={() => addTown()}>
                 동네 설정하기
               </Button>
-              <Button type="button" onClick={()=>deleteTown()}>
+              <Button type="button" onClick={() => deleteTown()}>
                 동네 삭제하기
               </Button>
             </ButtonSection>
-            <Button type="button" onClick={()=>handleClick()}>
+            <Button type="button" onClick={() => handleClick()}>
               동네 목록 조회하기
             </Button>
           </SubmitWrapper>

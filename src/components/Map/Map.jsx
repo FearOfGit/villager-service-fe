@@ -37,8 +37,8 @@ function Map() {
         /* eslint-enable */
         marker.setMap(map);
         map.setCenter(new window.kakao.maps.LatLng(lat, lon));
-        // dispatch(changeLat(lat));
-        // dispatch(changeLong(lon));
+        dispatch(changeLat(lat));
+        dispatch(changeLong(lon));
         console.log('현재 위치:', lat, lon);
       });
     } else {
