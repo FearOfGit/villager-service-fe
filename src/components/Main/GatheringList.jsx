@@ -10,7 +10,11 @@ function GatheringList() {
 
   const { data, refetch } = useQuery(
     ['getAllGathering'],
-    () => AllgatheringLookUpAPI('37.52197524055062', '127.16017523675508'),
+    () =>
+      AllgatheringLookUpAPI(
+        lat || '37.52197524055062',
+        lng || '127.16017523675508',
+      ),
     {
       suspense: true,
       refetchOnWindowFocus: false,

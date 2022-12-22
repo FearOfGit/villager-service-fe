@@ -30,6 +30,7 @@ export async function searchTownAPI(locValues) {
  * @returns {} memberTownId, townName, cityName, createdAt, modifiedAt, main
  */
 export async function getTownAPI() {
+  console.log('getTown');
   return API.get(`${BASE_API}/members/towns`);
 }
 

@@ -13,8 +13,7 @@ import SelectTown from './SelectTown';
 
 function AddMap(props) {
   const dispatch = useDispatch();
-  const location = useSelector((state) => state.location);
-  console.log(location);
+  const { latitude, longitude } = useSelector((state) => state.location.value);
 
   const [town, setTown] = useState();
   const [village, setVillage] = useState('아무개동');
@@ -38,13 +37,14 @@ function AddMap(props) {
     const body = JSON.stringify({
       townId: town[0].townId,
       townName: village,
-      latitude: location.value.latitude,
-      longitude: location.value.longitude,
+      latitude,
+      longitude,
     });
     await insertTownAPI(body)
       .then((response) => {
         console.log(response.data);
         toast.success(<h3>내 동네를 성공적으로 추가했습니다! 😊</h3>);
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -65,15 +65,20 @@ function AddMap(props) {
   }
 
   useEffect(() => {
+    console.log(latitude, longitude);
     const body = {
-      latitude: location.value.latitude,
-      longitude: location.value.longitude,
+      latitude,
+      longitude,
     };
     searchTownAPI(body).then((res) => {
-      // console.log(body, res.data);
       setTown(res.data.towns);
-      setVillage(town[0].name.split(' ')[2]);
     });
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    if (!town) return;
+    console.log(town);
+    setVillage(town[0].name.split(' ')[2]);
   }, [town]);
 
   return (
