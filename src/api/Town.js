@@ -35,6 +35,15 @@ export async function getTownAPI() {
 }
 
 /**
+ * 회원 동네 별칭 수정 API
+ * @param {memberTownId, string} accessToken
+ * @returns {}
+ */
+export async function editTownNameAPI(id, body) {
+  return API.patch(`${BASE_API}/members/towns/${id}`, body);
+}
+
+/**
  * 회원 동네 삭제 API
  * @param {memberTownId, string} accessToken
  * @returns {}

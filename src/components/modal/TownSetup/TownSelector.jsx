@@ -44,7 +44,7 @@ function TownSelector({
           />
           <button
             type="button"
-            onClick={() => changeNickname(town.id, inputValue)}
+            onClick={() => changeNickname(town.memberTownId, inputValue)}
           >
             수정
           </button>
