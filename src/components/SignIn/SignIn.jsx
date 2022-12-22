@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { setUserId } from '../../store/User';
 import { signInAPI, signInOAuthGoogleAPI } from '../../api/Users';
 import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
-import { ReactComponent as KakaoLogo } from '../../images/kakaologin.svg';
+import {LoginButtonGoogle, LoginButtonNaver, LoginButtonKakao} from './OAuth/index';
 
 import {
   Wrapper,
@@ -18,8 +18,6 @@ import {
   ErrorMsg,
   Input,
   Button,
-  ButtonKakao,
-  TextBox,
   FindSection,
   SignupSection,
   AdditionalMsg,
@@ -120,10 +118,9 @@ function SignIn() {
         />
         <Button type="submit">로그인하기</Button>
       </SignInForm>
-      <ButtonKakao type="button">
-        <KakaoLogo />
-        <TextBox onClick={onClick}>카카오로 시작하기</TextBox>
-      </ButtonKakao>
+      <LoginButtonGoogle/>
+      <LoginButtonNaver/>
+      <LoginButtonKakao/>
       <FindSection>
         <AdditionalMsg>이메일 찾기</AdditionalMsg>
         <AdditionalMsg>비밀번호 찾기</AdditionalMsg>
