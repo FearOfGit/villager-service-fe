@@ -12,7 +12,7 @@ const BASE_API =
  * @returns {} categoryId, title, page, size
  */
 export async function postsListAPI(categoryId, title, page, size) {
-    return API.get(`${BASE_API}/posts`, {params: {categoryId: {categoryId}, title:{title}, page:{page}, size:{size}}});
+  return API.get(`${BASE_API}/posts`, {params: {categoryId: {categoryId}, title:{title}, page:{page}, size:{size}}});
 }
 
 /**
@@ -21,7 +21,7 @@ export async function postsListAPI(categoryId, title, page, size) {
  * @returns {}
  */
 export async function postAPI(postForm) {
-    return API.post(`${BASE_API}/posts`, postForm);
+  return API.post(`${BASE_API}/posts`, postForm);
 }
 
 /**
@@ -30,7 +30,7 @@ export async function postAPI(postForm) {
  * @returns {} email, message
  */
 export async function showCategoryAPI() {
-    return API.get(`${BASE_API}/posts/category`);
+  return API.get(`${BASE_API}/posts/category`);
 }
 
 /**
@@ -38,8 +38,8 @@ export async function showCategoryAPI() {
  * @param {string} AccessToken
  * @returns {} categoryId, title, contents
  */
-export async function showCategoryAPI(id, changeForm) {
-    return API.put(`${BASE_API}/posts/${id}`, changeForm);
+export async function changePostAPI(id, changeForm) {
+  return API.put(`${BASE_API}/posts/${id}`, changeForm);
 }
 
 /**
@@ -47,6 +47,6 @@ export async function showCategoryAPI(id, changeForm) {
  * @param {string} AccessToken
  * @returns {} categoryId, title, contents
  */
-export async function showCategoryAPI(id) {
-    return API.delete(`${BASE_API}/posts/${id}`);
-}6
+export async function deletePostAPI(id) {
+  return API.delete(`${BASE_API}/posts/${id}`);
+}
