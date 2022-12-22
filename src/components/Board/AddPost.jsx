@@ -1,13 +1,79 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Wrapper } from './AddPost.styles';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { Wrapper, Button } from './AddPost.styles';
+import { postAPI } from '../../api/Board';
+import AddPostText from './AddPostText';
+import AddPostImage from './AddPostImage';
 
 function AddPost () {
+  const navigate = useNavigate();
 
+  const [categoryId, setcategoryId] = useState("");
+  const [title, setTitle ] = useState("");
+  const [content, setContent ] = useState("");
+  const [image, setImage ] = useState({
+    imageFile: "",
+    previewURL: "https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg",
+  });
+
+  const handleSubmit = async () => {
+    const post = {
+      "categoryId": 1,
+      "title": title,
+      "contents": content
+    };
+    const formData = new FormData();
+    formData.append("post", new Blob([JSON.stringify(post)], {type:"application/json",}));
+    formData.append("files", image.imageFile);
+    try {
+      postAPI(formData)
+      .then((response) => {
+        /*eslint-disable*/
+        for (let key of formData.keys()) {
+          console.log(key);
+        }
+
+        for (let value of formData.values()) {
+          console.log(value);
+        }
+        console.log(response.data);
+        console.log('되냐');
+
+        toast.success(<h1>게시글 등록이 완료되었습니다. 😊</h1>);
+        // setTimeout(() => {
+        //   navigate('/board');
+        // }, 1500);
+        // if (response.data) {
+        //   toast.error(response.data.errorMessage);
+        // }
+        // else {
+        // }
+      });
+    } catch(e) {
+      toast.error(e.response.data.errorMessage);
+    }
+  };
 
   return(
     <>
+      <ToastContainer/>
       <Wrapper>
-        안녕
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+        >
+          게시글 등록하기
+        </Button>
+        <AddPostText 
+          setTitle={setTitle} 
+          setContent={setContent} 
+          title={title} 
+          content={content}
+        />
+        <AddPostImage
+          setImage={setImage} previewURL={image.previewURL}
+        />
       </Wrapper>
     </>
   );

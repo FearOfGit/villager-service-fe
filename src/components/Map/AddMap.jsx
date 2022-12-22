@@ -44,7 +44,7 @@ function AddMap(props) {
       .then((response) => {
         console.log(response.data);
         toast.success(<h3>내 동네를 성공적으로 추가했습니다! 😊</h3>);
-        window.location.reload();
+        setTimeout(()=>window.location.reload(), 2000);
       })
       .catch((e) => {
         console.log(e);
@@ -57,6 +57,7 @@ function AddMap(props) {
       .then((response) => {
         console.log(response.data);
         toast.success(<h3>내 동네를 성공적으로 삭제했습니다! 😊</h3>);
+        setTimeout(()=>window.location.reload(), 2000);
       })
       .catch((e) => {
         console.log(e);
