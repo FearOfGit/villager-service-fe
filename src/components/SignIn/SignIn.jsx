@@ -10,6 +10,7 @@ import { setUserId } from '../../store/User';
 import { signInAPI, signInOAuthGoogleAPI } from '../../api/Users';
 import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
 import { ReactComponent as KakaoLogo } from '../../images/kakaologin.svg';
+import {LoginButtonGoogle, } from './OAuth/index';
 
 import {
   Wrapper,
