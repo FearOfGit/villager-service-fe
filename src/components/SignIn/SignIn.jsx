@@ -10,10 +10,13 @@ import { setUserId } from '../../store/User';
 import { signInAPI, signInOAuthGoogleAPI } from '../../api/Users';
 import { setRefreshToken, setAccessToken, setAuthentication } from '../../app';
 import {LoginButtonGoogle, LoginButtonNaver, LoginButtonKakao} from './OAuth/index';
+import imageUrl from '../../images/title5.png';
 
 import {
   Wrapper,
   Desc,
+  TitleDesc,
+  TitleImage,
   SignInForm,
   ErrorMsg,
   Input,
@@ -87,10 +90,15 @@ function SignIn() {
     <Wrapper>
       <ToastContainer />
       <Desc>
-        동네 #람들에 어서오세요!
-        <br />
-        오늘도 즐거운 하루! 🥰
-        <br />
+        <TitleDesc>
+          <div>
+            우리 모두 모여요
+          </div>
+          <div>
+            🤣
+          </div>
+        </TitleDesc>
+        <TitleImage src={imageUrl}/>
       </Desc>
       <SignInForm
         autoComplete="off"

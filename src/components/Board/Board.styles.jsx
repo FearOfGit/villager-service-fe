@@ -6,4 +6,11 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export { Wrapper, };
+const Title = styled.div`
+  margin: 1rem 0;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+`;
+
+export { Wrapper, Title, };

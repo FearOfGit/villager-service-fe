@@ -9,7 +9,7 @@ const NavigatorBlock = styled.div`
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #fff;
+  background-color: #fff;
   border-top: 1px solid ${palette.gray[4]};
   z-index: 10;
 `;
