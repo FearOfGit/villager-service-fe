@@ -10,12 +10,4 @@ export const UserContentBlock = styled.div`
     font-weight: 700;
     margin-bottom: 0.7rem;
   }
-  .title::before {
-    content: '';
-    display: inline-block;
-    width: 7px;
-    height: 17px;
-    background-color: black;
-    margin-right: 0.5rem;
-  }
 `;

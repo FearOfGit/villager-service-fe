@@ -44,7 +44,7 @@ function GatheringItem({ info }) {
         </TagWrapper>
       </div>
       <JoinButton onClick={() => navigate(`/gathering/${info.partyId}`)}>
-        모임 신청하기
+        자세히보기
       </JoinButton>
     </ItemBlock>
   );
