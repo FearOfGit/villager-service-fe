@@ -12,7 +12,9 @@ function GatheringDetail() {
         <Suspense fallback={<div>로딩중...</div>}>
           <GatheringInfo searchId={searchId} />
         </Suspense>
-        <CommentList />
+        <Suspense fallback={<div>로딩중...</div>}>
+          <CommentList />
+        </Suspense>
       </div>
     </GatheringDetailTemplate>
   );

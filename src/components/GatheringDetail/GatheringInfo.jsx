@@ -66,7 +66,7 @@ function GatheringInfo({ searchId }) {
   const handleDelete = async () => {
     const response = await gatheringDeleteAPI(searchId);
     console.log(response);
-    // navigate('/');
+    navigate('/');
   };
 
   const handleApply = async () => {
@@ -89,7 +89,7 @@ function GatheringInfo({ searchId }) {
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
         {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
-        {isMe && <EditButton>수정하기</EditButton>}
+        {/* {isMe && <EditButton>수정하기</EditButton>} */}
         {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
       </ButtonWrapper>
 

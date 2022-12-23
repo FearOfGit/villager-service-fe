@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
+import { BiMap } from 'react-icons/bi';
+
 import {
   Text,
   GatheringTitle,
@@ -23,7 +25,9 @@ function GatheringItem({ info }) {
       <ContentText className="content">{info.content}</ContentText>
       <div className="flex-2">
         <LocationWrapper>
-          <div className="marker" />
+          <div className="marker">
+            <BiMap />
+          </div>
           <div className="text">
             <span>
               {address1} {address2}

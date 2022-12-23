@@ -74,12 +74,9 @@ export async function ApplicationListAPI(id) {
 
 /**
  * 모임 댓글 작성 API
- * @param {partyId: string}
+ * @param {partyId: string, contents: string}
  * @returns {} message
  */
-export async function writeCommentAPI(id) {
-  return API.get(`${BASE_API}/parties/${id}/apply`, {
-    page: '1',
-    size: '5',
-  });
+export async function writeCommentAPI(partyId, body) {
+  return API.post(`${BASE_API}/parties/${partyId}/comment`, body);
 }
