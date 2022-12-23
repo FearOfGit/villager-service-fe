@@ -19,36 +19,29 @@ function GatheringRegister() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [tagList, setTagList] = useState([]);
-  const {
-    getFieldProps,
-    errors,
-    values,
-    setFieldValue,
-    handleSubmit,
-    isSubmitting,
-  } = useFormik({
-    initialValues: constantForForm.INITIAL_VALUES,
-    validationSchema: constantForForm.VALIDATION_SCHEMA,
-    onSubmit: async (result) => {
-      const body = {
-        partyName: result.name,
-        score: result.mannerScore,
-        startDt: result.start_date,
-        endDt: result.end_date,
-        amount: result.fee,
-        numberPeople: result.capacity,
-        location: result.place_text,
-        latitude: Number(result.latitude),
-        longitude: Number(result.longitude),
-        content: result.description,
-        tagList: [...tagList],
-      };
-      const response = await gatheringRegisterAPI(body);
-      console.log(response);
-      navigate('/');
-      // console.log(JSON.stringify({ ...result, tag: tagList }, null, 2));
-    },
-  });
+  const { getFieldProps, errors, values, setFieldValue, handleSubmit } =
+    useFormik({
+      initialValues: constantForForm.INITIAL_VALUES,
+      validationSchema: constantForForm.VALIDATION_SCHEMA,
+      onSubmit: async (result) => {
+        const body = {
+          partyName: result.name,
+          score: result.mannerScore,
+          startDt: result.start_date,
+          endDt: result.end_date,
+          amount: result.fee,
+          numberPeople: result.capacity,
+          location: result.place_text,
+          latitude: Number(result.latitude),
+          longitude: Number(result.longitude),
+          content: result.description,
+          tagList: [...tagList],
+        };
+        const response = await gatheringRegisterAPI(body);
+        console.log(response);
+        navigate('/');
+      },
+    });
 
   const setEndDate = (date) => {
     setFieldValue('end_date', date, true);
@@ -138,16 +131,14 @@ function GatheringRegister() {
           </Question>
         </div>
         <div className="btn-group">
-          {true && (
-            <MoveButton
-              onPrev={onPrev}
-              onNext={onNext}
-              step={step}
-              values={values}
-              errors={errors}
-              len={tagList.length}
-            />
-          )}
+          <MoveButton
+            onPrev={onPrev}
+            onNext={onNext}
+            step={step}
+            values={values}
+            errors={errors}
+            len={tagList.length}
+          />
         </div>
       </form>
     </GatheringRegisterTemplate>
