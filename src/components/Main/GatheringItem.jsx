@@ -19,8 +19,8 @@ function GatheringItem({ info }) {
     <ItemBlock>
       <GatheringTitle>{info.partyName}</GatheringTitle>
       <div className="flex">
-        <Text>{`${info.startDt} ~ ${info.endDt}`}</Text>
         <Text>{info.nickname}</Text>
+        <Text>{`${info.startDt} ~ ${info.endDt}`}</Text>
       </div>
       <ContentText className="content">{info.content}</ContentText>
       <div className="flex-2">

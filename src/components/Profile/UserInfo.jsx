@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-shadow */
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -88,42 +89,33 @@ function UserInfo({
 
   return (
     <>
-      {data && (
-        <UserInfoWrapper>
-          <div className="flex">
-            <UserImage
-              src="https://via.placeholder.com/90"
-              alt="사용자 이미지"
+      <UserInfoWrapper>
+        <div className="flex">
+          <UserImage src="https://via.placeholder.com/90" alt="사용자 이미지" />
+          <PersonalInfo>
+            <span className="nickname">
+              {data.nickName} <span className="email">({data.email})</span>{' '}
+            </span>
+            <span>
+              {data.birth}, {data.gender}
+            </span>
+          </PersonalInfo>
+        </div>
+        <ContentCounterWrapper>
+          {contents.map((content) => (
+            <ContentCounter
+              key={content.key}
+              title={content.title}
+              count={
+                content.key === 'follower' ? followerCount : data[content.key]
+              }
             />
-            <PersonalInfo>
-              <span className="nickname">
-                {data.nickName} <span className="email">({data.email})</span>{' '}
-              </span>
-              <span>{data.birth}</span>
-              <span>{data.gender}</span>
-              <div className="tags">
-                {data.tags.map((tag) => (
-                  <span>{tag}</span>
-                ))}
-              </div>
-            </PersonalInfo>
-          </div>
-          <ContentCounterWrapper>
-            {contents.map((content) => (
-              <ContentCounter
-                key={content.key}
-                title={content.title}
-                count={
-                  content.key === 'follower' ? followerCount : data[content.key]
-                }
-              />
-            ))}
-          </ContentCounterWrapper>
-          <EditButton type="button" onClick={() => handleClick(isMe, isFriend)}>
-            {btnText}
-          </EditButton>
-        </UserInfoWrapper>
-      )}
+          ))}
+        </ContentCounterWrapper>
+        <EditButton type="button" onClick={() => handleClick(isMe, isFriend)}>
+          {btnText}
+        </EditButton>
+      </UserInfoWrapper>
     </>
   );
 }

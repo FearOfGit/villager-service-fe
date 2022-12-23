@@ -7,6 +7,7 @@ import { ProfileTemplate } from './index.style';
 import MannerScore from './MannerScore';
 import UserInfo from './UserInfo';
 import UserIntroduce from './UserIntroduce';
+import TagBox from './TagBox';
 
 function getUserInfo(id) {
   return myPageAPI(id).then((res) => res.data);
@@ -15,7 +16,7 @@ function getUserInfo(id) {
 function Profile() {
   const myId = useSelector((state) => state.user.value.userId);
   const { id: searchId } = useParams();
-  const { data } = useQuery(
+  const { data, refetch } = useQuery(
     ['getInfo', searchId],
     () => getUserInfo(searchId),
     {
@@ -47,6 +48,7 @@ function Profile() {
           handleFollow={handleFollow}
           searchId={searchId}
         />
+        <TagBox data={data} refetch={refetch} />
         <UserIntroduce data={data} />
         <MannerScore data={data} />
       </div>
