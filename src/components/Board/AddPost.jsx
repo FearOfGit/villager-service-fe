@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
 import { Wrapper, Button } from './AddPost.styles';
-import { postAPI } from '../../api/Board';
+import { postAPI, showCategoryAPI } from '../../api/Board';
 import AddPostText from './AddPostText';
 import AddPostImage from './AddPostImage';
 
@@ -16,6 +17,14 @@ function AddPost () {
     imageFile: "",
     previewURL: "https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg",
   });
+
+  function getCategory () {
+    return showCategoryAPI().then((res)=>res.data);
+  }
+
+  const { data } = useQuery('getCategory', getCategory);
+
+  console.log(data);
 
   const handleSubmit = async () => {
     const post = {
@@ -44,11 +53,6 @@ function AddPost () {
         // setTimeout(() => {
         //   navigate('/board');
         // }, 1500);
-        // if (response.data) {
-        //   toast.error(response.data.errorMessage);
-        // }
-        // else {
-        // }
       });
     } catch(e) {
       toast.error(e.response.data.errorMessage);
@@ -61,7 +65,7 @@ function AddPost () {
       <Wrapper>
         <Button
           type="submit"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit()}
         >
           게시글 등록하기
         </Button>

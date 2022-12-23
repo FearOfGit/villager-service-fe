@@ -4,7 +4,7 @@ import { API } from './Token';
 // 로컬 서버 URL: http://localhost:8080/
 
 const BASE_API =
-  'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1';
+  'https://devwinter.com/api/v1';
 
 /**
  * 회원가입 API

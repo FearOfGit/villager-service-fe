@@ -2,7 +2,7 @@
   "name": "town-people",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080",
+  "proxy": "https://devwinter.com/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.14.1",

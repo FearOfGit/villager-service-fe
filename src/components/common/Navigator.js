@@ -33,7 +33,7 @@ function Navigator() {
       <NavigatorBlock>
         <Inner>
           <Button to="/">모임</Button>
-          <Button>게시판</Button>
+          <Button to="/board">게시판</Button>
           <Button>채팅</Button>
           <Button to="/rank">랭킹</Button>
           <Button to={`/profile/${userId}`}>마이페이지</Button>

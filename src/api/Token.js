@@ -9,7 +9,7 @@ import {
 } from '../app/index';
 
 const BASE_API =
-  'http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/api/v1';
+  'https://devwinter.com/api/v1';
 
 export const API = axios.create({});
 
