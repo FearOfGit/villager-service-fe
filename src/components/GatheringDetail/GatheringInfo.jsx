@@ -70,7 +70,7 @@ function GatheringInfo({ searchId }) {
   };
 
   const handleApply = async () => {
-    const response = await gatheringApplyAPI(searchId);
+    const response = await gatheringApplyAPI(String(searchId));
     console.log(response);
   };
 
@@ -89,7 +89,7 @@ function GatheringInfo({ searchId }) {
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
         {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
-        {isMe && <EditButton>수정하기</EditButton>}
+        {/* {isMe && <EditButton>수정하기</EditButton>} */}
         {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
       </ButtonWrapper>
 
@@ -149,7 +149,7 @@ function GatheringInfo({ searchId }) {
             멤버 <span className="manner">80</span>
           </div>
         </MemberInfoWrapper>
-        <ApplicationList searchId={searchId} />
+        {isMe && <ApplicationList searchId={searchId} />}
       </div>
     </>
   );

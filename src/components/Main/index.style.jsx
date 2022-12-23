@@ -29,11 +29,14 @@ export const RegisterButton = styled.button`
   position: fixed;
   bottom: 90px;
   right: 5%;
-  padding: 1.4rem 1rem;
+  padding: 1.3rem;
   border-radius: 100%;
   border: none;
-  font-size: 0.9rem;
-  background: #4ab7b6;
+  font-size: 1.2rem;
+  background: #fdaa5d;
   color: #fff;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

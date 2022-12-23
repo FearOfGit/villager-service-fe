@@ -18,8 +18,6 @@ function TownSetup({ show, onClose }) {
       suspense: true,
       refetchOnWindowFocus: false,
       retry: false,
-      cacheTime: Infinity,
-      staleTime: Infinity,
     },
   );
 

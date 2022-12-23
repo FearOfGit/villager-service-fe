@@ -55,7 +55,12 @@ export const LocationWrapper = styled.div`
     width: 40px;
     height: 40px;
     background-color: #4ab7b6;
+    color: #fff;
+    font-size: 1.3rem;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

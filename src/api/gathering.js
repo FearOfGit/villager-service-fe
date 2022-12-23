@@ -71,3 +71,12 @@ export async function ApplicationListAPI(id) {
     size: '5',
   });
 }
+
+/**
+ * 모임 댓글 작성 API
+ * @param {partyId: string, contents: string}
+ * @returns {} message
+ */
+export async function writeCommentAPI(partyId, body) {
+  return API.post(`${BASE_API}/parties/${partyId}/comment`, body);
+}
