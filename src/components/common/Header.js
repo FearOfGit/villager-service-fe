@@ -19,7 +19,7 @@ const HeaderBlock = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff;
+  background-color: #212529;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   z-index: 10;
 `;

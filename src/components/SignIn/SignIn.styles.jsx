@@ -6,13 +6,29 @@ const Wrapper = styled.div`
 `;
 
 const Desc = styled.div`
-  width: 100%;
-  margin: 1.5rem 0rem;  
+  width: 100%; 
   font-size: 1.4rem;
   font-weight: 600;
-  color: black;
+  color: ${(props) => props.theme.color.grey_800};
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TitleDesc = styled.div`
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+const TitleImage = styled.img`
+  width: 80%;
 `;
 
 const SignInForm = styled.form`
@@ -22,7 +38,7 @@ const SignInForm = styled.form`
 
 const ErrorMsg = styled.div`
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   padding: 0.2rem 1rem;
   font-size: 0.8rem;
   font-weight: 400;
@@ -104,4 +120,4 @@ const SignupNavigation = styled. div`
   text-align: center;
 `;
 
-export { Wrapper, Desc, SignInForm, ErrorMsg, Input, Button, ButtonKakao, TextBox, FindSection, SignupSection, AdditionalMsg, SignupNavigation, };
+export { Wrapper, Desc, TitleDesc, TitleImage, SignInForm, ErrorMsg, Input, Button, ButtonKakao, TextBox, FindSection, SignupSection, AdditionalMsg, SignupNavigation, };
