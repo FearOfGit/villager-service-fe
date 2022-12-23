@@ -39,15 +39,16 @@ function TagBox({ data, refetch }) {
 
   const onAdd = async () => {
     const target = `#${inputValue}`;
-    const response = await updateTagAPI({
+    await updateTagAPI({
       tags: [...data.tags, target],
     });
-    console.log(response);
     setInputValue('');
     refetch();
   };
 
   const onRemove = async (tag) => {
+    if (!isMe) return;
+
     const newTagList = data.tags.filter((el) => el !== tag);
     const response = await updateTagAPI({
       tags: [...newTagList],
