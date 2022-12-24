@@ -3,8 +3,7 @@ import { API } from './Token';
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
 
-const BASE_API =
-  'https://devwinter.com/api/v1';
+const BASE_API = 'https://devwinter.com/api/v1';
 
 /**
  * 회원가입 API
@@ -84,6 +83,14 @@ export async function newIntroduceAPI(contentsForm) {
  */
 export async function signOutAPI() {
   return API.delete(`${BASE_API}/members`);
+}
+
+/**
+ * 관심태그 업데이트 API
+ * @return {} message
+ */
+export async function updateTagAPI(body) {
+  return API.post(`${BASE_API}/members/tags`, body);
 }
 
 /**

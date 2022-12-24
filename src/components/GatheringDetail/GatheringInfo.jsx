@@ -70,7 +70,7 @@ function GatheringInfo({ searchId }) {
   };
 
   const handleApply = async () => {
-    const response = await gatheringApplyAPI(String(searchId));
+    const response = await gatheringApplyAPI(searchId);
     console.log(response);
   };
 

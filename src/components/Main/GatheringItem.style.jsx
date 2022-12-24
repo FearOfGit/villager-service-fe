@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ItemBlock = styled.li`
-  border: 1px solid black;
+  border: 1px solid #ccc;
   display: block;
   width: 100%;
   border-radius: 10px;
@@ -43,7 +43,7 @@ export const LocationWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-left: 0.7rem;
-    color: #b1b1b1;
+    color: #303733;
     font-size: 0.7rem;
     span + span {
       display: inline-block;
@@ -91,4 +91,5 @@ export const JoinButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;

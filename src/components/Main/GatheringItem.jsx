@@ -19,8 +19,8 @@ function GatheringItem({ info }) {
     <ItemBlock>
       <GatheringTitle>{info.partyName}</GatheringTitle>
       <div className="flex">
-        <Text>{`${info.startDt} ~ ${info.endDt}`}</Text>
         <Text>{info.nickname}</Text>
+        <Text>{`${info.startDt} ~ ${info.endDt}`}</Text>
       </div>
       <ContentText className="content">{info.content}</ContentText>
       <div className="flex-2">
@@ -44,7 +44,7 @@ function GatheringItem({ info }) {
         </TagWrapper>
       </div>
       <JoinButton onClick={() => navigate(`/gathering/${info.partyId}`)}>
-        모임 신청하기
+        자세히보기
       </JoinButton>
     </ItemBlock>
   );
