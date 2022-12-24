@@ -11,7 +11,7 @@ export const ListBlock = styled.ul`
   max-height: 140px;
   overflow: auto;
   background-color: #fff;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   li {
     padding: 0.5rem 1rem;
     display: flex;

@@ -13,6 +13,10 @@ export const Wrapper = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+  .user {
+    color: #000;
+    font-size: 1rem;
+  }
 `;
 
 export const DescWrapper = styled.div`

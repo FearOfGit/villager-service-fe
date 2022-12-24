@@ -1,14 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Wrapper, SubTitle, Content, DescWrapper } from './InfoBox.style';
 
 function InfoBox({ data }) {
   return (
     <>
       <Wrapper>
+        <SubTitle>모임장 : </SubTitle>
+        <Content>
+          <Link className="user" to={`/profile/${data.data.memberId}`}>
+            {data.data.nickname}
+          </Link>
+        </Content>
+      </Wrapper>
+      <Wrapper>
         <SubTitle>모임 기간 : </SubTitle>
         <Content>
           <span>{data.data.startDt} ~ </span>
-          <span className="end">{data.data.endDt}</span>
+          <span>{data.data.endDt}</span>
         </Content>
       </Wrapper>
       <Wrapper>

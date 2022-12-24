@@ -48,11 +48,11 @@ function GatheringInfo({ searchId }) {
   );
   const isMe = String(myId) === String(data.data.memberId);
   const today = new Date();
-  // const tomorrow = new Date(today.setDate(today.getDate() + 1));
   const startDate = new Date(data.data.startDt);
   const endDate = new Date(data.data.endDt);
+  const tomorrow = new Date(endDate.setDate(endDate.getDate() + 1));
   const isStart = today >= startDate;
-  const isEnd = today > endDate;
+  const isEnd = today >= tomorrow;
 
   useEffect(() => {
     const { kakao } = window;
@@ -90,6 +90,7 @@ function GatheringInfo({ searchId }) {
   const handleStart = async () => {
     const response = await startGatheringAPI(searchId);
     console.log(response);
+    refetch();
   };
 
   return (
@@ -122,7 +123,7 @@ function GatheringInfo({ searchId }) {
       {isMe && <ApplicationList searchId={searchId} />}
       {isMe && isStart && !isEnd && data.data.state === 'READY' && (
         <StateButtonWrapper>
-          <StateButton>모임 시작</StateButton>
+          <StateButton onClick={handleStart}>모임 시작</StateButton>
         </StateButtonWrapper>
       )}
       {isMe && isEnd && data.data.state === 'START' && (
