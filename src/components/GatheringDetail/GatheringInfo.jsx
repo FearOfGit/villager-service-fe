@@ -5,16 +5,13 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import {
   ButtonWrapper,
-  Content,
   DestroyButton,
-  EditButton,
   GatheringName,
   GatheringTagWrapper,
   JoinButton,
   LikeButton,
   MemberInfoWrapper,
-  SubTitle,
-  Wrapper,
+  PartyState,
 } from './GatheringInfo.style';
 import Map from './Map';
 import {
@@ -24,6 +21,13 @@ import {
   gatheringApplyAPI,
 } from '../../api/gathering';
 import ApplicationList from './ApplicationList';
+import InfoBox from './InfoBox';
+
+const partyState = {
+  READY: '준비중',
+  START: '진행중',
+  END: '종료',
+};
 
 function GatheringInfo({ searchId }) {
   const navigate = useNavigate();
@@ -76,7 +80,15 @@ function GatheringInfo({ searchId }) {
 
   return (
     <>
-      <GatheringName>{data.data.partyName}</GatheringName>
+      <div className="flex">
+        <GatheringName>{data.data.partyName}</GatheringName>
+        <PartyState
+          start={data.data.state === 'START'}
+          end={data.data.state === 'END'}
+        >
+          {partyState[data.data.state]}
+        </PartyState>
+      </div>
       <GatheringTagWrapper>
         {data.data.tagNameList.map((el) => (
           <span key={el} className="tag">
@@ -89,68 +101,14 @@ function GatheringInfo({ searchId }) {
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
         {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
-        {/* {isMe && <EditButton>수정하기</EditButton>} */}
         {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
       </ButtonWrapper>
 
       <Map lat={location.lat} lng={location.lng} />
       <div className="info">
-        <Wrapper>
-          <SubTitle>모임 기간</SubTitle>
-          <Content>
-            <span>{data.data.startDt}</span>
-            <span className="end">{data.data.endDt}</span>
-          </Content>
-        </Wrapper>
-        <Wrapper>
-          <SubTitle>매너 점수</SubTitle>
-          <Content>{data.data.score} 이상</Content>
-        </Wrapper>
-        <Wrapper>
-          <SubTitle>참가비</SubTitle>
-          <Content>{data.data.amount}원</Content>
-        </Wrapper>
-        <Wrapper>
-          <SubTitle>상세 설명</SubTitle>
-          <Content>{data.data.content}</Content>
-        </Wrapper>
-        <Wrapper>
-          <SubTitle>인원수</SubTitle>
-          <Content>
-            <div>1 / {data.data.numberPeople}</div>
-          </Content>
-        </Wrapper>
-        <MemberInfoWrapper>
-          <div className="leader">
-            리더 <span className="manner">100</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">90</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">90</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-          <div className="member">
-            멤버 <span className="manner">80</span>
-          </div>
-        </MemberInfoWrapper>
-        {isMe && <ApplicationList searchId={searchId} />}
+        <InfoBox data={data} />
       </div>
+      {isMe && <ApplicationList searchId={searchId} />}
     </>
   );
 }

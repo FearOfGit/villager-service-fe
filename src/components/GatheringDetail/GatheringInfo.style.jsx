@@ -1,6 +1,4 @@
-// 나눔스퀘어
-
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../lib/palette';
 
 export const GatheringName = styled.h2`
@@ -74,30 +72,6 @@ export const GatheringTagWrapper = styled.div`
   }
 `;
 
-export const SubTitle = styled.h3`
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-
-  &::before {
-    content: '📌';
-  }
-`;
-
-export const Wrapper = styled.div`
-  & + div {
-    margin-top: 1.5rem;
-  }
-  .end::before {
-    content: ' ~ ';
-  }
-`;
-
-export const Content = styled.div`
-  margin-left: 1.6rem;
-  font-size: 0.9rem;
-`;
-
 export const MemberInfoWrapper = styled.div`
   margin-top: 0.5rem;
   max-height: 150px;
@@ -135,4 +109,25 @@ export const MemberInfoWrapper = styled.div`
     margin-left: 1rem;
     color: #4ab7b6;
   }
+`;
+
+export const PartyState = styled.div`
+  background-color: ${palette.gray[4]};
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 20px;
+  ${(props) =>
+    props.start &&
+    css`
+      background-color: ${palette.green[5]};
+      color: #fff;
+    `}
+
+  ${(props) =>
+    props.end &&
+    css`
+      background-color: red;
+      color: #fff;
+    `}
 `;

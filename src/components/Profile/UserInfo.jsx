@@ -12,6 +12,7 @@ import {
   PersonalInfo,
   EditButton,
 } from './UserInfo.style';
+import UserIntroduce from './UserIntroduce';
 
 const contents = [
   {
@@ -96,7 +97,7 @@ function UserInfo({
             <span className="nickname">
               {data.nickName} <span className="email">({data.email})</span>{' '}
             </span>
-            <span>
+            <span className="small">
               {data.birth}, {data.gender}
             </span>
           </PersonalInfo>

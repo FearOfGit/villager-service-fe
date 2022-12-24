@@ -8,7 +8,8 @@ export const GatheringDetailTemplate = styled.div`
   justify-content: center;
   .flex {
     display: flex;
-    justify-content: space-between;
+    /* background-color: red; */
+    align-items: center;
   }
   .info {
     margin-top: 0.5rem;

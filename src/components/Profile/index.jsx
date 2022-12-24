@@ -48,9 +48,9 @@ function Profile() {
           handleFollow={handleFollow}
           searchId={searchId}
         />
-        <TagBox data={data} refetch={refetch} />
         <UserIntroduce data={data} />
         <MannerScore data={data} />
+        <TagBox data={data} refetch={refetch} />
       </div>
     </ProfileTemplate>
   );
