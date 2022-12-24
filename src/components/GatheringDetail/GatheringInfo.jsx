@@ -12,6 +12,8 @@ import {
   LikeButton,
   MemberInfoWrapper,
   PartyState,
+  StateButton,
+  StateButtonWrapper,
 } from './GatheringInfo.style';
 import Map from './Map';
 import {
@@ -19,6 +21,7 @@ import {
   gatheringLikeAPI,
   gatheringDeleteAPI,
   gatheringApplyAPI,
+  startGatheringAPI,
 } from '../../api/gathering';
 import ApplicationList from './ApplicationList';
 import InfoBox from './InfoBox';
@@ -34,7 +37,7 @@ function GatheringInfo({ searchId }) {
   const myId = useSelector((state) => state.user.value.userId);
   const [like, setLike] = useState(false);
   const [location, setLocation] = useState({});
-  const { data } = useQuery(
+  const { data, refetch } = useQuery(
     ['getGathering', searchId],
     () => gatheringLookUpAPI(searchId),
     {
@@ -44,6 +47,12 @@ function GatheringInfo({ searchId }) {
     },
   );
   const isMe = String(myId) === String(data.data.memberId);
+  const today = new Date();
+  // const tomorrow = new Date(today.setDate(today.getDate() + 1));
+  const startDate = new Date(data.data.startDt);
+  const endDate = new Date(data.data.endDt);
+  const isStart = today >= startDate;
+  const isEnd = today > endDate;
 
   useEffect(() => {
     const { kakao } = window;
@@ -78,14 +87,16 @@ function GatheringInfo({ searchId }) {
     console.log(response);
   };
 
+  const handleStart = async () => {
+    const response = await startGatheringAPI(searchId);
+    console.log(response);
+  };
+
   return (
     <>
       <div className="flex">
         <GatheringName>{data.data.partyName}</GatheringName>
-        <PartyState
-          start={data.data.state === 'START'}
-          end={data.data.state === 'END'}
-        >
+        <PartyState state={data.data.state}>
           {partyState[data.data.state]}
         </PartyState>
       </div>
@@ -100,8 +111,8 @@ function GatheringInfo({ searchId }) {
         <LikeButton onClick={handleLike}>
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
-        {!isMe && <JoinButton onClick={handleApply}>신청하기</JoinButton>}
-        {isMe && <DestroyButton onClick={handleDelete}>삭제하기</DestroyButton>}
+        {!isMe && <JoinButton onClick={handleApply}>신청</JoinButton>}
+        {isMe && <DestroyButton onClick={handleDelete}>삭제</DestroyButton>}
       </ButtonWrapper>
 
       <Map lat={location.lat} lng={location.lng} />
@@ -109,6 +120,17 @@ function GatheringInfo({ searchId }) {
         <InfoBox data={data} />
       </div>
       {isMe && <ApplicationList searchId={searchId} />}
+      {isMe && isStart && !isEnd && data.data.state === 'READY' && (
+        <StateButtonWrapper>
+          <StateButton>모임 시작</StateButton>
+        </StateButtonWrapper>
+      )}
+      {isMe && isEnd && data.data.state === 'START' && (
+        <StateButtonWrapper>
+          <StateButton red="true">모임 종료</StateButton>
+          <StateButton red="true">모임 종료</StateButton>
+        </StateButtonWrapper>
+      )}
     </>
   );
 }

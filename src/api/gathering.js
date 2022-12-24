@@ -3,8 +3,7 @@ import { API } from './Token';
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
 
-const BASE_API =
-  'https://devwinter.com/api/v1';
+const BASE_API = 'https://devwinter.com/api/v1';
 
 /**
  * 모임 등록 API
@@ -79,4 +78,22 @@ export async function ApplicationListAPI(id) {
  */
 export async function writeCommentAPI(partyId, body) {
   return API.post(`${BASE_API}/parties/${partyId}/comment`, body);
+}
+
+/**
+ * 모임 시작 API
+ * @param {partyId: string, contents: string}
+ * @returns {} message
+ */
+export async function startGatheringAPI(partyId) {
+  return API.post(`${BASE_API}/parties/${partyId}/start`);
+}
+
+/**
+ * 모임 허락 API
+ * @param {partyId: string, contents: string}
+ * @returns {} message
+ */
+export async function acceptGatheringAPI(partyId, targetId) {
+  return API.patch(`${BASE_API}/parties/${partyId}/permission/${targetId}`);
 }

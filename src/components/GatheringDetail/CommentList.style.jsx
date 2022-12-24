@@ -16,8 +16,7 @@ export const CommentListWrapper = styled.ul`
 `;
 
 export const Title = styled.h2`
-  /* background-color: red; */
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;

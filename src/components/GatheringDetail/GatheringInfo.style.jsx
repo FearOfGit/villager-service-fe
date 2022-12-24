@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import palette from '../../lib/palette';
 
 export const GatheringName = styled.h2`
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 0.7rem;
@@ -56,6 +56,26 @@ export const DestroyButton = styled.button`
   font-size: 0.7rem;
   font-weight: normal;
   margin-left: 0.5rem;
+`;
+
+export const StateButtonWrapper = styled.div`
+  position: fixed;
+  top: 4.5rem;
+  right: 5px;
+  z-index: 100;
+`;
+
+export const StateButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #fff;
+  background-color: ${palette.green[5]};
+  ${(props) =>
+    props.red &&
+    css`
+      background-color: red;
+    `}
 `;
 
 export const GatheringTagWrapper = styled.div`
@@ -118,14 +138,14 @@ export const PartyState = styled.div`
   border: none;
   border-radius: 20px;
   ${(props) =>
-    props.start &&
+    props.state === 'START' &&
     css`
       background-color: ${palette.green[5]};
       color: #fff;
     `}
 
   ${(props) =>
-    props.end &&
+    props.end === 'END' &&
     css`
       background-color: red;
       color: #fff;

@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const Title = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+`;
+
 export const ListBlock = styled.ul`
   margin-top: 1rem;
   max-height: 140px;
@@ -22,5 +28,11 @@ export const ListBlock = styled.ul`
     border: none;
     padding: 0.5rem;
     border-radius: 5px;
+  }
+
+  .btn-lookup {
+    background-color: transparent;
+    color: #fdaa5f;
+    margin-right: 0.5rem;
   }
 `;
