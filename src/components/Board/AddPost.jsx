@@ -50,9 +50,9 @@ function AddPost () {
         console.log('되냐');
 
         toast.success(<h1>게시글 등록이 완료되었습니다. 😊</h1>);
-        // setTimeout(() => {
-        //   navigate('/board');
-        // }, 1500);
+        setTimeout(() => {
+          navigate('/board');
+        }, 1500);
       });
     } catch(e) {
       toast.error(e.response.data.errorMessage);

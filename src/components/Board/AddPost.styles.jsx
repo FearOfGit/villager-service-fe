@@ -8,6 +8,8 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   width: 100%;
+  border-radius: 1.2rem;
+  background-color: #fff;
 `;
 
 export { Wrapper, Button, };
