@@ -17,7 +17,13 @@ export const PersonalInfo = styled.div`
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+
+  .small {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
 
   .nickname {
     font-size: 1.1rem;
@@ -26,9 +32,6 @@ export const PersonalInfo = styled.div`
   .email {
     font-size: 0.9rem;
     font-weight: 400;
-  }
-  .tags {
-    font-size: 0.5rem;
   }
 `;
 

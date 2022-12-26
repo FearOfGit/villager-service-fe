@@ -16,7 +16,7 @@ export const TagBoxWrapper = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   /* margin-bottom: 0.7rem; */
 `;

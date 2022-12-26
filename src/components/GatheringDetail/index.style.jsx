@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import palette from '../../lib/palette';
 
 export const GatheringDetailTemplate = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   .flex {
     display: flex;
-    justify-content: space-between;
+    /* background-color: red; */
+    align-items: center;
   }
   .info {
     margin-top: 0.5rem;

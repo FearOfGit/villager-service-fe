@@ -3,7 +3,12 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { gatheringLookUpAPI } from '../../api/gathering';
 import CommentInput from './CommentInput';
-import { CommentListWrapper, Title } from './CommentList.style';
+import {
+  CommentListWrapper,
+  Title,
+  UserComment,
+  UserName,
+} from './CommentList.style';
 
 function CommentList() {
   const { id: partyId } = useParams();
@@ -26,7 +31,10 @@ function CommentList() {
       <Title>모임 댓글</Title>
       <CommentListWrapper>
         {data.data.commentList.map((comment) => (
-          <li key={comment.partyCommentId}>{comment.contents}</li>
+          <li key={comment.partyCommentId}>
+            <UserName owner={comment.owner}>{comment.nickName}</UserName>
+            <UserComment>{comment.contents}</UserComment>
+          </li>
         ))}
       </CommentListWrapper>
       <CommentInput refetch={refetch} />

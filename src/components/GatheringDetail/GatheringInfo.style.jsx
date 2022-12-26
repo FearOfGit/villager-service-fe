@@ -1,10 +1,8 @@
-// 나눔스퀘어
-
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../lib/palette';
 
 export const GatheringName = styled.h2`
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 0.7rem;
@@ -60,6 +58,26 @@ export const DestroyButton = styled.button`
   margin-left: 0.5rem;
 `;
 
+export const StateButtonWrapper = styled.div`
+  position: fixed;
+  top: 4.5rem;
+  right: 5px;
+  z-index: 100;
+`;
+
+export const StateButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #fff;
+  background-color: ${palette.green[5]};
+  ${(props) =>
+    props.red &&
+    css`
+      background-color: red;
+    `}
+`;
+
 export const GatheringTagWrapper = styled.div`
   font-size: 0.7rem;
   display: flex;
@@ -72,30 +90,6 @@ export const GatheringTagWrapper = styled.div`
     border-radius: 20px;
     background-color: #fdaa5d;
   }
-`;
-
-export const SubTitle = styled.h3`
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-
-  &::before {
-    content: '📌';
-  }
-`;
-
-export const Wrapper = styled.div`
-  & + div {
-    margin-top: 1.5rem;
-  }
-  .end::before {
-    content: ' ~ ';
-  }
-`;
-
-export const Content = styled.div`
-  margin-left: 1.6rem;
-  font-size: 0.9rem;
 `;
 
 export const MemberInfoWrapper = styled.div`
@@ -135,4 +129,25 @@ export const MemberInfoWrapper = styled.div`
     margin-left: 1rem;
     color: #4ab7b6;
   }
+`;
+
+export const PartyState = styled.div`
+  background-color: ${palette.gray[4]};
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 20px;
+  ${(props) =>
+    props.state === 'START' &&
+    css`
+      background-color: ${palette.green[5]};
+      color: #fff;
+    `}
+
+  ${(props) =>
+    props.end === 'END' &&
+    css`
+      background-color: red;
+      color: #fff;
+    `}
 `;
