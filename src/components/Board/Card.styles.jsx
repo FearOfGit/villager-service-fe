@@ -8,16 +8,33 @@ const Wrapper = styled.div`
   background-color: #fff;
   align-items: center;
   border-top: 1px solid ${(props) => props.theme.color.grey_400};
+  border-bottom: 1px solid ${(props) => props.theme.color.grey_400};
 `;
 
-const Desc = styled. div`
+const ContentSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Content = styled.div`
   width: 100%;
   padding-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem;
 `;
 
 const Title = styled.p`
   margin-bottom: 0.2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.2rem;
   color: ${(props) => props.theme.color.black_100};
@@ -27,8 +44,22 @@ const NickName = styled.p`
   font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.2rem;
-  color: grey;
+  color: ${(props) => props.theme.color.grey_900};
+`;
+
+const Date = styled.p`
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: ${(props) => props.theme.color.grey_700};
+`;
+
+const ViewCount = styled.p`
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: ${(props) => props.theme.color.grey_700};
 `;
 
 
-export { Wrapper, Desc, Title, NickName};
+export { Wrapper, ContentSection, ButtonSection, Content, Title, NickName, Date, ViewCount};
