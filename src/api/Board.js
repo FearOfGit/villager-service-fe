@@ -60,3 +60,21 @@ export async function deletePostAPI(id) {
 export async function postDetailAPI(params) {
   return API.get(`${BASE_API}/posts/${params}`);
 }
+
+/**
+ * 게시글 좋아요 API
+ * @param {string} postId
+ * @returns {} 
+ */
+export async function postLikeAPI(params) {
+  return API.post(`${BASE_API}/postlike/${params}`);
+}
+
+/**
+ * 게시글 좋아요 해제 API
+ * @param {string} postId
+ * @returns {} 
+ */
+export async function postDislikeAPI(params) {
+  return API.delete(`${BASE_API}/postlike/${params}`);
+}

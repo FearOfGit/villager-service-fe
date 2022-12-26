@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { IoArrowBackOutline, IoHeartOutline, IoHeart } from "react-icons/io5";
-import { postDetailAPI } from "../../../api/Board";
+import { IoArrowBackOutline, IoHeartOutline, IoHeart, IoEllipsisVertical } from "react-icons/io5";
+import { postDetailAPI, postLikeAPI, postDislikeAPI } from "../../../api/Board";
 import { 
   Wrapper,
   Modal,
@@ -24,6 +24,17 @@ function CardModal ({modal, postId}) {
   };
   const [postDetail, setPostDetail] = useState([]);
   const [imagePath, setImagePath] = useState('');
+  const [isLike, setIsLike] = useState(false);
+
+  const handleLike = () => {
+    if (isLike === false) {
+      postLikeAPI(postId).then((res)=>{console.log(res.data); console.log('좋아요 해제')});
+      setIsLike(!isLike);
+    } else {
+      postDislikeAPI(postId).then((res)=>{console.log(res.data); console.log('좋아요 해제')});
+      setIsLike(!isLike);
+    }
+  };
 
   useEffect(()=> {
     postDetailAPI(postId).then((res)=> {
@@ -41,8 +52,12 @@ function CardModal ({modal, postId}) {
             <CancelBtn type="button" onClick={cancel}>
               <IoArrowBackOutline size="1.4rem"/>
             </CancelBtn>
-            <LikeBtn>
-              <IoHeartOutline size="1.4rem"/>
+            <LikeBtn type="button" onClick={handleLike}>
+              {isLike ? (
+                <IoHeart size="1.4rem"/>
+              ) : (
+                <IoHeartOutline size="1.4rem"/>
+              )}
             </LikeBtn>
           </ButtonSection>
           <TitleSection>
