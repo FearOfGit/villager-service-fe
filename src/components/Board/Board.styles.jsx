@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   width: 100%;
   font-size: 1.6rem;
   font-weight: 600;

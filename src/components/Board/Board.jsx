@@ -39,6 +39,7 @@ function Board () {
             nickName={post.nickName}
             nearCreateAt={post.nearCreateAt}
             categoryId={post.categoryId}
+            viewCount={post.viewCount}
           />
         ))}
       </Wrapper>
