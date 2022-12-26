@@ -1,9 +1,0 @@
-[build]
-publish = "build"
-command = "CI = npm run build"
-
-[[redirects]]
-from = "/proxy/*"
-  to = "https://devwinter.com/api/v1/:splat"  
-  status = 200
-  force = true
