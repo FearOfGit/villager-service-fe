@@ -1,6 +1,3 @@
-// PROXY 설정
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
 /* eslint-disable prefer-const */
 import axios from 'axios';
 import moment from 'moment';
