@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { IoArrowBackOutline, IoHeartOutline, IoHeart, IoEllipsisVertical } from "react-icons/io5";
 import { postDetailAPI, postLikeAPI, postDislikeAPI } from "../../../api/Board";
-import { 
+import {
+  Spacer,
   Wrapper,
   Modal,
   TitleSection,
@@ -51,6 +52,7 @@ function CardModal ({modal, postId}) {
   return(
     <>
       <Wrapper>
+        <Spacer/>
         <Modal>
           <ButtonSection>
             <CancelBtn type="button" onClick={cancel}>
@@ -61,7 +63,7 @@ function CardModal ({modal, postId}) {
                 <IoHeart size="1.4rem"/>
               ) : (
                 <IoHeartOutline size="1.4rem"/>
-              )}
+                )}
             </LikeBtn>
           </ButtonSection>
           <TitleSection>
@@ -91,16 +93,22 @@ function CardModal ({modal, postId}) {
           <ContentSection>
             {comment.map((reply)=>(
               <ReplyCard
-                key={reply.commentId}
-                replyId={reply.commentId}
-                memberId={reply.memberId}
-                nickName={reply.nickName}
-                comment={reply.comment}
-                date={reply.createdAt}
+              key={reply.commentId}
+              replyId={reply.commentId}
+              memberId={reply.memberId}
+              nickName={reply.nickName}
+              comment={reply.comment}
+              date={reply.createdAt}
               />
-            ))}
+              ))}
+          </ContentSection>
+          <ContentSection>
+            <Reply>
+              댓글 달기
+            </Reply>
           </ContentSection>
         </Modal>
+        <Spacer/>
       </Wrapper>
     </>
   );

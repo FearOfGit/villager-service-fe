@@ -1,31 +1,36 @@
 import styled from "styled-components";
 
+const Spacer = styled.div`
+  height: 12rem;
+`;
+
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 50%;
   max-width: 1920px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
   transform: translateX(-50%);
+  overflow-y: auto;
 `;
 
-const Modal = styled.form`
+const Modal = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  max-width: 720px;
-  width: 80%;
+  max-width: 1280px;
+  width: 85%;
+  height: 75%;
   padding: 1rem;
   background-color: #fff;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 12px;
-  `;
+  overflow-y: auto;
+`;
   
 const TitleSection = styled.div`
   width: 100%;
@@ -55,6 +60,7 @@ const ReplySection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 0 0.2rem;
+  overflow-y: auto;
 `;
 
 const ImageSection = styled.div`
@@ -127,7 +133,8 @@ const ModalInput = styled.input`
   background-color: ${(props) => props.theme.color.light_200};
 `;
 
-export { 
+export {
+  Spacer,
   Wrapper, 
   Modal, 
   TitleSection, 
