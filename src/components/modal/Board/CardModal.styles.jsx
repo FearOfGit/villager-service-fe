@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 50%;
-  max-width: 600px;
+  max-width: 1920px;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -16,7 +16,7 @@ const Modal = styled.form`
   display: flex;
   flex-direction: column;
   position: absolute;
-  max-width: 600px;
+  max-width: 1920px;
   width: 80%;
   padding: 1rem;
   background-color: #fff;

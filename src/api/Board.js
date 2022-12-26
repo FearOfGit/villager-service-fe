@@ -9,7 +9,7 @@ const BASE_API =
 
 /**
  * 게시글 목록 조회 API
- * @param {string} categoryId, title, page, size, AccessToken
+ * @param {string} categoryId, page, size, AccessToken
  * @returns {} categoryId, title, page, size
  */
 export async function postsListAPI(params) {
@@ -50,4 +50,13 @@ export async function changePostAPI(id, changeForm) {
  */
 export async function deletePostAPI(id) {
   return API.delete(`${BASE_API}/posts/${id}`);
+}
+
+/**
+ * 게시글 상세 조회 API
+ * @param {string} postId
+ * @returns {} categoryId, title, page, size
+ */
+export async function postDetailAPI(params) {
+  return API.get(`${BASE_API}/posts`, params);
 }
