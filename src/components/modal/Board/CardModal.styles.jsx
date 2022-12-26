@@ -39,8 +39,7 @@ const ContentSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0.5rem 0.2rem;
-
+  margin: 0.75rem 0.2rem;
 `;
 
 const ButtonSection = styled.div`
@@ -48,6 +47,14 @@ const ButtonSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const ReplySection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0.2rem;
 `;
 
 const ImageSection = styled.div`
@@ -69,6 +76,12 @@ const Title = styled.div`
 `;
   
 const NickName = styled.div`
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.color.grey_800};
+`;
+
+const Reply = styled.div`
   font-size: 0.85rem;
   font-weight: 400;
   color: ${(props) => props.theme.color.grey_800};
@@ -120,9 +133,11 @@ export {
   TitleSection, 
   ContentSection, 
   ButtonSection,
+  ReplySection,
   ImageSection, 
   Title, 
   NickName,
+  Reply,
   Date,
   Content, 
   Image,

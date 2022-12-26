@@ -8,9 +8,11 @@ import {
   TitleSection,
   ContentSection,
   ButtonSection,
+  ReplySection,
   ImageSection,
   Title,
   NickName,
+  Reply,
   Date,
   Image,
   Content,
@@ -28,11 +30,11 @@ function CardModal ({modal, postId}) {
 
   const handleLike = () => {
     if (isLike === false) {
-      postLikeAPI(postId).then((res)=>{console.log(res.data); console.log('좋아요 해제')});
-      setIsLike(!isLike);
+      postLikeAPI(postId).then((res)=>{console.log(res.data); console.log('좋아요')});
+      setIsLike(true);
     } else {
       postDislikeAPI(postId).then((res)=>{console.log(res.data); console.log('좋아요 해제')});
-      setIsLike(!isLike);
+      setIsLike(false);
     }
   };
 
@@ -79,6 +81,11 @@ function CardModal ({modal, postId}) {
               {postDetail.contents}
             </Content>
           </ContentSection>
+          <ReplySection>
+            <Reply>
+              댓글
+            </Reply>
+          </ReplySection>
         </Modal>
       </Wrapper>
     </>
