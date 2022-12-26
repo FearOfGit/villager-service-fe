@@ -1,7 +1,7 @@
 import { API } from './Token';
 
 // PROXY 설정
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+// const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
@@ -13,7 +13,7 @@ const BASE_API = 'https://devwinter.com/api/v1';
  * @returns {} email, message
  */
 export async function signUpAPI(userForm) {
-  return API.post(`${PROXY}/auth/signup`, userForm);
+  return API.post(`${BASE_API}/auth/signup`, userForm);
 }
 
 /**
@@ -22,7 +22,7 @@ export async function signUpAPI(userForm) {
  * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message
  */
 export async function signInAPI(userForm) {
-  return API.post(`${PROXY}/auth/login`, userForm);
+  return API.post(`${BASE_API}/auth/login`, userForm);
 }
 
 /**
@@ -31,7 +31,7 @@ export async function signInAPI(userForm) {
  * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message
  */
 export async function signInOAuthGoogleAPI() {
-  return API.post(`${PROXY}/oauth2/authorization/google`);
+  return API.post(`${BASE_API}/oauth2/authorization/google`);
 }
 
 /**
@@ -40,7 +40,7 @@ export async function signInOAuthGoogleAPI() {
  * @returns {} accessToken, grantType, refreshToken, accessTokenExpirationTime, message
  */
 export async function logOutAPI() {
-  return API.get(`${PROXY}/auth/logout`);
+  return API.get(`${BASE_API}/auth/logout`);
 }
 
 /**
@@ -49,7 +49,7 @@ export async function logOutAPI() {
  * @return {} email, nickname, cash, birth, message
  */
 export async function myPageAPI(id) {
-  return API.get(`${PROXY}/members/${id}`);
+  return API.get(`${BASE_API}/members/${id}`);
 }
 
 /**
@@ -58,7 +58,7 @@ export async function myPageAPI(id) {
  * @return {} email, nickname, cash, birth, message
  */
 export async function myPageDetailAPI() {
-  return API.get(`${PROXY}/members/`);
+  return API.get(`${BASE_API}/members/`);
 }
 
 /**
@@ -67,7 +67,7 @@ export async function myPageDetailAPI() {
  * @return {} message
  */
 export async function newPasswordAPI(passwordForm) {
-  return API.patch(`${PROXY}/members/password`, passwordForm);
+  return API.patch(`${BASE_API}/members/password`, passwordForm);
 }
 
 /**
@@ -76,7 +76,7 @@ export async function newPasswordAPI(passwordForm) {
  * @return {} message
  */
 export async function newIntroduceAPI(contentsForm) {
-  return API.patch(`${PROXY}/members/info`, contentsForm);
+  return API.patch(`${BASE_API}/members/info`, contentsForm);
 }
 
 /**
@@ -84,7 +84,7 @@ export async function newIntroduceAPI(contentsForm) {
  * @return {} message
  */
 export async function signOutAPI() {
-  return API.delete(`${PROXY}/members`);
+  return API.delete(`${BASE_API}/members`);
 }
 
 /**
@@ -92,7 +92,7 @@ export async function signOutAPI() {
  * @return {} message
  */
 export async function updateTagAPI(body) {
-  return API.post(`${PROXY}/members/tags`, body);
+  return API.post(`${BASE_API}/members/tags`, body);
 }
 
 /**
@@ -101,5 +101,5 @@ export async function updateTagAPI(body) {
  * @return {} pageNumber, follows, nickName, followCount
  */
 export async function rankAPI(params) {
-  return API.get(`${PROXY}/follows`, params);
+  return API.get(`${BASE_API}/follows`, params);
 }
