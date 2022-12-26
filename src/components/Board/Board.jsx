@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Wrapper, Title, } from './Board.styles';
+import { IoPencil } from "react-icons/io5";
+import { Wrapper, TitleSection, Title, PostButton, } from './Board.styles';
 import { postsListAPI} from '../../api/Board';
 import Card from './Card';
 
 function Board () {
+
+  const navigate = useNavigate();
 
   const [ boardCategoryId, setBoardCategoryId ] = useState(1);
   const [ boardPage, setBoardPage ] = useState(0);
@@ -28,9 +32,14 @@ function Board () {
   return(
     <>
       <Wrapper>
-        <Title>
-          게시판
-        </Title>
+        <TitleSection>
+          <Title>
+            게시판
+          </Title>
+          <PostButton type="button" onClick={()=>{navigate('/addPost')}}>
+            <IoPencil size="1.25rem"/>
+          </PostButton>
+        </TitleSection>
         {boardList.map((post)=>(
           <Card
             key={post.postId}

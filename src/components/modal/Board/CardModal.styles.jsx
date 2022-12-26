@@ -16,7 +16,7 @@ const Modal = styled.form`
   display: flex;
   flex-direction: column;
   position: absolute;
-  max-width: 1920px;
+  max-width: 720px;
   width: 80%;
   padding: 1rem;
   background-color: #fff;
@@ -29,31 +29,80 @@ const Modal = styled.form`
   
 const TitleSection = styled.div`
   width: 100%;
+  margin-top: 1rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 `;
 
 const ContentSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 0.5rem 0;
+  justify-content: space-between;
+  margin: 0.5rem 0.2rem;
+
 `;
 
 const ButtonSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const ImageSection = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid ${(props) => props.theme.color.grey_400};
+  border-bottom: 1px solid ${(props) => props.theme.color.grey_400};
 `;
 
 const Title = styled.div`
   width: 100%;
-  margin-bottom: 1rem;
-  text-align: center;
+  text-align: left;
   font-size: 1.4rem;
   font-weight: 600;
+  color: ${(props) => props.theme.color.grey_900};
+`;
+  
+const NickName = styled.div`
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.color.grey_800};
+`;
+
+const Date = styled.div`
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.color.grey_700};
+`;
+
+const Image = styled.img`
+  width: 100%;
+  max-width: 300px;
+  border-radius: 1rem;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  font-weight: 400;
+  text-align: left;
+  color: ${(props) => props.theme.color.grey_900};
+`;
+
+const CancelBtn = styled.button`
+  border: transparent;
+  background: #fff;
+  `;
+
+const LikeBtn = styled.button`
+  border: transparent;
+  background: #fff;
 `;
 
 const ModalInput = styled.input`
@@ -65,32 +114,6 @@ const ModalInput = styled.input`
   background-color: ${(props) => props.theme.color.light_200};
 `;
 
-const Image = styled.img`
-  width: 100%;
-`;
-
-const Content = styled.div`
-  width: 100%;
-  font-size: 1rem;
-  line-height: 1.4rem;
-  padding: 1rem;
-  font-weight: 400;
-  text-align: center;
-`;
-
-const SubmitBtn = styled.button`
-  width: 100%;
-  margin: 0 0.25rem;
-  line-height: 1.4rem;
-  border-radius: 2rem;
-`;
-
-const CancelBtn = styled.button`
-  width: 100%;
-  margin: 0 0.25rem;
-  border-radius: 2rem;
-`;
-
 export { 
   Wrapper, 
   Modal, 
@@ -99,9 +122,11 @@ export {
   ButtonSection,
   ImageSection, 
   Title, 
+  NickName,
+  Date,
   Content, 
   Image,
-  ModalInput, 
-  SubmitBtn, 
   CancelBtn,
+  ModalInput, 
+  LikeBtn, 
 };

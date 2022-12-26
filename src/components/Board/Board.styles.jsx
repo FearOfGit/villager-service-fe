@@ -6,6 +6,15 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
+const TitleSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.25rem;
+  padding-right: 0.5rem;
+`;
+
 const Title = styled.div`
   margin: 1.5rem 0;
   width: 100%;
@@ -13,4 +22,9 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-export { Wrapper, Title, };
+const PostButton = styled.button`
+  border: transparent;
+  background: transparent;
+`;
+
+export { Wrapper, TitleSection, Title, PostButton, };
