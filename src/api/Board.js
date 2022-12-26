@@ -58,5 +58,5 @@ export async function deletePostAPI(id) {
  * @returns {} categoryId, title, page, size
  */
 export async function postDetailAPI(params) {
-  return API.get(`${BASE_API}/posts`, params);
+  return API.get(`${BASE_API}/posts/${params}`);
 }

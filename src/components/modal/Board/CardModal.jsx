@@ -1,7 +1,18 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Wrapper, Modal, CancelBtn  } from "./CardModal.styles";
 import { postDetailAPI } from "../../../api/Board";
+import { 
+  Wrapper,
+  Modal,
+  TitleSection,
+  ContentSection,
+  ButtonSection,
+  ImageSection,
+  Title,
+  Image,
+  Content,
+  CancelBtn,
+} from "./CardModal.styles";
 
 function CardModal ({modal, postId}) {
   const cancel = () => {
@@ -13,17 +24,32 @@ function CardModal ({modal, postId}) {
   }
 
   const { data } = useQuery('getPostDetail', getPostDetail);
+  
+  let postDetail = [];
+  if (data) {
+    postDetail = data;
+  };
 
-  console.log('상세정보', data);
+  console.log('postDetail', postDetail);
 
   return(
     <>
       <Wrapper>
-        <CancelBtn type="button" onClick={cancel}>
-          닫기
-        </CancelBtn>
         <Modal>
-          안녕
+          <ButtonSection>
+            <CancelBtn type="button" onClick={cancel}>
+              닫기
+            </CancelBtn>
+          </ButtonSection>
+          <TitleSection>
+            <Title>{postDetail.title}</Title>
+          </TitleSection>
+          <ImageSection>
+            <Image src={postDetail.images[0].path}/>
+          </ImageSection>
+          <ContentSection>
+            {postDetail.contents}
+          </ContentSection>
         </Modal>
       </Wrapper>
     </>
