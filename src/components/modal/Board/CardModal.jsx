@@ -19,6 +19,7 @@ import {
   CancelBtn,
   LikeBtn,
 } from "./CardModal.styles";
+import ReplyCard from "../../Board/ReplyCard";
 
 function CardModal ({modal, postId}) {
   const cancel = () => {
@@ -26,6 +27,7 @@ function CardModal ({modal, postId}) {
   };
   const [postDetail, setPostDetail] = useState([]);
   const [imagePath, setImagePath] = useState('');
+  const [comment, setComment] = useState([]);
   const [isLike, setIsLike] = useState(false);
 
   const handleLike = () => {
@@ -86,6 +88,18 @@ function CardModal ({modal, postId}) {
               댓글
             </Reply>
           </ReplySection>
+          <ContentSection>
+            {comment.map((reply)=>(
+              <ReplyCard
+                key={reply.commentId}
+                replyId={reply.commentId}
+                memberId={reply.memberId}
+                nickName={reply.nickName}
+                comment={reply.comment}
+                date={reply.createdAt}
+              />
+            ))}
+          </ContentSection>
         </Modal>
       </Wrapper>
     </>
