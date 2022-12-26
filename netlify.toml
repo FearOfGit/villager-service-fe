@@ -1,6 +1,6 @@
 [build]
-publish = ""
-command = ""
+publish = "publish"
+command = "npm run build"
 
 [[redirects]]
 from = "/proxy/*"
