@@ -1,8 +1,10 @@
 import { API } from './Token';
 
+// PROXY 설정
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
-
 const BASE_API =
   'https://devwinter.com/api/v1';
 
@@ -12,7 +14,7 @@ const BASE_API =
  * @returns {}
  */
 export async function insertTownAPI(townValues) {
-  return API.post(`${BASE_API}/members/towns`, townValues);
+  return API.post(`${PROXY}/members/towns`, townValues);
 }
 
 /**
@@ -21,7 +23,7 @@ export async function insertTownAPI(townValues) {
  * @returns {} totalCount, towns{townId, name, code, latitude, longitude}
  */
 export async function searchTownAPI(locValues) {
-  return API.post(`${BASE_API}/towns/location`, locValues);
+  return API.post(`${PROXY}/towns/location`, locValues);
 }
 
 /**
@@ -31,7 +33,7 @@ export async function searchTownAPI(locValues) {
  */
 export async function getTownAPI() {
   console.log('getTown');
-  return API.get(`${BASE_API}/members/towns`);
+  return API.get(`${PROXY}/members/towns`);
 }
 
 /**
@@ -40,7 +42,7 @@ export async function getTownAPI() {
  * @returns {}
  */
 export async function editTownNameAPI(id, body) {
-  return API.patch(`${BASE_API}/members/towns/${id}`, body);
+  return API.patch(`${PROXY}/members/towns/${id}`, body);
 }
 
 /**
@@ -49,5 +51,5 @@ export async function editTownNameAPI(id, body) {
  * @returns {}
  */
 export async function deleteTownAPI(id) {
-  return API.delete(`${BASE_API}/members/towns/${id}`);
+  return API.delete(`${PROXY}/members/towns/${id}`);
 }
