@@ -7,6 +7,8 @@ import { API } from './Token';
 // 로컬 서버 URL: http://localhost:8080/
 const BASE_API =
   'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 /**
  * 팔로우 신청 API

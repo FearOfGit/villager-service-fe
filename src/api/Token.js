@@ -10,6 +10,8 @@ import {
 
 const BASE_API =
   'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 export const API = axios.create({});
 

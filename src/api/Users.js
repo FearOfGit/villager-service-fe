@@ -5,10 +5,10 @@ import { API } from './Token';
 
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
-// const BASE_API =
-//   'https://devwinter.com/api/v1';
 const BASE_API =
-  '/api';
+  'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 /**
  * 회원가입 API
