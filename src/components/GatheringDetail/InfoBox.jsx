@@ -31,7 +31,11 @@ function InfoBox({ data }) {
       <Wrapper>
         <SubTitle>인원수 : </SubTitle>
         <Content>
-          <div>{data.data.numberPeople}명 예정</div>
+          <div>
+            {' '}
+            {data.data.partyPeople}{' '}
+            <span className="total">/ {data.data.numberPeople}</span>명
+          </div>
         </Content>
       </Wrapper>
       <DescWrapper>

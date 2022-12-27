@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import Drawer from 'react-modern-drawer';
 import {
   ButtonWrapper,
   DestroyButton,
@@ -22,9 +23,13 @@ import {
   gatheringDeleteAPI,
   gatheringApplyAPI,
   startGatheringAPI,
+  endGatheringAPI,
 } from '../../api/gathering';
 import ApplicationList from './ApplicationList';
 import InfoBox from './InfoBox';
+import MemberList from './MemberList';
+import 'react-modern-drawer/dist/index.css';
+import TermExtension from './TermExtension';
 
 const partyState = {
   READY: '준비중',
@@ -37,6 +42,7 @@ function GatheringInfo({ searchId }) {
   const myId = useSelector((state) => state.user.value.userId);
   const [like, setLike] = useState(false);
   const [location, setLocation] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
   const { data, refetch } = useQuery(
     ['getGathering', searchId],
     () => gatheringLookUpAPI(searchId),
@@ -50,9 +56,9 @@ function GatheringInfo({ searchId }) {
   const today = new Date();
   const startDate = new Date(data.data.startDt);
   const endDate = new Date(data.data.endDt);
-  const tomorrow = new Date(endDate.setDate(endDate.getDate() + 1));
+  // const tomorrow = new Date(endDate.setDate(endDate.getDate() + 1));
   const isStart = today >= startDate;
-  const isEnd = today >= tomorrow;
+  const isEnd = today >= endDate;
 
   useEffect(() => {
     const { kakao } = window;
@@ -69,6 +75,10 @@ function GatheringInfo({ searchId }) {
     setLike(data.data.partyLike);
     console.log(data);
   }, [data]);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   const handleLike = async () => {
     const response = await gatheringLikeAPI(searchId);
@@ -93,6 +103,12 @@ function GatheringInfo({ searchId }) {
     refetch();
   };
 
+  const handleEnd = async () => {
+    const response = await endGatheringAPI(searchId);
+    console.log(response);
+    refetch();
+  };
+
   return (
     <>
       <div className="flex">
@@ -112,15 +128,22 @@ function GatheringInfo({ searchId }) {
         <LikeButton onClick={handleLike}>
           {like ? <AiFillHeart /> : <AiOutlineHeart />}
         </LikeButton>
-        {!isMe && <JoinButton onClick={handleApply}>신청</JoinButton>}
-        {isMe && <DestroyButton onClick={handleDelete}>삭제</DestroyButton>}
+        {!isMe && data.data.state === 'READY' && (
+          <JoinButton onClick={handleApply}>신청</JoinButton>
+        )}
+        {isMe && data.data.state !== 'START' && (
+          <DestroyButton onClick={handleDelete}>삭제</DestroyButton>
+        )}
       </ButtonWrapper>
 
       <Map lat={location.lat} lng={location.lng} />
       <div className="info">
         <InfoBox data={data} />
       </div>
-      {isMe && <ApplicationList searchId={searchId} />}
+      <MemberList members={data.data.memberClubs} />
+      {isMe && data.data.state === 'READY' && (
+        <ApplicationList searchId={searchId} />
+      )}
       {isMe && isStart && !isEnd && data.data.state === 'READY' && (
         <StateButtonWrapper>
           <StateButton onClick={handleStart}>모임 시작</StateButton>
@@ -128,10 +151,27 @@ function GatheringInfo({ searchId }) {
       )}
       {isMe && isEnd && data.data.state === 'START' && (
         <StateButtonWrapper>
-          <StateButton red="true">모임 종료</StateButton>
-          <StateButton red="true">모임 종료</StateButton>
+          <StateButton grey="true" onClick={toggleDrawer}>
+            모임 연장
+          </StateButton>
+          <StateButton red="true" onClick={handleEnd}>
+            모임 종료
+          </StateButton>
         </StateButtonWrapper>
       )}
+      <Drawer
+        open={isOpen}
+        onClose={toggleDrawer}
+        direction="bottom"
+        size="40vw"
+        className="drawer"
+      >
+        <TermExtension
+          searchId={searchId}
+          refetch={refetch}
+          setIsOpen={setIsOpen}
+        />
+      </Drawer>
     </>
   );
 }

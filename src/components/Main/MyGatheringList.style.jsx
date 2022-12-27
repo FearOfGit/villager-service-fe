@@ -1,45 +1,30 @@
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
-export const MyGatheringListBlock = styled.div`
-  background: #ebeff3;
-  flex: 1.5;
-  max-width: 400px;
-  padding: 1rem;
-  border-radius: 8px;
-  .title {
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
+export const Title = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0;
 `;
 
-export const List = styled.ul`
-  display: block;
-  margin-top: 1rem;
-  .item {
+export const MyListWrapper = styled.div`
+  li {
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
-    & + .item {
-      margin-top: 0.8rem;
-    }
+    padding: 0.5rem;
   }
-  .g-name {
+  .location {
+    font-size: 0.7rem;
+    color: ${palette.gray[6]};
+  }
+  .name {
+    margin-top: 0.1rem;
+  }
+  .ico {
     display: flex;
-    &::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 15px;
-      margin-right: 0.3rem;
-      background: red;
-    }
-  }
-  .details {
-    margin-top: 2px;
-    width: 10px;
-    height: 10px;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    transform: rotate(45deg);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
   }
 `;

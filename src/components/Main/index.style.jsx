@@ -14,10 +14,6 @@ export const MainTemplate = styled.main`
     justify-content: space-between;
     width: 100%;
   }
-  .user-info {
-    display: flex;
-    justify-content: space-between;
-  }
   .map {
     margin-top: 2rem;
     height: 200px;
