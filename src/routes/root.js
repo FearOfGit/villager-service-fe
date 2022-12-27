@@ -1,13 +1,15 @@
 /* eslint-disable no-undef */
 import { useEffect, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addAlert } from '../store/alert';
 import Header from '../components/common/Header';
 import Navigator from '../components/common/Navigator';
 import Responsive from '../components/common/Responsive';
 
 function Root() {
   const myId = useSelector((state) => state.user.value.userId);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!myId) return;
@@ -35,7 +37,18 @@ function Root() {
       // 모임 생성 후 알림 이벤트
       // 관심태그 알림받기
       source.addEventListener('party-create', (e) => {
-        console.log(e.data);
+        console.log(JSON.parse(e.data));
+        const result = JSON.parse(e.data);
+        console.log(result);
+        if (!result.partyId) return;
+
+        dispatch(
+          addAlert({
+            partyId: result.partyId,
+            partyName: result.partyName,
+            tag: result.tagName,
+          }),
+        );
       });
       source.onerror = (err) => {
         console.log('on err: ', err);
@@ -49,7 +62,7 @@ function Root() {
     $(window).on('unload', () => {
       stop();
     });
-  }, []);
+  }, [myId]);
 
   return (
     <>
