@@ -1,4 +1,22 @@
+<<<<<<< HEAD
 [[redirects]]
-  from = "https://devwinter.com/api/v1"
-  to = "https://devwinter.com/api/v1 /:splat"
+  from = "/api/*"
+  to = "https://devwinter.com/api/v1/:splat"
   status = 200
+  force = true
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+=======
+[build]
+publish = "build"
+command = "CI = npm run build"
+
+[[redirects]]
+from = "/proxy/*"
+  to = "https://devwinter.com/api/v1/:splat"  
+  status = 200
+  force = true
+>>>>>>> parent of 48e8fb1 (Delete netlify.toml)
