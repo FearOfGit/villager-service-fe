@@ -1,6 +1,3 @@
-// PROXY 설정
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
 /* eslint-disable prefer-const */
 import axios from 'axios';
 import moment from 'moment';
@@ -13,6 +10,8 @@ import {
 
 const BASE_API =
   'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 export const API = axios.create({});
 

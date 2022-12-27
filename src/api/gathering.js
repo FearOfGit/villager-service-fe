@@ -1,13 +1,14 @@
 import { API } from './Token';
 
 // PROXY 설정
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+// const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
-
 const BASE_API =
   'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 /**
  * 모임 등록 API
@@ -15,7 +16,7 @@ const BASE_API =
  * @returns {} message
  */
 export async function gatheringRegisterAPI(body) {
-  return API.post(`${PROXY}/parties`, body);
+  return API.post(`${BASE_API}/parties`, body);
 }
 
 /**
@@ -24,7 +25,7 @@ export async function gatheringRegisterAPI(body) {
  * @returns {} message
  */
 export async function gatheringLookUpAPI(id) {
-  return API.get(`${PROXY}/parties/${id}`);
+  return API.get(`${BASE_API}/parties/${id}`);
 }
 
 /**
@@ -33,7 +34,7 @@ export async function gatheringLookUpAPI(id) {
  * @returns {} message
  */
 export async function AllgatheringLookUpAPI(lat, lnt) {
-  return API.get(`${PROXY}/parties/${lat}/${lnt}`);
+  return API.get(`${BASE_API}/parties/${lat}/${lnt}`);
 }
 
 /**
@@ -42,7 +43,7 @@ export async function AllgatheringLookUpAPI(lat, lnt) {
  * @returns {} message
  */
 export async function gatheringApplyAPI(id) {
-  return API.post(`${PROXY}/parties/${id}/apply`);
+  return API.post(`${BASE_API}/parties/${id}/apply`);
 }
 
 /**
@@ -51,7 +52,7 @@ export async function gatheringApplyAPI(id) {
  * @returns {} message
  */
 export async function gatheringLikeAPI(id) {
-  return API.post(`${PROXY}/parties/${id}/like`);
+  return API.post(`${BASE_API}/parties/${id}/like`);
 }
 
 /**
@@ -60,7 +61,7 @@ export async function gatheringLikeAPI(id) {
  * @returns {} message
  */
 export async function gatheringDeleteAPI(id) {
-  return API.delete(`${PROXY}/parties/${id}`);
+  return API.delete(`${BASE_API}/parties/${id}`);
 }
 
 /**
@@ -69,7 +70,7 @@ export async function gatheringDeleteAPI(id) {
  * @returns {} message
  */
 export async function ApplicationListAPI(id) {
-  return API.get(`${PROXY}/parties/${id}/apply`, {
+  return API.get(`${BASE_API}/parties/${id}/apply`, {
     page: '1',
     size: '5',
   });
@@ -81,7 +82,7 @@ export async function ApplicationListAPI(id) {
  * @returns {} message
  */
 export async function writeCommentAPI(partyId, body) {
-  return API.post(`${PROXY}/parties/${partyId}/comment`, body);
+  return API.post(`${BASE_API}/parties/${partyId}/comment`, body);
 }
 
 /**

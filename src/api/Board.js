@@ -1,13 +1,15 @@
 import { API } from './Token';
 
-// PROXY 설정
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+// // PROXY 설정
+// const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 백 엔드 배포 서버 https URL: https://devwinter.com/api/v1/
 // 로컬 서버 URL: http://localhost:8080/
 const BASE_API =
   'https://devwinter.com/api/v1';
+// const BASE_API =
+//   '/api';
 
 /**
  * 게시글 목록 조회 API
@@ -15,7 +17,7 @@ const BASE_API =
  * @returns {} categoryId, title, page, size
  */
 export async function postsListAPI(params) {
-  return API.get(`${PROXY}/posts`, params);
+  return API.get(`${BASE_API}/posts`, params);
 }
 
 /**
@@ -24,7 +26,7 @@ export async function postsListAPI(params) {
  * @returns {}
  */
 export async function postAPI(postForm) {
-  return API.post(`${PROXY}/posts`, postForm);
+  return API.post(`${BASE_API}/posts`, postForm);
 }
 
 /**
@@ -33,7 +35,7 @@ export async function postAPI(postForm) {
  * @returns {} email, message
  */
 export async function showCategoryAPI() {
-  return API.get(`${PROXY}/posts/category`);
+  return API.get(`${BASE_API}/posts/category`);
 }
 
 /**
@@ -42,7 +44,7 @@ export async function showCategoryAPI() {
  * @returns {} categoryId, title, contents
  */
 export async function changePostAPI(id, changeForm) {
-  return API.put(`${PROXY}/posts/${id}`, changeForm);
+  return API.put(`${BASE_API}/posts/${id}`, changeForm);
 }
 
 /**
@@ -51,7 +53,7 @@ export async function changePostAPI(id, changeForm) {
  * @returns {} categoryId, title, contents
  */
 export async function deletePostAPI(id) {
-  return API.delete(`${PROXY}/posts/${id}`);
+  return API.delete(`${BASE_API}/posts/${id}`);
 }
 
 /**
@@ -60,7 +62,7 @@ export async function deletePostAPI(id) {
  * @returns {} categoryId, title, page, size
  */
 export async function postDetailAPI(params) {
-  return API.get(`${PROXY}/posts/${params}`);
+  return API.get(`${BASE_API}/posts/${params}`);
 }
 
 /**
@@ -69,7 +71,7 @@ export async function postDetailAPI(params) {
  * @returns {} 
  */
 export async function postLikeAPI(params) {
-  return API.post(`${PROXY}/postlike/${params}`);
+  return API.post(`${BASE_API}/postlike/${params}`);
 }
 
 /**
@@ -78,5 +80,5 @@ export async function postLikeAPI(params) {
  * @returns {} 
  */
 export async function postDislikeAPI(params) {
-  return API.delete(`${PROXY}/postlike/${params}`);
+  return API.delete(`${BASE_API}/postlike/${params}`);
 }
