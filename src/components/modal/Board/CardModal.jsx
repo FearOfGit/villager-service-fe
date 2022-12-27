@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { IoArrowBackOutline, IoHeartOutline, IoHeart, IoEllipsisVertical } from "react-icons/io5";
-import { postDetailAPI, postLikeAPI, postDislikeAPI } from "../../../api/Board";
+import { toast, ToastContainer } from "react-toastify";
+import { postDetailAPI, postLikeAPI, postDislikeAPI, addReplyAPI } from "../../../api/Board";
 import {
   Spacer,
   Wrapper,
@@ -11,6 +12,7 @@ import {
   ButtonSection,
   ReplySection,
   ImageSection,
+  AddReplySection,
   Title,
   NickName,
   Reply,
@@ -19,6 +21,8 @@ import {
   Content,
   CancelBtn,
   LikeBtn,
+  ReplyInput,
+  AddReplyBtn,
 } from "./CardModal.styles";
 import ReplyCard from "../../Board/ReplyCard";
 
@@ -30,6 +34,7 @@ function CardModal ({modal, postId}) {
   const [imagePath, setImagePath] = useState('');
   const [comment, setComment] = useState([]);
   const [isLike, setIsLike] = useState(false);
+  const [commentInput, setCommentInput] = useState('');
 
   const handleLike = () => {
     if (isLike === false) {
@@ -41,17 +46,32 @@ function CardModal ({modal, postId}) {
     }
   };
 
+  const handleReply =(e) => {
+    setCommentInput(e.target.value);
+    console.log(commentInput);
+  };
+
+  const addReply = () => {
+    const body = {"comment": commentInput};
+    addReplyAPI(postId, body)
+      .then((res)=>{console.log(postId, body, res.data); console.log('잘 돼띠!')});
+  };
+
+
   useEffect(()=> {
     postDetailAPI(postId).then((res)=> {
       setPostDetail(res.data);
+      setComment(res.data.comments);
       setImagePath(res.data.images[0].path);
       console.log("상세정보", res.data);
+      console.log("댓글", comment);
     });
   }, []);
   
   return(
     <>
       <Wrapper>
+        <ToastContainer/>
         <Spacer/>
         <Modal>
           <ButtonSection>
@@ -104,9 +124,18 @@ function CardModal ({modal, postId}) {
           </ContentSection>
           <ContentSection>
             <Reply>
-              댓글 달기
+              새 댓글
             </Reply>
+            <AddReplyBtn type="button" onClick={()=>addReply(commentInput)}>
+              댓글 입력
+            </AddReplyBtn>
           </ContentSection>
+          <AddReplySection>
+            <ReplyInput
+              name="reply"
+              onInput={(e)=>handleReply(e)}
+            />
+          </AddReplySection>
         </Modal>
         <Spacer/>
       </Wrapper>

@@ -47,6 +47,14 @@ const ContentSection = styled.div`
   margin: 0.75rem 0.2rem;
 `;
 
+const AddReplySection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0.2rem;
+`;
+
 const ButtonSection = styled.div`
   width: 100%;
   display: flex;
@@ -60,7 +68,6 @@ const ReplySection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 0 0.2rem;
-  overflow-y: auto;
 `;
 
 const ImageSection = styled.div`
@@ -90,6 +97,7 @@ const NickName = styled.div`
 const Reply = styled.div`
   font-size: 0.85rem;
   font-weight: 400;
+  line-height: 1.25rem;
   color: ${(props) => props.theme.color.grey_800};
 `;
 
@@ -124,13 +132,25 @@ const LikeBtn = styled.button`
   background: #fff;
 `;
 
-const ModalInput = styled.input`
+const AddReplyBtn = styled.button`
+  border: transparent;
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color.orange};
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: #fff;
+`;
+
+const ReplyInput = styled.input`
+  width: 100%;
   padding-left: 1rem;
   margin-bottom: 0.5rem;
-  border: 0;
+  border: 1px solid ${(props) => props.theme.color.orange};
   border-radius: 1rem;
-  line-height: 2rem;
-  background-color: ${(props) => props.theme.color.light_200};
+  font-size: 0.85rem;
+  line-height: 1rem;
+  background-color: #fff; 
 `;
 
 export {
@@ -142,6 +162,7 @@ export {
   ButtonSection,
   ReplySection,
   ImageSection, 
+  AddReplySection,
   Title, 
   NickName,
   Reply,
@@ -149,6 +170,7 @@ export {
   Content, 
   Image,
   CancelBtn,
-  ModalInput, 
+  ReplyInput, 
   LikeBtn, 
+  AddReplyBtn,
 };

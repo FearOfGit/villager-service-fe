@@ -82,3 +82,22 @@ export async function postLikeAPI(params) {
 export async function postDislikeAPI(params) {
   return API.delete(`${BASE_API}/postlike/${params}`);
 }
+
+/**
+ * 게시글 댓글 작성 API
+ * @param {path, json-body} postId, postForm
+ * @returns {}
+ */
+export async function addReplyAPI(postId, postForm) {
+  return API.post(`${BASE_API}/posts/comments/${postId}`, postForm);
+}
+
+/**
+ * 게시글 댓글 삭제 API
+ * @param {path, path} postId, commentId
+ * @returns {}
+ */
+export async function deleteReplyAPI(postId, commentId) {
+  return API.delete(`${BASE_API}/posts/comments/${postId}/${commentId}`);
+}
+
