@@ -1,13 +1,27 @@
 import React from "react";
-import { Wrapper } from "./ReplyCard.styles";
+import { Wrapper, ContentSection, Content, NickName, Date, Comment, } from "./ReplyCard.styles";
 
-function ReplyCard({commentId, memberId, nickName, createdAt, }) {
+function ReplyCard({commentId, memberId, nickname, date, comment}) {
     
 
   return(
     <>
       <Wrapper>
-        안녕
+        <ContentSection>
+          <Content>
+            <NickName>
+              {nickname}
+            </NickName>
+            <Date>
+              작성일: {date}
+            </Date>
+          </Content>
+          <Content>
+            <Comment>
+              {comment}
+            </Comment>
+          </Content>
+        </ContentSection>
       </Wrapper>
     </>
   );
