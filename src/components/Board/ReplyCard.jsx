@@ -1,7 +1,7 @@
 import React from "react";
 import { Wrapper, ContentSection, Content, NickName, Date, Comment, } from "./ReplyCard.styles";
 
-function ReplyCard({commentId, memberId, nickName, createdAt, comment}) {
+function ReplyCard({commentId, memberId, nickname, date, comment}) {
     
 
   return(
@@ -10,10 +10,10 @@ function ReplyCard({commentId, memberId, nickName, createdAt, comment}) {
         <ContentSection>
           <Content>
             <NickName>
-              작성자: {nickName}
+              {nickname}
             </NickName>
             <Date>
-              작성일: {createdAt}
+              작성일: {date}
             </Date>
           </Content>
           <Content>

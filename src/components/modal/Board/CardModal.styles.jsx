@@ -70,6 +70,12 @@ const ReplySection = styled.div`
   margin: 0 0.2rem;
 `;
 
+const ReplyListSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 const ImageSection = styled.div`
   width: 100%;
   display: flex;
@@ -161,6 +167,7 @@ export {
   ContentSection, 
   ButtonSection,
   ReplySection,
+  ReplyListSection,
   ImageSection, 
   AddReplySection,
   Title, 

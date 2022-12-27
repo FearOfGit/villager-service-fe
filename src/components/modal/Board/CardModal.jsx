@@ -11,6 +11,7 @@ import {
   ContentSection,
   ButtonSection,
   ReplySection,
+  ReplyListSection,
   ImageSection,
   AddReplySection,
   Title,
@@ -110,18 +111,18 @@ function CardModal ({modal, postId}) {
               댓글
             </Reply>
           </ReplySection>
-          <ContentSection>
+          <ReplyListSection>
             {comment.map((reply)=>(
               <ReplyCard
               key={reply.commentId}
               replyId={reply.commentId}
               memberId={reply.memberId}
-              nickName={reply.nickName}
+              nickname={reply.nickname}
               comment={reply.comment}
               date={reply.createdAt}
               />
               ))}
-          </ContentSection>
+          </ReplyListSection>
           <ContentSection>
             <Reply>
               새 댓글

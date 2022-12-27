@@ -4,7 +4,6 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 1rem 1.2rem;
   background-color: #fff;
   align-items: center;
   border-top: 1px solid ${(props) => props.theme.color.grey_400};
@@ -29,15 +28,15 @@ const Content = styled.div`
 
 const Comment = styled.p`
   margin-bottom: 0.2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.1rem;
   color: ${(props) => props.theme.color.black_100};
 `;
 
 const NickName = styled.p`
   font-size: 0.85rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.2rem;
   color: ${(props) => props.theme.color.grey_900};
 `;
