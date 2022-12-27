@@ -5,8 +5,7 @@ import { API } from './Token';
 
 // 백 엔드 배포 서버 URL: http://ec2-15-164-233-107.ap-northeast-2.compute.amazonaws.com:8080/
 // 로컬 서버 URL: http://localhost:8080/
-const BASE_API =
-  'https://devwinter.com/api/v1';
+const BASE_API = 'https://devwinter.com/api/v1';
 // const BASE_API =
 //   '/api';
 
@@ -95,10 +94,37 @@ export async function startGatheringAPI(partyId) {
 }
 
 /**
+ * 모임 종료 API
+ * @param {partyId: string}
+ * @returns {} message
+ */
+export async function endGatheringAPI(partyId) {
+  return API.post(`${BASE_API}/parties/${partyId}/end`);
+}
+
+/**
+ * 모임 연장 API
+ * @param {partyId: string, endDt: string}
+ * @returns {} message
+ */
+export async function extensionGatheringAPI(partyId, endDt) {
+  return API.post(`${BASE_API}/parties/${partyId}/extension/${endDt}`);
+}
+
+/**
  * 모임 허락 API
  * @param {partyId: string, contents: string}
  * @returns {} message
  */
 export async function acceptGatheringAPI(partyId, targetId) {
   return API.patch(`${BASE_API}/parties/${partyId}/permission/${targetId}`);
+}
+
+/**
+ * 사용자 모임 전체 조회 API
+ * @param {}
+ * @returns {} message
+ */
+export async function getUserGatheringAPI() {
+  return API.get(`${BASE_API}/parties`);
 }

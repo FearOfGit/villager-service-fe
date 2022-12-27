@@ -61,7 +61,7 @@ export const DestroyButton = styled.button`
 export const StateButtonWrapper = styled.div`
   position: fixed;
   top: 4.5rem;
-  right: 5px;
+  right: 15px;
   z-index: 100;
 `;
 
@@ -76,6 +76,16 @@ export const StateButton = styled.button`
     css`
       background-color: red;
     `}
+
+  ${(props) =>
+    props.grey &&
+    css`
+      background-color: ${palette.gray[6]};
+    `}
+
+  & + & {
+    margin-left: 0.5rem;
+  }
 `;
 
 export const GatheringTagWrapper = styled.div`

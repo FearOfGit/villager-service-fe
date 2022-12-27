@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { AllgatheringLookUpAPI } from '../../api/gathering';
 import GatheringItem from './GatheringItem';
-import { ListBlock } from './GatheringList.style';
+import { ListBlock, Title } from './GatheringList.style';
 
 function GatheringList() {
   const { lat, lng } = useSelector((state) => state.location.value);
@@ -27,11 +27,14 @@ function GatheringList() {
   }, [lat, lng]);
 
   return (
-    <ListBlock>
-      {data.data.map((party) => (
-        <GatheringItem key={party.partyId} info={party} />
-      ))}
-    </ListBlock>
+    <>
+      <Title>동네 모임 찾기</Title>
+      <ListBlock>
+        {data.data.map((party) => (
+          <GatheringItem key={party.partyId} info={party} />
+        ))}
+      </ListBlock>
+    </>
   );
 }
 
