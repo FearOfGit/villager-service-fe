@@ -19,6 +19,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-modern-drawer": "^1.1.2",
     "react-query": "^3.39.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
@@ -35,7 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { VscBell, VscCompass } from 'react-icons/vsc';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import Drawer from 'react-modern-drawer';
 import { logOutAPI } from '../../api/Users';
 import Button from './Button';
 import Responsive from './Responsive';
@@ -13,6 +14,8 @@ import TownSetup from '../modal/TownSetup';
 import { setUserId } from '../../store/User';
 import { removeRefreshToken } from '../../app/Cookie';
 import { changeLocation } from '../../store/Location';
+import 'react-modern-drawer/dist/index.css';
+import Notification from './Notification';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -49,8 +52,26 @@ const Inner = styled(Responsive)`
   .bell {
     display: flex;
     align-items: center;
+    font-size: 1.5rem;
+    padding: 0.3rem;
+    position: relative;
+    .count {
+      position: absolute;
+      right: 3px;
+      top: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #fdaa5d;
+      color: #fff;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .map {
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     margin-left: 0.25rem;
@@ -66,8 +87,14 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myId = useSelector((state) => state.user.value.userId);
+  const alerts = useSelector((state) => state.alert.value.alert);
   const { nickname } = useSelector((state) => state.location.value);
   const [isTownSetupModal, setTownSetupModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   const handleLogOut = () => {
     logOutAPI().then((res) => {
@@ -97,6 +124,15 @@ function Header() {
           onClose={() => setTownSetupModal(false)}
         />
       )}
+      <Drawer
+        open={isOpen}
+        onClose={toggleDrawer}
+        direction="right"
+        className="drawer"
+        size="70vw"
+      >
+        <Notification setIsOpen={setIsOpen} />
+      </Drawer>
       <HeaderBlock>
         <Inner>
           <div className="logo">
@@ -118,8 +154,11 @@ function Header() {
                 <div className="map">
                   <VscCompass onClick={() => navigate('/map')} />
                 </div>
-                <div className="bell">
+                <div className="bell" onClick={toggleDrawer}>
                   <VscBell />
+                  {alerts.length > 0 && (
+                    <div className="count">{alerts.length}</div>
+                  )}
                 </div>
               </>
             )}

@@ -11,10 +11,12 @@ import {
 import storage from 'redux-persist/lib/storage';
 import locationReducer from './Location';
 import userReducer from './User';
+import alertReducer from './alert';
 
 const reducers = combineReducers({
   location: locationReducer,
   user: userReducer,
+  alert: alertReducer,
 });
 
 const persistConfig = {
