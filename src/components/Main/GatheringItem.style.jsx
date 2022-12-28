@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../lib/palette';
 
 export const ItemBlock = styled.li`
   border: 1px solid #ccc;
@@ -6,7 +7,6 @@ export const ItemBlock = styled.li`
   width: 100%;
   border-radius: 10px;
   padding: 1rem;
-  padding-right: 3.5rem;
   position: relative;
   .btn {
   }
@@ -16,61 +16,76 @@ export const ItemBlock = styled.li`
   }
 `;
 
-export const GatheringTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 700;
-`;
-
-export const Text = styled.span`
-  font-size: 0.8rem;
-  color: #303733;
-`;
-
-export const ContentText = styled.p`
-  margin-top: 0.5rem;
-  background-color: #f7f7f7;
-  min-height: 100px;
-  padding: 0.5rem;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  color: #303733;
-`;
-
-export const LocationWrapper = styled.div`
+export const Top = styled.div`
   display: flex;
-  .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 0.7rem;
-    color: #303733;
-    font-size: 0.7rem;
-    span + span {
-      display: inline-block;
-      margin-top: 0.2rem;
-      font-size: 0.9rem;
-    }
-  }
-  .marker {
-    width: 40px;
-    height: 40px;
-    background-color: #4ab7b6;
-    color: #fff;
-    font-size: 1.3rem;
-    border-radius: 50%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+`;
+
+export const Writer = styled.div`
+  display: flex;
+  align-items: center;
+  .ico-user {
+    width: 18px;
+    height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 50%;
+  }
+  .nickname {
+    margin-left: 0.3rem;
+    font-size: 0.75rem;
+  }
+`;
+
+export const Date = styled.span`
+  font-size: 0.75rem;
+`;
+
+export const Middle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .count {
+    font-size: 0.75rem;
+  }
+`;
+
+export const GatheringTitle = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 700;
+`;
+
+export const Location = styled.span`
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  color: ${palette.gray[5]};
+  display: block;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Bottom = styled.div`
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .ico-like {
+    color: red;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
   }
 `;
 
 export const TagWrapper = styled.div`
   font-size: 0.7rem;
   .like {
-    display: flex;
-    justify-content: center;
     margin-top: 0.5rem;
-    font-size: 1.2rem;
+
     color: red;
   }
 `;

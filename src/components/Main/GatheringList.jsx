@@ -22,13 +22,15 @@ function GatheringList() {
     },
   );
 
+  console.log(data);
+
   useEffect(() => {
     refetch();
   }, [lat, lng]);
 
   return (
     <>
-      <Title>동네 모임 찾기</Title>
+      <Title>동네 모임</Title>
       <ListBlock>
         {data.data.map((party) => (
           <GatheringItem key={party.partyId} info={party} />
