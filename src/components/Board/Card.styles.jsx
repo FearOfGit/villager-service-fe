@@ -33,6 +33,9 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-bottom: 0.2rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -41,6 +44,9 @@ const Title = styled.p`
 `;
 
 const NickName = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.2rem;

@@ -48,4 +48,11 @@ const Date = styled.p`
   color: ${(props) => props.theme.color.grey_700};
 `;
 
-export { Wrapper, ContentSection, Content, NickName, Date, Comment, };
+const Delete = styled.div`
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: ${(props) => props.theme.color.grey_700};
+`;
+
+export { Wrapper, ContentSection, Content, NickName, Date, Delete, Comment, };
