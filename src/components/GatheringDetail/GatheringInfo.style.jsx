@@ -2,10 +2,13 @@ import styled, { css } from 'styled-components';
 import palette from '../../lib/palette';
 
 export const GatheringName = styled.h2`
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -147,6 +150,7 @@ export const PartyState = styled.div`
   font-size: 0.7rem;
   border: none;
   border-radius: 20px;
+  flex-shrink: 0;
   ${(props) =>
     props.state === 'START' &&
     css`
