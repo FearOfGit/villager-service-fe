@@ -9,6 +9,7 @@ export const ItemBlock = styled.li`
   padding: 1rem 0.7rem;
   position: relative;
   flex-shrink: 0;
+  cursor: pointer;
   & + li {
     margin-left: 1rem;
   }
@@ -47,8 +48,8 @@ export const Writer = styled.div`
     border-radius: 50%;
   }
   .nickname {
-    margin-left: 0.3rem;
-    font-size: 0.75rem;
+    margin-left: 0.2rem;
+    font-size: 0.7rem;
   }
 `;
 

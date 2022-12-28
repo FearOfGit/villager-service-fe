@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const MainTemplate = styled.main`
-  /* margin-top: 1rem; */
   margin-bottom: 7rem;
   .flex {
     display: flex;
-    align-items: center;
   }
   .flex-2 {
     margin-top: 0.7rem;
