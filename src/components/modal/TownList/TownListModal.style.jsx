@@ -15,7 +15,7 @@ const Modal = styled.form`
   padding: 1rem;
   background-color: #fff;
   border-radius: 12px;
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.theme.color.green};
 `;
 
 const Title = styled.div`
@@ -68,6 +68,9 @@ const CancelBtn = styled.button`
   width: 100%;
   margin: 0 0.25rem;
   border-radius: 2rem;
+  border: 1px solid ${(props) => props.theme.color.orange};
+  background-color: ${(props) => props.theme.color.orange};
+  color: #fff;
 `;
 
 export { Wrapper, Modal, Title, ModalInput, ContentSection, Content, ButtonSection, SubmitBtn, CancelBtn, };
