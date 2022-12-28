@@ -128,3 +128,12 @@ export async function acceptGatheringAPI(partyId, targetId) {
 export async function getUserGatheringAPI() {
   return API.get(`${BASE_API}/parties`);
 }
+
+/**
+ * 행상 배너 목록 API
+ * @param {}
+ * @returns {} message
+ */
+export async function getEventsAPI(size) {
+  return API.get(`${BASE_API}/banners/${size}`);
+}
