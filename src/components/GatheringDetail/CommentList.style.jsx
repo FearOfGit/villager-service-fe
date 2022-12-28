@@ -9,9 +9,6 @@ export const CommentListWrapper = styled.ul`
     padding: 1rem;
     font-size: 0.8rem;
     border-bottom: 1px solid #ccc;
-    &:first-child {
-      border-top: 1px solid #ccc;
-    }
   }
 `;
 
@@ -24,7 +21,8 @@ export const Title = styled.h2`
 
 export const UserName = styled.span`
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
   ${(props) =>
     props.owner &&
     css`
