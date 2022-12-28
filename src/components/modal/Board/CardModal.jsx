@@ -57,15 +57,22 @@ function CardModal ({modal, postId}) {
     const body = {"comment": commentInput};
     addReplyAPI(postId, body)
       .then((res)=>{
-        console.log(postId, body, res.data); 
-        console.log('잘 돼띠!');
+        console.log(postId, body, res.data);
       });
   };
 
   const deletePost = () => {
     deletePostAPI(postId)
       .then((res)=>{
-        console.log('삭제 됐띠!', res.data);
+        if (res.data) {
+          toast.error(res.data.errorMessage);
+        }
+        else {
+          toast.success(<h1>게시글이 성공적으로 삭제되었습니다. 😊</h1>);
+          setTimeout(() => {
+            modal(false);
+          }, 1500);
+        }
       });
   };
 
