@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { IoArrowBackOutline, IoHeartOutline, IoHeart, IoEllipsisVertical } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
-import { postDetailAPI, postLikeAPI, postDislikeAPI, addReplyAPI } from "../../../api/Board";
+import { postDetailAPI, postLikeAPI, postDislikeAPI, addReplyAPI, deletePostAPI } from "../../../api/Board";
 import {
   Spacer,
   Wrapper,
@@ -21,6 +21,7 @@ import {
   Image,
   Content,
   CancelBtn,
+  DeleteBtn,
   LikeBtn,
   ReplyInput,
   AddReplyBtn,
@@ -47,7 +48,7 @@ function CardModal ({modal, postId}) {
     }
   };
 
-  const handleReply =(e) => {
+  const handleReply = (e) => {
     setCommentInput(e.target.value);
     console.log(commentInput);
   };
@@ -55,9 +56,32 @@ function CardModal ({modal, postId}) {
   const addReply = () => {
     const body = {"comment": commentInput};
     addReplyAPI(postId, body)
-      .then((res)=>{console.log(postId, body, res.data); console.log('잘 돼띠!')});
+      .then((res)=>{
+        toast.info(<h1>댓글이 성공적으로 입력되었습니다. 😊</h1>);
+        console.log(res.data);
+        if (res.data) {
+          toast(res.data.errorMessage);
+        }
+        else {
+          toast.info(<h1>댓글이 성공적으로 입력되었습니다. 😊</h1>);
+        }
+      });
   };
 
+  const deletePost = () => {
+    deletePostAPI(postId)
+      .then((res)=>{
+        if (res.data) {
+          toast.error(res.data.errorMessage);
+        }
+        else {
+          toast.success(<h1>게시글이 성공적으로 삭제되었습니다. 😊</h1>);
+          setTimeout(() => {
+            modal(false);
+          }, 1500);
+        }
+      });
+  };
 
   useEffect(()=> {
     postDetailAPI(postId).then((res)=> {
@@ -106,6 +130,9 @@ function CardModal ({modal, postId}) {
               {postDetail.contents}
             </Content>
           </ContentSection>
+          <DeleteBtn type="button" onClick={()=>deletePost()}>
+            작성글 삭제
+          </DeleteBtn>
           <ReplySection>
             <Reply>
               댓글
@@ -134,7 +161,7 @@ function CardModal ({modal, postId}) {
           <AddReplySection>
             <ReplyInput
               name="reply"
-              onInput={(e)=>handleReply(e)}
+              onChange={(e)=>handleReply(e)}
             />
           </AddReplySection>
         </Modal>

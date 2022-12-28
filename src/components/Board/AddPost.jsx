@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { IoChevronForward } from 'react-icons/io5';
 import { toast, ToastContainer } from 'react-toastify';
-import { Wrapper, Button } from './AddPost.styles';
+import { Wrapper, ContentSection, Button, Title } from './AddPost.styles';
 import { postAPI, showCategoryAPI } from '../../api/Board';
 import AddPostText from './AddPostText';
 import AddPostImage from './AddPostImage';
@@ -63,12 +64,17 @@ function AddPost () {
     <>
       <ToastContainer/>
       <Wrapper>
-        <Button
-          type="submit"
-          onClick={() => handleSubmit()}
-        >
-          게시글 등록하기
-        </Button>
+        <ContentSection>
+          <Title>
+            게시글 작성
+          </Title>
+          <Button
+            type="submit"
+            onClick={() => handleSubmit()}
+            >
+            <IoChevronForward size="10px"/>
+          </Button>
+        </ContentSection>
         <AddPostText 
           setTitle={setTitle} 
           setContent={setContent} 

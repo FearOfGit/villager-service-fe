@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTownAPI } from "../../api/Town";
-import { Wrapper, Button } from "./SelectTown.styles";
+import { Wrapper, FirstButton, SecondButton } from "./SelectTown.styles";
 
 function SelectTown (props) {
   const [ isFirst, setIsFirst ] = useState(true);
@@ -36,20 +36,20 @@ function SelectTown (props) {
     <>
       <Wrapper>
         { firstTown && (
-          <Button
+          <FirstButton
             value={isFirst}
             onClick={()=>handleFirst()}
           >
             {firstTown.townName? firstTown.townName: '없음'}
-          </Button>
+          </FirstButton>
         )}
         { secondTown && (
-          <Button
+          <SecondButton
             value={isFirst}
             onClick={()=>handleSecond()}
           >
             {secondTown.townName? secondTown.townName: '없음'}
-          </Button>
+          </SecondButton>
         )}
       </Wrapper>
     </>
