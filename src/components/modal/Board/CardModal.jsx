@@ -142,6 +142,7 @@ function CardModal ({modal, postId}) {
             {comment.map((reply)=>(
               <ReplyCard
               key={reply.commentId}
+              postId={postId}
               replyId={reply.commentId}
               memberId={reply.memberId}
               nickname={reply.nickname}
