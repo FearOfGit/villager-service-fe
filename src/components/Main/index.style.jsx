@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const MainTemplate = styled.main`
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 7rem;
   .flex {
-    margin-top: 0.7rem;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
   }
   .flex-2 {
     margin-top: 0.7rem;
@@ -25,7 +24,7 @@ export const RegisterButton = styled.button`
   position: fixed;
   bottom: 90px;
   right: 5%;
-  padding: 1.3rem;
+  padding: 1rem;
   border-radius: 100%;
   border: none;
   font-size: 1.2rem;

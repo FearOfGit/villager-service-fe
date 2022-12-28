@@ -13,6 +13,12 @@ export const MyListWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      .ico {
+        display: flex;
+      }
+    }
   }
   .location {
     font-size: 0.7rem;
@@ -22,7 +28,7 @@ export const MyListWrapper = styled.div`
     margin-top: 0.1rem;
   }
   .ico {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
