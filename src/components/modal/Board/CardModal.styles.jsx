@@ -131,7 +131,13 @@ const Content = styled.div`
 const CancelBtn = styled.button`
   border: transparent;
   background: #fff;
-  `;
+`;
+
+const DeleteBtn = styled.button`
+  border: transparent;
+  background: #fff;
+  text-align: right;
+`;
 
 const LikeBtn = styled.button`
   border: transparent;
@@ -177,6 +183,7 @@ export {
   Content, 
   Image,
   CancelBtn,
+  DeleteBtn,
   ReplyInput, 
   LikeBtn, 
   AddReplyBtn,
