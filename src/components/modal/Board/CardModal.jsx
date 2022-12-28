@@ -57,7 +57,14 @@ function CardModal ({modal, postId}) {
     const body = {"comment": commentInput};
     addReplyAPI(postId, body)
       .then((res)=>{
-        console.log(postId, body, res.data);
+        toast.info(<h1>댓글이 성공적으로 입력되었습니다. 😊</h1>);
+        console.log(res.data);
+        if (res.data) {
+          toast(res.data.errorMessage);
+        }
+        else {
+          toast.info(<h1>댓글이 성공적으로 입력되었습니다. 😊</h1>);
+        }
       });
   };
 
@@ -154,7 +161,7 @@ function CardModal ({modal, postId}) {
           <AddReplySection>
             <ReplyInput
               name="reply"
-              onInput={(e)=>handleReply(e)}
+              onChange={(e)=>handleReply(e)}
             />
           </AddReplySection>
         </Modal>
