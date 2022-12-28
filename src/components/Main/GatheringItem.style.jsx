@@ -4,14 +4,20 @@ import palette from '../../lib/palette';
 export const ItemBlock = styled.li`
   border: 1px solid #ccc;
   display: block;
-  width: 70%;
+  width: 300px;
+  max-width: 300px;
   border-radius: 10px;
-  padding: 1rem 0.7rem;
+  padding: 1rem;
   position: relative;
   flex-shrink: 0;
   cursor: pointer;
+  &:hover {
+    .thumb {
+      background-color: #fdaa5d;
+    }
+  }
   & + li {
-    margin-left: 1rem;
+    margin-left: 1.2rem;
   }
   .big {
     font-size: 1.05rem;
@@ -19,6 +25,7 @@ export const ItemBlock = styled.li`
 `;
 
 export const Thumbnail = styled.div`
+  transition: background-color 0.4s;
   height: 150px;
   background-color: #4ab7b6;
   display: flex;

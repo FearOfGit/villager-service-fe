@@ -18,7 +18,7 @@ function GatheringItem({ info }) {
   const navigate = useNavigate();
   return (
     <ItemBlock onClick={() => navigate(`/gathering/${info.partyId}`)}>
-      <Thumbnail>
+      <Thumbnail className="thumb">
         <Location>{info.location}</Location>
       </Thumbnail>
       <Top>

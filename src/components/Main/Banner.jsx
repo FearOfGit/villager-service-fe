@@ -6,7 +6,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BannerContainer, Button, Title } from './Banner.style';
 
 function Banner() {
-  const { data, refetch } = useQuery(['getEvents'], () => getEventsAPI(5), {
+  const { data, refetch } = useQuery(['getEvents'], () => getEventsAPI(10), {
     suspense: true,
     refetchOnWindowFocus: false,
     retry: false,
