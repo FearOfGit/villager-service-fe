@@ -11,12 +11,16 @@ import {
   Middle,
   Location,
   Bottom,
+  Thumbnail,
 } from './GatheringItem.style';
 
 function GatheringItem({ info }) {
   const navigate = useNavigate();
   return (
     <ItemBlock onClick={() => navigate(`/gathering/${info.partyId}`)}>
+      <Thumbnail>
+        <Location>{info.location}</Location>
+      </Thumbnail>
       <Top>
         <Writer>
           <div className="ico-user">
@@ -27,12 +31,12 @@ function GatheringItem({ info }) {
         <Date>{`${info.startDt} ~ ${info.endDt}`}</Date>
       </Top>
       <Middle>
-        <div className="flex">
-          <GatheringTitle>{info.partyName}</GatheringTitle>
-          <Location>{info.location}</Location>
-        </div>
+        <GatheringTitle>{info.partyName}</GatheringTitle>
         <div className="count">
-          <span>{info.partyPeople}</span> / {info.numberPeople}
+          <span>
+            {info.partyPeople}{' '}
+            <span className="big">/ {info.numberPeople}</span>
+          </span>
         </div>
       </Middle>
       <Bottom>

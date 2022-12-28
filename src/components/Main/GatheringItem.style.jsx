@@ -4,16 +4,27 @@ import palette from '../../lib/palette';
 export const ItemBlock = styled.li`
   border: 1px solid #ccc;
   display: block;
-  width: 100%;
+  width: 70%;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1rem 0.7rem;
   position: relative;
-  .btn {
-  }
-
+  flex-shrink: 0;
   & + li {
-    margin-top: 1rem;
+    margin-left: 1rem;
   }
+  .big {
+    font-size: 1.05rem;
+  }
+`;
+
+export const Thumbnail = styled.div`
+  height: 150px;
+  background-color: #4ab7b6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 10px;
 `;
 
 export const Top = styled.div`
@@ -42,30 +53,37 @@ export const Writer = styled.div`
 `;
 
 export const Date = styled.span`
-  font-size: 0.75rem;
+  font-size: 0.5rem;
 `;
 
 export const Middle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-top: 0.5rem;
   .count {
-    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
   }
 `;
 
 export const GatheringTitle = styled.h3`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Location = styled.span`
-  font-size: 0.75rem;
-  margin-left: 0.5rem;
-  color: ${palette.gray[5]};
+  font-size: 1rem;
+  color: #fff;
   display: block;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Bottom = styled.div`
