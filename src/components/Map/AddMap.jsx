@@ -5,7 +5,9 @@ import {
   Wrapper,
   SubmitWrapper,
   ContentSection,
-  Button,
+  AddButton,
+  DeleteButton,
+  ListButton,
   ButtonSection,
 } from './AddMap.styles';
 import { deleteTownAPI, insertTownAPI, searchTownAPI } from '../../api/Town';
@@ -96,16 +98,20 @@ function AddMap(props) {
             </ContentSection>
             <SelectTown select={selectTown} />
             <ButtonSection>
-              <Button type="button" onClick={() => addTown()}>
+              <AddButton type="button" onClick={() => addTown()}>
                 동네 설정하기
-              </Button>
-              <Button type="button" onClick={() => deleteTown()}>
-                동네 삭제하기
-              </Button>
+              </AddButton>
             </ButtonSection>
-            <Button type="button" onClick={() => handleClick()}>
-              동네 목록 조회하기
-            </Button>
+            <ButtonSection>
+              <DeleteButton type="button" onClick={() => deleteTown()}>
+                동네 삭제하기
+              </DeleteButton>
+            </ButtonSection>
+            <ButtonSection>
+              <ListButton type="button" onClick={() => handleClick()}>
+                동네 목록 조회하기
+              </ListButton>
+            </ButtonSection>
           </SubmitWrapper>
         </Wrapper>
       )}
