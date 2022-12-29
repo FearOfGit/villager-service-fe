@@ -8,14 +8,13 @@ function ReplyCard({postId, replyId, memberId, nickname, date, comment}) {
     deleteReplyAPI(postId, replyId)
       .then((res)=>{
         toast.success(<h1>댓글이 성공적으로 삭제되었습니다. 😊</h1>);
-        toast.success(<h1>댓글이 성공적으로 삭제되었습니다. 😊</h1>);
       })
   };
 
   return(
     <>
-      <ToastContainer/>
       <Wrapper>
+      <ToastContainer/>
         <ContentSection>
           <Content>
             <NickName>

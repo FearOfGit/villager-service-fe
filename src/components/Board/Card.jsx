@@ -3,7 +3,9 @@ import { IoChevronForward } from 'react-icons/io5';
 import { Wrapper, ContentSection, ButtonSection, Content, Title, NickName, Date, ViewCount} from './Card.styles';
 import CardModal from '../modal/Board/CardModal';
 
-function Card ({ postId, nickName, title, nearCreateAt, categoryId, viewCount }) {
+function Card ({ oooo, index, postId, nickName, title, nearCreateAt, categoryId, viewCount }) {
+
+  console.log(oooo, index);
 
   const [isClicked, setIsClicked ] = useState(false);
 
