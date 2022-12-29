@@ -19,6 +19,7 @@ import { store } from './store/store';
 import Root from './routes/root';
 import theme from './styles/theme/theme';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginRedirect from './components/SignIn/OAuth/LoginRedirect';
 
 import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
       <Route path="rank" element={<RankPage />} />
       <Route path="addPost" element={<AddPostPage />}/>
       <Route path="board" element={<BoardPage />}/>
+      <Route path="oauth2/redirect" element={<LoginRedirect />} />
     </Route>,
   ),
 );
