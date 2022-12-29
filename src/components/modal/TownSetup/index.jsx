@@ -78,6 +78,7 @@ function TownSetup({ show, onClose }) {
         changeNickname={changeNickname}
         removeTown={removeTown}
         selectTown={selectTown}
+        onClose={onClose}
       />
     </TownSetupWrapper>
   );

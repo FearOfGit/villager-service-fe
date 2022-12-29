@@ -22,7 +22,7 @@ export const TownSelectorWrapper = styled.div`
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: #4ab7b6;
+    background-color: #fdaa5d;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -49,9 +49,10 @@ export const TownSelectorWrapper = styled.div`
 
 export const SelectWrapper = styled.div`
   position: relative;
-  border: 1px solid black;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.7rem 1rem;
+  border-radius: 15px;
+  background: gray;
+  color: #fff;
   width: 150px;
   display: flex;
   flex-direction: column;
@@ -61,6 +62,6 @@ export const SelectWrapper = styled.div`
   ${(props) =>
     props.select &&
     css`
-      background-color: #fdaa5f;
+      background-color: #4ab7b6;
     `}
 `;

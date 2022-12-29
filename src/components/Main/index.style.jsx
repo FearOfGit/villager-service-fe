@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MainTemplate = styled.main`
-  margin-bottom: 7rem;
+  /* margin-bottom: 7rem; */
   .flex {
     display: flex;
   }

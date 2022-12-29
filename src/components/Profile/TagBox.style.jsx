@@ -22,8 +22,10 @@ export const Title = styled.h3`
 `;
 
 export const TagInput = styled.input`
-  border: none;
-  border-bottom: 1px solid #ccc;
+  /* border: none;
+  border-bottom: 1px solid #ccc; */
+  border-radius: 5px;
+  border: 1px solid black;
   outline: none;
   padding: 0.7rem 0.5rem;
   width: 100%;
