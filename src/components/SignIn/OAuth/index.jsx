@@ -4,7 +4,7 @@ import { ReactComponent as GoogleLogo } from '../../../images/googlelogin.svg';
 import { ReactComponent as NaverLogo } from '../../../images/naverlogin.svg';
 import { Link, ButtonKakao, ButtonNaver, ButtonGoogle, GoogleLogoBox, TextBox } from "./Button.styles";
 
-const REDIRECT_URI = 'https://kimnerd625.github.io/oauth2/redirect';
+const REDIRECT_URI = 'https://kimnerd625.github.io';
 // const REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
 const authGoogle = `https://devwinter.com/oauth2/authorization/google?redirect_uri=${REDIRECT_URI}`;
 const authNaver = `https://devwinter.com/oauth2/authorization/naver?redirect_uri=${REDIRECT_URI}`;

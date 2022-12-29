@@ -1,15 +1,21 @@
 /* eslint-disable no-undef */
 import { useEffect, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useSearchParams, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addAlert } from '../store/alert';
 import Header from '../components/common/Header';
 import Navigator from '../components/common/Navigator';
 import Responsive from '../components/common/Responsive';
+import LoginRedirect from '../components/SignIn/OAuth/LoginRedirect';
 
 function Root() {
   const myId = useSelector((state) => state.user.value.userId);
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+
+  if (searchParams.get('accessToken')) {
+    LoginRedirect();
+  }
 
   useEffect(() => {
     if (!myId) return;
