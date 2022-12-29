@@ -20,13 +20,14 @@ function TownSetup({ show, onClose }) {
       retry: false,
     },
   );
-
+  console.log('12', data);
   useEffect(() => {
-    console.log(data);
+    console.log('12', data);
   }, [data]);
 
   useEffect(() => {
     const { towns } = data.data;
+    if (!towns) return;
     if (!towns.length) {
       dispatch(
         changeLocation({
