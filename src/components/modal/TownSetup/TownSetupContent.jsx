@@ -36,7 +36,7 @@ function TownSetupContent({
             selectTown={selectTown}
           />
         ))}
-        {myTownList.length < 2 && (
+        {myTownList && myTownList.length < 2 && (
           <SelectWrapper onClick={onAdd}>+</SelectWrapper>
         )}
       </div>

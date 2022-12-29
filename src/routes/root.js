@@ -13,10 +13,6 @@ function Root() {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
-  if (searchParams.get('accessToken')) {
-    LoginRedirect();
-  }
-
   useEffect(() => {
     if (!myId) return;
     console.log('EventSource');
@@ -69,6 +65,10 @@ function Root() {
       stop();
     });
   }, [myId]);
+
+  if (searchParams.get('accessToken')) {
+    LoginRedirect();
+  }
 
   return (
     <>
