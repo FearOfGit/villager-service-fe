@@ -9,7 +9,8 @@ export const Title = styled.h2`
 `;
 export const ListBlock = styled.ul`
   margin-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 0.5rem;
+  padding-bottom: 7rem;
   display: flex;
   overflow: auto;
 `;

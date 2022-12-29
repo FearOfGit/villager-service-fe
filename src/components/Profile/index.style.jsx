@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProfileTemplate = styled.div`
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 11rem;
   display: flex;
   justify-content: center;
   .flex {

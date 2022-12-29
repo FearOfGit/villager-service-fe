@@ -3,7 +3,7 @@ import palette from '../../lib/palette';
 
 export const BannerContainer = styled.div`
   margin-bottom: 2rem;
-  background-color: ${palette.gray[7]};
+  background-color: ${palette.gray[8]};
   border-radius: 10px;
   padding: 1rem;
   .item {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { toast, ToastContainer } from 'react-toastify';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import Drawer from 'react-modern-drawer';
@@ -11,7 +12,6 @@ import {
   GatheringTagWrapper,
   JoinButton,
   LikeButton,
-  MemberInfoWrapper,
   PartyState,
   StateButton,
   StateButtonWrapper,
@@ -94,6 +94,7 @@ function GatheringInfo({ searchId }) {
 
   const handleApply = async () => {
     const response = await gatheringApplyAPI(searchId);
+    toast.success(<h3>모임 신청을 보냈습니다! 😊</h3>);
     console.log(response);
   };
 
@@ -111,6 +112,7 @@ function GatheringInfo({ searchId }) {
 
   return (
     <>
+      <ToastContainer />
       <div className="flex">
         <GatheringName>{data.data.partyName}</GatheringName>
         <PartyState state={data.data.state}>
