@@ -10,6 +10,7 @@ export const UserInfoWrapper = styled.div`
 `;
 
 export const UserImage = styled.img`
+  width: 30%;
   border-radius: 50%;
 `;
 

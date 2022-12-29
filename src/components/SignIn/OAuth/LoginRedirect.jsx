@@ -27,12 +27,12 @@ function LoginRedirect() {
 
   useEffect(()=> {
     setTimeout(()=> {
-      navigate("/map")
+      navigate("/")
     }, 0)
   }, [])
 
   const handleClick = () => {
-    navigate("/map");
+    navigate("/");
   } 
 
   return (
