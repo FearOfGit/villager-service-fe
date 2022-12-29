@@ -57,7 +57,6 @@ function CardModal ({modal, postId}) {
     const body = {"comment": commentInput};
     addReplyAPI(postId, body)
       .then((res)=>{
-        toast.info(<h1>댓글이 성공적으로 입력되었습니다. 😊</h1>);
         console.log(res.data);
         if (res.data) {
           toast(res.data.errorMessage);
@@ -96,9 +95,9 @@ function CardModal ({modal, postId}) {
   return(
     <>
       <Wrapper>
-        <ToastContainer/>
         <Spacer/>
         <Modal>
+          <ToastContainer/>
           <ButtonSection>
             <CancelBtn type="button" onClick={cancel}>
               <IoArrowBackOutline size="1.4rem"/>

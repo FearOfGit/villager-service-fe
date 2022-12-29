@@ -7,7 +7,7 @@ import { Wrapper, RankList } from "./Rank.styles";
 function Rank () {
 
   const listPage = 1;
-  const listSize = 5;
+  const listSize = 10;
 
   function getRankList() {
     const params = {params: {page: listPage, size: listSize}};
