@@ -59,7 +59,6 @@ function Board () {
           (boardSize-1 === index) ?
           <div ref={ref}>
             <Card
-              oooo="됨"
               index={index}
               key={post.postId}
               postId={post.postId}
@@ -73,7 +72,6 @@ function Board () {
           <div>
             <Card
                 key={post.postId}
-                oooo="안됨"
                 index={index}
                 postId={post.postId}
                 title={post.title}
