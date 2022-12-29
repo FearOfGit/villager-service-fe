@@ -16,22 +16,9 @@ import { updateTagAPI } from '../../api/Users';
 function TagBox({ data, refetch }) {
   const [isShow, setIsShow] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  // const [tagList, setTagList] = useState(data.tags);
   const myId = useSelector((state) => state.user.value.userId);
   const isMe = String(data.memberId) === String(myId);
-  // const isFull = tagList.length === 5;
-  const isFull = data.tags.length === 5;
-
-  // useEffect(() => {
-  //   async function updateTag() {
-  //     const response = await updateTagAPI({
-  //       tags: [...tagList],
-  //     });
-  //     console.log(response);
-  //   }
-
-  //   updateTag();
-  // }, [tagList]);
+  const isFull = data.tags && data.tags.length === 5;
 
   const onChange = (e) => {
     setInputValue(e.target.value);
