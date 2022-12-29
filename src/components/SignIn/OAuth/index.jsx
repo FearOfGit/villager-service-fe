@@ -11,8 +11,8 @@ import {
   TextBox,
 } from './Button.styles';
 
-// const REDIRECT_URI = 'https://kimnerd625.github.io';
-const REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
+const REDIRECT_URI = 'https://kimnerd625.github.io';
+// const REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
 const authGoogle = `https://devwinter.com/oauth2/authorization/google?redirect_uri=${REDIRECT_URI}`;
 const authNaver = `https://devwinter.com/oauth2/authorization/naver?redirect_uri=${REDIRECT_URI}`;
 const authKakao = `https://devwinter.com/oauth2/authorization/kakao?redirect_uri=${REDIRECT_URI}`;
